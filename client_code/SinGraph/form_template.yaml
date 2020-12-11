@@ -24,7 +24,7 @@ components:
       properties: {}
       name: period_input
       layout_properties: {grid_position: 'KUHUTK,EKKRVI'}
-      event_bindings: {pressed_enter: period_input_pressed_enter}
+      event_bindings: {pressed_enter: period_input_pressed_enter, show: period_input_show}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: Phase, font_size: null, font: '', spacing_above: small,
