@@ -11,16 +11,17 @@ from model2050 import Model2050
 # Here is an example - you can replace it with your own:
 
 
+fpath = Path("server_code/test.xlsx")
+
+model2050 = Model2050(fpath)
+
+
 @anvil.server.callable
-def calculate_sin(period, phase):
-    fpath = Path("server_code/test.xlsx")
-
-    model2050 = Model2050(fpath)
-
+def calculate(period, phase):
     print("The inputs for this model are:\n" + "\n".join(model2050.inputs))
     print()
     print("The outputs for this model are:\n" + "\n".join(model2050.outputs))
     print()
 
     solution = model2050.calculate({"PERIOD": period, "PHASE": phase})
-    return solution["SIN"][0]
+    return solution
