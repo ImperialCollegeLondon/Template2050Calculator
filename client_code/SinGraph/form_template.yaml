@@ -61,6 +61,12 @@ components:
       properties: {}
       name: sin_plot
       layout_properties: {grid_position: 'XABUAT,HLHFDI'}
+      event_bindings: {click: sin_plot_click}
+    - type: Plot
+      properties: {}
+      name: cos_plot
+      layout_properties: {grid_position: 'XABUAT,KZMXVZ'}
+      event_bindings: {click: plot_1_click}
 - type: FlowPanel
   properties: {}
   name: navbar_links

@@ -38,3 +38,5 @@ class SinGraph(SinGraphTemplate):
     def phase_input_pressed_enter(self, **event_args):
         """This method is called when the user presses Enter in this text box"""
         self.build_sin_graph()
+
+
