@@ -1,8 +1,9 @@
-allow_embedding: false
-package_name: Material_Design_1
-db_schema: []
-name: Test Dashboard
-startup_form: Form1
-renamed: true
-runtime_options: {version: 2, client_version: '3', server_version: python3-sandbox}
 services: []
+package_name: Test_Dashboard
+allow_embedding: false
+name: Test Dashboard
+runtime_options: {version: 2, client_version: '3', server_version: python3-sandbox}
+metadata: {}
+startup_form: SinGraph
+db_schema: []
+renamed: true
