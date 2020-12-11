@@ -25,3 +25,8 @@ def calculate(period, phase):
 
     solution = model2050.calculate({"PERIOD": period, "PHASE": phase})
     return solution
+
+
+if __name__ == "__main__":
+    anvil.server.connect("UVAJGNM2Q3QT4TRO5HEZOPUQ-OCSQLFUQGZBBIL4Y")
+    anvil.server.wait_forever()
