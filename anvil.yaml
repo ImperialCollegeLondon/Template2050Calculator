@@ -4,6 +4,6 @@ allow_embedding: false
 name: Test Dashboard
 runtime_options: {version: 2, client_version: '3', server_version: python3-sandbox}
 metadata: {}
-startup_form: SinGraph
+startup_form: Main
 db_schema: []
 renamed: true
