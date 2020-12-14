@@ -43,4 +43,3 @@ class Main(MainTemplate):
       """This method is called when the value of the slider is changed"""
       self.build_graphs()
 
-

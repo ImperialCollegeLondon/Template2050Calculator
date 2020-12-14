@@ -5,27 +5,65 @@ container:
   data_bindings: []
 components:
 - type: ColumnPanel
-  properties: {col_widths: '{}'}
+  properties: {col_widths: '{"YSUAKQ":55,"OROLTQ":5}'}
   name: content_panel
   layout_properties: {slot: default}
   components:
-  - type: ColumnPanel
-    properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-      spacing_below: small, background: ''}
-    name: card_1
-    layout_properties: {grid_position: 'PFCIQQ,IRCNAE', full_width_row: true}
+  - type: FlowPanel
+    properties: {}
+    name: tabs
+    layout_properties: {grid_position: 'BUVLMT,EWDYOA'}
     components:
-    - type: Plot
-      properties: {}
-      name: sin_plot
-      layout_properties: {grid_position: 'XABUAT,HLHFDI'}
-      event_bindings: {click: sin_plot_click}
-    - type: Plot
-      properties: {}
-      name: cos_plot
-      layout_properties: {grid_position: 'XABUAT,KZMXVZ'}
-      event_bindings: {click: plot_1_click}
+    - type: Button
+      properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Classic Trig, font_size: null, font: '',
+        spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: tab_1
+      layout_properties: {grid_position: 'UUSGSL,LQEKFN'}
+    - type: Button
+      properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Alternative Trig, font_size: null, font: '',
+        spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: tab_2
+      layout_properties: {grid_position: 'UUSGSL,TNVGGP'}
+      event_bindings: {click: button_2_click}
+  - type: ColumnPanel
+    properties: {col_widths: '{}'}
+    name: column_panel_2
+    layout_properties: {grid_position: 'PFCIQQ,YSUAKQ', full_width_row: true}
+    components:
+    - type: ColumnPanel
+      properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+        wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+        spacing_below: small, background: ''}
+      name: card_1
+      layout_properties: {grid_position: 'QNQZHX,JXOYRH', full_width_row: true}
+      components:
+      - type: Plot
+        properties: {spacing_above: none, spacing_below: none, height: '300', visible: true,
+          tooltip: '', interactive: true}
+        name: sin_plot
+        layout_properties: {grid_position: 'XABUAT,HLHFDI'}
+        event_bindings: {}
+    - type: ColumnPanel
+      properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+        wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+        spacing_below: small, background: ''}
+      name: card_2
+      layout_properties: {grid_position: 'ZWBKIJ,DRLJSY', full_width_row: true}
+      components:
+      - type: Plot
+        properties: {spacing_above: small, spacing_below: small, height: '300', visible: true,
+          tooltip: '', interactive: true}
+        name: cos_plot
+        layout_properties: {grid_position: 'FNSJSD,RLSJLG'}
+        event_bindings: {}
+  - type: ColumnPanel
+    properties: {}
+    name: column_panel_1
+    layout_properties: {slot: default, grid_position: 'PFCIQQ,OROLTQ', full_width_row: true}
 - type: FlowPanel
   properties: {}
   name: navbar_links
@@ -42,6 +80,27 @@ components:
   name: sliders_column
   layout_properties: {grid_position: 'DFHPSV,KPNYXN', slot: left-nav}
   components:
+  - type: ColumnPanel
+    properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+      spacing_below: small, background: ''}
+    name: card_3
+    layout_properties: {grid_position: 'CWGXZX,IUXNYN', full_width_row: false}
+    components:
+    - type: Label
+      properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: 'Level Settings:', font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: label_2
+      layout_properties: {grid_position: 'AWRAPM,EUBTYM', full_width_row: false}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: Level of Ambition, font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: label_3
+      layout_properties: {grid_position: 'AWRAPM,WLDFBB', full_width_row: false}
   - type: form:Main.AmbitionLevelSlider
     properties: {name: Phase, value: 0, max: 4, min: 0, step: 1}
     name: phase_slider
