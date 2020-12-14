@@ -9,7 +9,7 @@ events:
 - name: changed
   default_event: true
   parameters: []
-  description: Value of slider changed
+  description: when the value of the slider is changed
 item_type: {table_id: null}
 custom_component: true
 components:
@@ -33,7 +33,7 @@ components:
   properties: {level: 1, slider_min: 1, slider_max: 4, step: 1}
   name: slider
   layout_properties: {grid_position: 'CXDLKR,FKDZMN'}
-  event_bindings: {change: slider_1_change}
+  event_bindings: {change: slider_change}
   data_bindings:
   - {property: slider_min, code: self.min}
   - {property: slider_max, code: self.max}
