@@ -20,7 +20,8 @@ class Main(MainTemplate):
         self.period_slider.set_event_handler("changed", self.slider_changed)
         
         self.build_graphs()
-
+        
+        self.tab_1.underline = True
 
     def build_graphs(self):
         model_outputs = anvil.server.call(
@@ -42,4 +43,3 @@ class Main(MainTemplate):
     def slider_changed(self, **event_args):
       """This method is called when the value of the slider is changed"""
       self.build_graphs()
-
