@@ -1,14 +1,6 @@
-properties:
-- {name: name, type: string, default_value: name, default_binding_prop: true}
-- {name: max, type: number, default_value: 4}
-- {name: min, type: number, default_value: 1}
-- {name: step, type: number, default_value: 1}
+properties: []
 is_package: true
-events:
-- name: changed
-  default_event: true
-  parameters: []
-  description: when the value of the slider is changed
+events: []
 item_type: {table_id: null}
 custom_component: true
 components:
@@ -31,10 +23,7 @@ components:
   name: slider
   layout_properties: {grid_position: 'CXDLKR,FKDZMN'}
   event_bindings: {change: slider_change}
-  data_bindings:
-  - {property: slider_min, code: self.min}
-  - {property: slider_max, code: self.max}
-  - {property: step, code: self.step}
+  data_bindings: []
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,

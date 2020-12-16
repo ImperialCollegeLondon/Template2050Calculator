@@ -4,69 +4,6 @@ container:
   properties: {html: '@theme:standard-page.html'}
   data_bindings: []
 components:
-- type: ColumnPanel
-  properties: {col_widths: '{"YSUAKQ":55,"OROLTQ":5}'}
-  name: content_panel
-  layout_properties: {slot: default}
-  components:
-  - type: FlowPanel
-    properties: {role: null, spacing: medium, align: left, tooltip: '', border: '',
-      foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
-    name: tabs
-    layout_properties: {grid_position: 'SHKAJT,MGKKJU'}
-    components:
-    - type: Button
-      properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Sin Graph, font_size: null, font: '',
-        spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
-      name: tab_1
-      layout_properties: {grid_position: 'UUSGSL,LQEKFN'}
-      event_bindings: {click: tab_click}
-    - type: Button
-      properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Cos Graph, font_size: null, font: '',
-        spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
-      name: tab_2
-      layout_properties: {grid_position: 'UUSGSL,TNVGGP'}
-      event_bindings: {click: tab_click}
-    event_bindings: {show: tabs_show}
-  - type: ColumnPanel
-    properties: {col_widths: '{}'}
-    name: column_panel_2
-    layout_properties: {grid_position: 'PFCIQQ,YSUAKQ', full_width_row: true}
-    components:
-    - type: ColumnPanel
-      properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-        wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-        spacing_below: small, background: ''}
-      name: card_1
-      layout_properties: {grid_position: 'QNQZHX,JXOYRH', full_width_row: true}
-      components:
-      - type: Plot
-        properties: {spacing_above: none, spacing_below: none, height: '300', visible: true,
-          tooltip: '', interactive: true}
-        name: sin_plot
-        layout_properties: {grid_position: 'XABUAT,HLHFDI'}
-        event_bindings: {}
-    - type: ColumnPanel
-      properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-        wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-        spacing_below: small, background: ''}
-      name: card_2
-      layout_properties: {grid_position: 'ZWBKIJ,DRLJSY', full_width_row: true}
-      components:
-      - type: Plot
-        properties: {spacing_above: small, spacing_below: small, height: '300', visible: true,
-          tooltip: '', interactive: true}
-        name: cos_plot
-        layout_properties: {grid_position: 'FNSJSD,RLSJLG'}
-        event_bindings: {}
-  - type: ColumnPanel
-    properties: {}
-    name: column_panel_1
-    layout_properties: {slot: default, grid_position: 'PFCIQQ,OROLTQ', full_width_row: true}
 - type: FlowPanel
   properties: {}
   name: navbar_links
@@ -106,12 +43,6 @@ components:
         underline: false, icon: ''}
       name: label_3
       layout_properties: {grid_position: 'AWRAPM,WLDFBB', full_width_row: false}
-  - type: form:Main.AmbitionLever
-    properties: {name: Phase, value: 0, max: 4, min: 0, step: 1}
-    name: phase_slider
-    layout_properties: {grid_position: 'VZSWQQ,UAYVEZ', full_width_row: false}
-    event_bindings: {changed: build_graphs}
-    data_bindings: []
   - type: RepeatingPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
       visible: true, spacing_above: small, spacing_below: small, item_template: Main.AmbitionLever,
@@ -119,4 +50,8 @@ components:
     name: ambition_levers
     layout_properties: {grid_position: 'IPNHGZ,SIGQFA'}
     data_bindings: []
-    event_bindings: {}
+    event_bindings: {show: ambition_levers_show}
+- type: ColumnPanel
+  properties: {}
+  name: main_area
+  layout_properties: {slot: default}
