@@ -17,7 +17,7 @@ components:
     components:
     - type: Button
       properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Classic Trig, font_size: null, font: '',
+        foreground: '', visible: true, text: Sin Graph, font_size: null, font: '',
         spacing_above: small, icon_align: left, spacing_below: small, italic: false,
         background: '', bold: false, underline: false, icon: ''}
       name: tab_1
@@ -25,7 +25,7 @@ components:
       event_bindings: {click: tab_click}
     - type: Button
       properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Alternative Trig, font_size: null, font: '',
+        foreground: '', visible: true, text: Cos Graph, font_size: null, font: '',
         spacing_above: small, icon_align: left, spacing_below: small, italic: false,
         background: '', bold: false, underline: false, icon: ''}
       name: tab_2
@@ -94,7 +94,7 @@ components:
     components:
     - type: Label
       properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: 'Level Settings:', font_size: null, font: '', spacing_above: small,
+        visible: true, text: 'Lever Settings:', font_size: null, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: label_2
@@ -106,7 +106,7 @@ components:
         underline: false, icon: ''}
       name: label_3
       layout_properties: {grid_position: 'AWRAPM,WLDFBB', full_width_row: false}
-  - type: form:Main.AmbitionLevels
+  - type: form:Main.AmbitionLever
     properties: {name: Phase, value: 0, max: 4, min: 0, step: 1}
     name: phase_slider
     layout_properties: {grid_position: 'VZSWQQ,UAYVEZ', full_width_row: false}
@@ -114,9 +114,9 @@ components:
     data_bindings: []
   - type: RepeatingPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
-      visible: true, spacing_above: small, spacing_below: small, item_template: Main.AmbitionLevels,
+      visible: true, spacing_above: small, spacing_below: small, item_template: Main.AmbitionLever,
       background: ''}
-    name: ambition_levels
+    name: ambition_levers
     layout_properties: {grid_position: 'IPNHGZ,SIGQFA'}
     data_bindings: []
     event_bindings: {}

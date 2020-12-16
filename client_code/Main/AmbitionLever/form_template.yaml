@@ -1,6 +1,5 @@
 properties:
 - {name: name, type: string, default_value: name, default_binding_prop: true}
-- {name: value, type: number, default_value: 1}
 - {name: max, type: number, default_value: 4}
 - {name: min, type: number, default_value: 1}
 - {name: step, type: number, default_value: 1}

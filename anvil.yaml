@@ -2,9 +2,9 @@ dependencies:
 - app_id: DSCY5LZM4DWODPJI
   version: {dev: false}
 services: []
-package_name: Test_Dashboard
+package_name: Template2050Calculator
 allow_embedding: false
-name: Test Dashboard
+name: Template2050Calculator
 runtime_options: {version: 2, client_version: '3', server_version: python3-sandbox}
 metadata: {}
 startup_form: Main
