@@ -19,15 +19,17 @@ class Main(MainTemplate):
 #         self.sliders_column.add_component(self.period_slider)
 #         self.period_slider.set_event_handler("changed", self.slider_changed)
         
+        
+        self.ambition_levels.items = [
+            dict(name='Period', max=5, changed=self.build_graphs)
+        ]
         self.build_graphs()
-        
-        self.repeating_panel_1.items = ["a", "b"]
-        
 
-    def build_graphs(self):
+
+    def build_graphs(self, **event_args):
         model_outputs = anvil.server.call(
             "calculate",
-          1,#self.period_slider.value,
+          self.ambition_levels.get_components()[0].value,#self.period_slider.value,
           self.phase_slider.value
         )
         self.sin_plot.data = go.Scatter(
@@ -43,19 +45,19 @@ class Main(MainTemplate):
             name="cos",
         )
 
-    def slider_changed(self, **event_args):
-      """This method is called when the value of the slider is changed"""
-      self.build_graphs()
-
     def tab_click(self, **event_args):
       """This method is called when the button is clicked"""
       tab = event_args["sender"]
       for t in tab.parent.get_components():
         t.role = ""
       tab.role = "raised"
+      
+      self.ambition_levels.items += [dict(name="new!")]
+
 
     def tabs_show(self, **event_args):
       """This method is called when the FlowPanel is shown on the screen"""
       self.tab_1.role = "raised"
+
 
 

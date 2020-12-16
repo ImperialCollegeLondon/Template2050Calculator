@@ -110,10 +110,13 @@ components:
     properties: {name: Phase, value: 0, max: 4, min: 0, step: 1}
     name: phase_slider
     layout_properties: {grid_position: 'VZSWQQ,UAYVEZ', full_width_row: false}
-    event_bindings: {changed: slider_changed}
+    event_bindings: {changed: build_graphs}
+    data_bindings: []
   - type: RepeatingPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
       visible: true, spacing_above: small, spacing_below: small, item_template: Main.AmbitionLevels,
       background: ''}
-    name: repeating_panel_1
+    name: ambition_levels
     layout_properties: {grid_position: 'IPNHGZ,SIGQFA'}
+    data_bindings: []
+    event_bindings: {}

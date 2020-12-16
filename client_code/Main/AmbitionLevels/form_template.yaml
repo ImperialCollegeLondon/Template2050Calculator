@@ -17,8 +17,7 @@ components:
   properties: {}
   name: label
   layout_properties: {grid_position: 'CXDLKR,TZUZOJ'}
-  data_bindings:
-  - {property: text, code: self.name}
+  data_bindings: []
 - type: Label
   properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
     visible: true, text: '', font_size: null, font: '', spacing_above: small, icon_align: left,
@@ -26,8 +25,7 @@ components:
     icon: ''}
   name: value_label
   layout_properties: {grid_position: 'CXDLKR,MCHXWJ'}
-  data_bindings:
-  - {property: text, code: self.value}
+  data_bindings: []
   event_bindings: {show: value_label_show}
 - type: form:DSCY5LZM4DWODPJI:Slider
   properties: {level: 1, slider_min: 1, slider_max: 4, step: 1}
@@ -38,9 +36,10 @@ components:
   - {property: slider_min, code: self.min}
   - {property: slider_max, code: self.max}
   - {property: step, code: self.step}
-  - {property: level, code: self.value}
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: mobile, col_spacing: small, spacing_above: small, col_widths: '{}', spacing_below: small,
     background: ''}
+  data_bindings: []
+  event_bindings: {refreshing_data_bindings: form_refreshing_data_bindings}
