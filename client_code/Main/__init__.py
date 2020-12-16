@@ -21,7 +21,6 @@ class Main(MainTemplate):
         
         self.build_graphs()
         
-        self.tab_1.underline = True
 
     def build_graphs(self):
         model_outputs = anvil.server.call(
@@ -43,3 +42,16 @@ class Main(MainTemplate):
     def slider_changed(self, **event_args):
       """This method is called when the value of the slider is changed"""
       self.build_graphs()
+
+    def tab_click(self, **event_args):
+      """This method is called when the button is clicked"""
+      tab = event_args["sender"]
+      for t in tab.parent.get_components():
+        t.role = ""
+      tab.role = "raised"
+
+    def tabs_show(self, **event_args):
+      """This method is called when the FlowPanel is shown on the screen"""
+      self.tab_1.role = "raised"
+
+
