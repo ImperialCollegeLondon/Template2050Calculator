@@ -1,6 +1,6 @@
 dependencies:
 - app_id: DSCY5LZM4DWODPJI
-  version: {dev: false}
+  version: {dev: true}
 services: []
 package_name: Test_Dashboard
 allow_embedding: false
