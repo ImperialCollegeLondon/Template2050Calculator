@@ -3,7 +3,7 @@ from anvil import *
 import anvil.server
 import plotly.graph_objects as go
 
-from .AmbitionLevelSlider import AmbitionLevelSlider as ASlider
+# from .AmbitionLevelSlider import AmbitionLevelSlider as ASlider
 
 class Main(MainTemplate):
     def __init__(self, **properties):
@@ -15,16 +15,20 @@ class Main(MainTemplate):
         self.cos_plot.layout.title = "Cos Graph"
         
         # Can programatically add components
-        self.period_slider = ASlider(name="Period", max=5, changed=self.build_graphs)
-        self.sliders_column.add_component(self.period_slider)
-        self.period_slider.set_event_handler("changed", self.slider_changed)
+#         self.period_slider = ASlider(name="Period", max=5, changed=self.build_graphs)
+#         self.sliders_column.add_component(self.period_slider)
+#         self.period_slider.set_event_handler("changed", self.slider_changed)
         
         self.build_graphs()
+        
+        self.repeating_panel_1.items = ["a", "b"]
         
 
     def build_graphs(self):
         model_outputs = anvil.server.call(
-            "calculate", self.period_slider.value, self.phase_slider.value
+            "calculate",
+          1,#self.period_slider.value,
+          self.phase_slider.value
         )
         self.sin_plot.data = go.Scatter(
             x=model_outputs["X"][0],
