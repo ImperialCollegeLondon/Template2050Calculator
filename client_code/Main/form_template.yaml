@@ -13,7 +13,7 @@ components:
     properties: {role: null, spacing: medium, align: left, tooltip: '', border: '',
       foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
     name: tabs
-    layout_properties: {grid_position: 'BUVLMT,EWDYOA'}
+    layout_properties: {grid_position: 'SHKAJT,MGKKJU'}
     components:
     - type: Button
       properties: {role: raised, align: left, tooltip: '', border: '', enabled: true,
@@ -77,7 +77,9 @@ components:
   name: label_1
   layout_properties: {slot: title}
 - type: ColumnPanel
-  properties: {role: card, col_widths: '{}'}
+  properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+    spacing_below: small, background: ''}
   name: sliders_column
   layout_properties: {grid_position: 'DFHPSV,KPNYXN', slot: left-nav}
   components:
