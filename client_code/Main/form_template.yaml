@@ -10,19 +10,20 @@ components:
   layout_properties: {slot: default}
   components:
   - type: FlowPanel
-    properties: {}
+    properties: {role: null, spacing: medium, align: left, tooltip: '', border: '',
+      foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
     name: tabs
     layout_properties: {grid_position: 'BUVLMT,EWDYOA'}
     components:
     - type: Button
-      properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
+      properties: {role: raised, align: left, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: Classic Trig, font_size: null, font: '',
         spacing_above: small, icon_align: left, spacing_below: small, italic: false,
         background: '', bold: false, underline: false, icon: ''}
       name: tab_1
       layout_properties: {grid_position: 'UUSGSL,LQEKFN'}
     - type: Button
-      properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
+      properties: {role: primary-color, align: left, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: Alternative Trig, font_size: null, font: '',
         spacing_above: small, icon_align: left, spacing_below: small, italic: false,
         background: '', bold: false, underline: false, icon: ''}
