@@ -15,15 +15,13 @@ components:
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
   name: value_label
-  layout_properties: {grid_position: 'CXDLKR,MCHXWJ'}
+  layout_properties: {grid_position: 'CXDLKR,PKIBGO'}
   data_bindings: []
   event_bindings: {show: value_label_show}
-- type: form:DSCY5LZM4DWODPJI:Slider
-  properties: {level: 1, slider_min: 1, slider_max: 4, step: 1}
+- type: form:Main.AmbitionLever.Form1
+  properties: {}
   name: slider
-  layout_properties: {grid_position: 'CXDLKR,FKDZMN'}
-  event_bindings: {change: slider_change}
-  data_bindings: []
+  layout_properties: {grid_position: 'CXDLKR,MCHXWJ'}
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
