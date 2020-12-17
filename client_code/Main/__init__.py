@@ -25,8 +25,8 @@ class Main(MainTemplate):
 
     def select_figures(self):
         self.panel = FiguresPanel()
-        self.main_area.clear()
-        self.main_area.add_component(self.panel)
+        self.plot_area.clear()
+        self.plot_area.add_component(self.panel)
         
     def update_graphs(self, **event_args):
         period = self.ambition_levers.items[0]["value"],
