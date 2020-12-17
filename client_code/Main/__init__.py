@@ -17,8 +17,8 @@ class Main(MainTemplate):
 #         self.period_slider.set_event_handler("changed", self.slider_changed)
         self.select_figures()
         self.ambition_levers.items = [
-            dict(name="Period", max=5),
-            dict(name="Phase", min=0,  value=0),
+            dict(name="Period"),
+            dict(name="Phase"),
         ]
         self.ambition_levers.set_event_handler("x-refresh", self.update_graphs)
         self.update_graphs()

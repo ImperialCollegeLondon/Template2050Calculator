@@ -8,9 +8,6 @@ class AmbitionLever(AmbitionLeverTemplate):
     self.init_components(**properties)
     
     # Any code you write here will run when the form opens.
-    self.slider.slider_min = self.item.get('min', 1)
-    self.slider.slider_max = self.item.get('max', 4)
-    self.slider.step = self.item.get('step', 1)
     self.update_value(self.item.get('value', 1))
     
     self.label.text = self.item.get('name', "NoName")

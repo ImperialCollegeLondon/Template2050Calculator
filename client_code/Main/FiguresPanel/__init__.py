@@ -13,7 +13,7 @@ class FiguresPanel(FiguresPanelTemplate):
       self.trig_name = self.tab_1.text
     
     def recalculate(self, period, phase):
-      self.model_outputs = anvil.server.call("calculate", period, phase)
+      self.model_outputs = anvil.server.call("calculate", period, phase-1)
       self.build_graphs()
     
     def build_graphs(self):
