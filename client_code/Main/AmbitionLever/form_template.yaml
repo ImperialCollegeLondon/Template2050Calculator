@@ -5,7 +5,7 @@ item_type: {table_id: null}
 custom_component: true
 components:
 - type: ColumnPanel
-  properties: {col_widths: '{"YYJKZE":20,"EHDAHE":15,"GIAINH":25}'}
+  properties: {col_widths: '{"YYJKZE":25,"EHDAHE":15,"GIAINH":30}'}
   name: column_panel_1
   layout_properties: {grid_position: 'VCPHTS,HPGRLK'}
   components:

@@ -5,24 +5,24 @@ container:
     background: ''}
 components:
 - type: ColumnPanel
-  properties: {role: null, tooltip: '', border: solid, foreground: '', visible: true,
-    wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{"BCWIVO":15,"WUUCOK":15,"AKKWJZ":15,"CGFFUD":15}',
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: never, col_spacing: small, spacing_above: none, col_widths: '{"WUUCOK":15,"AKKWJZ":15,"CGFFUD":15}',
     spacing_below: none, background: ''}
   name: column_panel_1
   layout_properties: {grid_position: 'FYJZPS,RWYBBU'}
   components:
   - type: Button
-    properties: {role: null, align: full, tooltip: level 1, border: solid, enabled: true,
+    properties: {role: raised, align: full, tooltip: level 1, border: '', enabled: true,
       foreground: 'theme:White', visible: true, text: '1', font_size: null, font: '',
       spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '',
       bold: false, underline: false, icon: ''}
     name: level_1
     layout_properties:
       col_widths: {}
-      grid_position: VEUPJM,BCWIVO
+      grid_position: VEUPJM,GONVQT
     event_bindings: {click: level_click}
   - type: Button
-    properties: {role: null, align: full, tooltip: level 1, border: solid, enabled: true,
+    properties: {role: raised, align: full, tooltip: level 1, border: '', enabled: true,
       foreground: 'theme:White', visible: true, text: '2', font_size: null, font: '',
       spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '',
       bold: false, underline: false, icon: ''}
@@ -32,7 +32,7 @@ components:
       grid_position: VEUPJM,WUUCOK
     event_bindings: {click: level_click}
   - type: Button
-    properties: {role: null, align: full, tooltip: level 1, border: solid, enabled: true,
+    properties: {role: raised, align: full, tooltip: level 1, border: '', enabled: true,
       foreground: 'theme:White', visible: true, text: '3', font_size: null, font: '',
       spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '',
       bold: false, underline: false, icon: ''}
@@ -42,7 +42,7 @@ components:
       grid_position: VEUPJM,AKKWJZ
     event_bindings: {click: level_click}
   - type: Button
-    properties: {role: null, align: full, tooltip: level 1, border: solid, enabled: true,
+    properties: {role: raised, align: full, tooltip: level 1, border: '', enabled: true,
       foreground: 'theme:White', visible: true, text: '4', font_size: null, font: '',
       spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '',
       bold: false, underline: false, icon: ''}

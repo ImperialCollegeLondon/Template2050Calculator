@@ -12,7 +12,6 @@ class Form1(Form1Template):
 
   def level_click(self, **event_args):
     """This method is called when the button is clicked"""
-    print(event_args['sender'].text)
     self.parent.parent.slider_change(int(event_args['sender'].text))
     
   @property
