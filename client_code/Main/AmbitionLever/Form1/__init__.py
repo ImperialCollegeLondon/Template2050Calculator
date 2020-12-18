@@ -24,7 +24,7 @@ class Form1(Form1Template):
         self._level = level
         colour = "theme:Black"
         for i, level_button in enumerate(self.levels, 1):
-            if i > level:
-                colour = "theme:White"
             level_button.background = colour
+            if i >= level:
+                colour = "theme:White"
             level_button.foreground = colour

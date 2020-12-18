@@ -12,23 +12,7 @@ components:
       foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
     name: tabs
     layout_properties: {grid_position: 'SHKAJT,MGKKJU'}
-    components:
-    - type: Button
-      properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: SIN, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      name: tab_1
-      layout_properties: {grid_position: 'UUSGSL,LQEKFN'}
-      event_bindings: {click: tab_click}
-    - type: Button
-      properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: COS, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      name: tab_2
-      layout_properties: {grid_position: 'UUSGSL,TNVGGP'}
-      event_bindings: {click: tab_click}
+    components: []
     event_bindings: {show: tabs_show}
   - type: ColumnPanel
     properties: {col_widths: '{}'}
