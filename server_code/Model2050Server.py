@@ -26,11 +26,6 @@ def outputs():
 
 
 @anvil.server.callable
-def calculate(period, phase):
-    print("The inputs for this model are:\n" + "\n".join(model2050.inputs))
-    print()
-    print("The outputs for this model are:\n" + "\n".join(model2050.outputs))
-    print()
-
-    solution = model2050.calculate({"PERIOD": period, "PHASE": phase})
+def calculate(inputs):
+    solution = model2050.calculate(inputs)
     return solution

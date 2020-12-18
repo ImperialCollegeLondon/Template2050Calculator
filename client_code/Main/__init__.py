@@ -12,10 +12,9 @@ class Main(MainTemplate):
         self.init_components(**properties)
 
         # Any code you write here will run when the form opens.
-        
-        self.ambition_levers.items = [
-            {"name": name.title()} for name in Model.inputs
-        ]
+
+        self.ambition_levers.items = [{"name": name} for name in Model.inputs]
+
         self.ambition_levers.set_event_handler("x-refresh", self.update_graphs)
         self.select_figures()
         self.update_graphs()
@@ -27,4 +26,4 @@ class Main(MainTemplate):
 
     def update_graphs(self, **event_args):
         inputs = {item["name"]: item["value"] for item in self.ambition_levers.items}
-        self.figures_panel.calculate(**inputs)
+        self.figures_panel.calculate(inputs)

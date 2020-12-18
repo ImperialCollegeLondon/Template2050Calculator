@@ -13,7 +13,7 @@ class FiguresPanel(FiguresPanelTemplate):
 
         # Any code you write here will run when the form opens.
         self.build_tabs()
-        
+
     def build_tabs(self):
         for i, output in enumerate(Model.outputs):
             if output == "X":
@@ -25,10 +25,8 @@ class FiguresPanel(FiguresPanelTemplate):
             if i == 0:
                 self.selected_tab = tab
 
-    def calculate(self, **inputs):
-        self.model_solution = anvil.server.call(
-            "calculate", inputs["Period"], inputs["Phase"] - 1
-        )
+    def calculate(self, inputs):
+        self.model_solution = anvil.server.call("calculate", inputs)
         self.build_graphs()
 
     def build_graphs(self):
@@ -40,11 +38,11 @@ class FiguresPanel(FiguresPanelTemplate):
             mode="lines",
             name="sin",
         )
-    
+
     @property
     def selected_tab(self):
         return self._selected_tab
-    
+
     @selected_tab.setter
     def selected_tab(self, tab):
         for t in self.tabs.get_components():
