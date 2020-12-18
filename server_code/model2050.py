@@ -26,9 +26,7 @@ def split_reference(reference):
 
 
 def split_named_reference(named_reference):
-    return NamedReference(
-        **NAMED_REFERENCE_REGEX.match(named_reference).groupdict()
-    )
+    return NamedReference(**NAMED_REFERENCE_REGEX.match(named_reference).groupdict())
 
 
 class Model2050:
@@ -48,9 +46,7 @@ class Model2050:
 
     def _reference_by_name(self, name, references):
         try:
-            return [
-                inp for inp in references if inp.name.lower() == name.lower()
-            ][0]
+            return [inp for inp in references if inp.name.lower() == name.lower()][0]
         except IndexError:
             raise ValueError("Could not find reference with that name")
 
@@ -75,16 +71,12 @@ class Model2050:
         solution = self.model.calculate(
             inputs={
                 range_name(
-                    self.model.references[
-                        self.make_named_reference("input." + key)
-                    ]
+                    self.model.references[self.make_named_reference("input." + key)]
                 ): value
                 for key, value in inputs.items()
             }
         )
         return {
-            output: solution[
-                self.make_named_reference("OUTPUT." + output)
-            ].value
+            output: solution[self.make_named_reference("OUTPUT." + output)].value
             for output in self.outputs
         }

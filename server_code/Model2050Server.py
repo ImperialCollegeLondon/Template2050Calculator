@@ -16,6 +16,16 @@ model2050 = Model2050(fpath)
 
 
 @anvil.server.callable
+def inputs():
+    return model2050.inputs
+
+
+@anvil.server.callable
+def outputs():
+    return model2050.outputs
+
+
+@anvil.server.callable
 def calculate(period, phase):
     print("The inputs for this model are:\n" + "\n".join(model2050.inputs))
     print()
