@@ -10,10 +10,10 @@ components:
   layout_properties: {slot: nav-right}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: Test Dashboard, font_size: null, font: '', spacing_above: small, icon_align: left,
-    spacing_below: small, italic: false, background: '', bold: false, underline: false,
-    icon: ''}
-  name: label_1
+    text: 2050 Carbon Calculator, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: title
   layout_properties: {slot: title}
 - type: ColumnPanel
   properties: {col_widths: '{"BITUCV":20,"PKRSVT":40}'}
