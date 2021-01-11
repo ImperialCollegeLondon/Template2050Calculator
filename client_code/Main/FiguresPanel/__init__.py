@@ -26,18 +26,21 @@ class FiguresPanel(FiguresPanelTemplate):
                 self.selected_tab = tab
 
     def calculate(self, inputs):
-        self.model_solution = anvil.server.call("calculate", inputs)
+        self.model_solution = anvil.server.call("calculate", list(inputs.values()))
         self.build_graphs()
 
     def build_graphs(self):
         output = self.selected_tab.tag
         self.plot.layout.title = f"{output.title()} Graph"
-        self.plot.data = go.Scatter(
-            x=self.model_solution["X"][0],
-            y=self.model_solution[output][0],
-            mode="lines",
-            name="sin",
-        )
+        self.plot.data = [
+            go.Scatter(
+                x=self.model_solution["X"],
+                y=y,
+                mode="lines",
+                stackgroup="one",
+            )
+            for y in self.model_solution[output]
+        ]
 
     @property
     def selected_tab(self):

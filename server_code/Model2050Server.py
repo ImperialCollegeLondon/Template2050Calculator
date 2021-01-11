@@ -1,6 +1,6 @@
 import anvil.server
-from pathlib import Path
 
+from . import interface2050
 from .model2050 import Model2050
 
 # This is a server module. It runs on the Anvil server,
@@ -10,22 +10,22 @@ from .model2050 import Model2050
 # them with @anvil.server.callable.
 # Here is an example - you can replace it with your own:
 
-fpath = Path(__file__).parent / "test.xlsx"
-
-model2050 = Model2050(fpath)
+model = Model2050(interface2050)
 
 
 @anvil.server.callable
 def inputs():
-    return model2050.inputs
+    return [f"Lever {n}" for n, _ in enumerate(model.input_levers)]
 
 
 @anvil.server.callable
 def outputs():
-    return model2050.outputs
+    return list(model.outputs.keys())
 
 
 @anvil.server.callable
 def calculate(inputs):
-    solution = model2050.calculate(inputs)
+    solution = model.calculate(inputs)
+    solution["emissions_sector"] = solution["emissions_sector"][-4::-1, 1:9]
+    solution["X"] = list(range(2015, 2055, 5))
     return solution

@@ -1,82 +1,88 @@
 import re
-from collections import namedtuple
+from functools import partial
 
-import formulas
+import numpy as np
 
-REFERENCE_REGEX = re.compile(
-    "'\\[(?P<book>\\S*)\\](?P<sheet>\\S*)'!(?P<range>[A-Z,\\d,:]*)"
-)
-NAMED_REFERENCE_REGEX = re.compile("'\\[(?P<book>\\S*)\\]'!(?P<name>\\S*)")
-
-
-def range_name(range_obj):
-    return range_obj.ranges[0]["name"]
-
-
-def remove_name_prefix(name):
-    return name.upper().removeprefix("INPUT.").removeprefix("OUTPUT.")
-
-
-Reference = namedtuple("Reference", ("book", "sheet", "range"))
-NamedReference = namedtuple("NamedReference", ("book", "name"))
-
-
-def split_reference(reference):
-    return Reference(**REFERENCE_REGEX.match(reference).groupdict())
-
-
-def split_named_reference(named_reference):
-    return NamedReference(**NAMED_REFERENCE_REGEX.match(named_reference).groupdict())
+SETTER_REGEX = re.compile("set_(?P<sheet>\\S*)_(?P<col>[a-z]+)(?P<row>\\d+)")
+GETTER_REGEX = re.compile("output_(?P<name>\\S*)")
 
 
 class Model2050:
-    def __init__(self, xlsx_path):
-        self.model = formulas.ExcelModel().loads(str(xlsx_path)).finish()
-        self.book = xlsx_path.name
+    """A wrapper class for compiled 2050 Calculator models produced by excel_to_code
+    and wrapped with SWIG. Provides a simple interface for running the model."""
 
-    def make_reference(self, sheet, range_):
-        return f"'[{self.book.upper()}]{sheet.upper()}'!{range_.upper()}"
+    def __init__(self, module):
+        """`module` should be Python module produced by SWIG to be wrapped."""
+        self.module = module
 
-    def make_named_reference(self, name):
-        return f"'[{self.book.upper()}]'!{name.upper()}"
-
-    @property
-    def inputs(self):
-        return self._patterns("input")
-
-    def _reference_by_name(self, name, references):
-        try:
-            return [inp for inp in references if inp.name.lower() == name.lower()][0]
-        except IndexError:
-            raise ValueError("Could not find reference with that name")
-
-    def input_by_name(self, name):
-        return self._reference_by_name(name, self.inputs)
-
-    def output_by_name(self, name):
-        return self._reference_by_name(name, self.outputs)
-
-    @property
-    def outputs(self):
-        return self._patterns("output")
-
-    def _patterns(self, root):
-        return [
-            remove_name_prefix(split_named_reference(ref).name)
-            for ref in self.model.references
-            if split_named_reference(ref).name.lower().startswith(root.lower())
+        # Extract setter functions that control model input levers. Order by the
+        # row in which they appear in the sheet and wrap them so they're easy to
+        # call
+        setter_matches = list(self._iter_matching_names(module, SETTER_REGEX))
+        setter_matches.sort(key=lambda match: float(match.groupdict()["row"]))
+        self.input_levers = [
+            partial(self._set_input_lever, getattr(module, match.string))
+            for match in setter_matches
         ]
 
-    def calculate(self, inputs):
-        solution = self.model.calculate(
-            inputs={
-                range_name(
-                    self.model.references[self.make_named_reference("input." + key)]
-                ): value
-                for key, value in inputs.items()
-            }
-        )
-        return {
-            output: solution[self.make_named_reference("OUTPUT." + output)].value
-            for output in self.outputs
+        # extract getter functions that contain output data
+        getter_matches = list(self._iter_matching_names(module, GETTER_REGEX))
+        self.outputs = {
+            match.groupdict()["name"]: getattr(module, match.string)
+            for match in getter_matches
         }
+
+    def _iter_matching_names(self, module, regex):
+        """Generator that yields attributes of `module` that match the provided
+        `regex`"""
+        for d in dir(module):
+            match = regex.match(d)
+            if match:
+                yield match
+
+    def calculate(self, input_values):
+        """Run the model and return a dictionary containing all model
+        outputs. `input_values` should be a sequence returing valid values for
+        each input lever of the model i.e. 1 to 4.
+
+        """
+        assert len(input_values) == len(self.input_levers)
+
+        self.module.reset()
+
+        for func, value in zip(self.input_levers, input_values):
+            assert value in (1, 2, 3, 4)
+            func(value)
+            # self._set_input_lever(func, value)
+
+        return {
+            name: self._numbers_from_range(output())
+            for name, output in self.outputs.items()
+        }
+
+    def _set_input_lever(self, func, value):
+        """Wrapper function that creates an appropriate input datatype to interact with
+        the model library."""
+        ev = self.module.excel_value()
+        ev.type = self.module.ExcelNumber
+        ev.number = value
+        func(ev)
+
+    def input_values_default(self):
+        """Return a valid input for `self.calculate` with all levers set to 1."""
+        return np.ones_like(self.input_levers)
+
+    def _numbers_from_range(self, excel_range):
+        """Wrapper function that converts the model library output datatype to a numpy
+        array."""
+        return np.reshape(
+            [
+                self.module.get_cell(excel_range, i).number
+                for i in range(excel_range.rows * excel_range.columns)
+            ],
+            (excel_range.rows, excel_range.columns),
+        )
+
+    # this is hard coded nastiness in the extreme
+    # how to automate?
+    reshapers = {"emissions_sector": lambda x: x[:-3, 1:9]}
