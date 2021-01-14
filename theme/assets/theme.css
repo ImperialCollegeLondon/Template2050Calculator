@@ -603,6 +603,22 @@ body>div[data-notify="container"].alert-warning>span[data-notify="title"]{
   background-color: %color:Secondary 700%;
 }
 
+.anvil-role-lever-button > .btn
+{
+  /* 2dp */  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0px 0px;
+  min-height: calc(0px + 1.42857143em);
+}
+
+.anvil-role-lever-label > .label-text
+{
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
 /* Component: Card */
 
 .anvil-role-card {
