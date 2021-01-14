@@ -13,7 +13,10 @@ class Main(MainTemplate):
 
         # Any code you write here will run when the form opens.
 
-        self.ambition_levers.items = [{"name": name} for name in Model.inputs]
+        self.ambition_levers.items = [
+            {"name": name, "value": value}
+            for name, value in zip(Model.levers, Model.inputs)
+        ]
 
         self.ambition_levers.set_event_handler("x-refresh", self.update_graphs)
         self.select_figures()

@@ -9,7 +9,7 @@ class AmbitionLever(AmbitionLeverTemplate):
         self.init_components(**properties)
 
         # Any code you write here will run when the form opens.
-        self.update_value(self.item.get("value", 1))
+        self.update_value(self.item["value"])
 
         self.label.text = self.item.get("name", "NoName")
 

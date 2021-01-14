@@ -1,6 +1,4 @@
 dependencies:
-- app_id: DSCY5LZM4DWODPJI
-  version: {dev: false}
 services: []
 package_name: Template2050Calculator
 allow_embedding: false
