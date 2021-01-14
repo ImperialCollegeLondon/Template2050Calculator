@@ -14,9 +14,6 @@ class FiguresPanel(FiguresPanelTemplate):
         # Any code you write here will run when the form opens.
         self.build_tabs()
 
-        self.warnings = Label()
-        self.column_panel_1.add_component(self.warnings)
-
     def build_tabs(self):
         for i, output in enumerate(Model.outputs):
             if output in ("x", "warning_l4chosen", "lever_names"):
@@ -31,7 +28,16 @@ class FiguresPanel(FiguresPanelTemplate):
     def calculate(self, inputs):
         self.model_solution = anvil.server.call("calculate", list(inputs.values()))
         self.build_graphs()
-        self.warnings.text = self.model_solution["warning_l4chosen"][0][1]
+        self.update_warnings()
+        
+    def update_warnings(self):
+        l4_status = self.model_solution["warning_l4chosen"][0][1]
+        if l4_status == 0:
+            self.l4_warning.icon = "fa:square-o"
+        elif l4_status == 1:
+            self.l4_warning.icon = "fa:check-square"
+        else:
+            self.l4_warning.icon = "fa:asterisk"
 
     def build_graphs(self):
         output = self.selected_tab.tag
