@@ -32,6 +32,11 @@ class FiguresPanel(FiguresPanelTemplate):
     def build_graphs(self):
         output = self.selected_tab.tag
         self.plot.layout.title = f"{output.title()} Graph"
+        self.plot.layout.margin.t = 30
+        self.plot.layout.margin.b = 20
+        self.plot.layout.margin.l = 30
+        self.plot.layout.margin.r = 10
+        self.plot.layout.hovermode = "closest"
         self.plot.data = [
             go.Scatter(
                 x=self.model_solution["X"],
