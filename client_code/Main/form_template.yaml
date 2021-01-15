@@ -16,7 +16,7 @@ components:
   name: title
   layout_properties: {slot: title}
 - type: ColumnPanel
-  properties: {col_widths: '{"BITUCV":20,"PKRSVT":40}'}
+  properties: {col_widths: '{"BITUCV":15,"PKRSVT":45}'}
   name: main_area
   layout_properties: {slot: default}
   components:
@@ -29,7 +29,7 @@ components:
     components:
     - type: ColumnPanel
       properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-        wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+        wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"EUBTYM":40,"WLDFBB":20}',
         spacing_below: none, background: ''}
       name: card_3
       layout_properties: {grid_position: 'CWGXZX,IUXNYN', full_width_row: false}
@@ -50,7 +50,7 @@ components:
         layout_properties: {grid_position: 'AWRAPM,WLDFBB', full_width_row: false}
     - type: RepeatingPanel
       properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
-        visible: true, spacing_above: small, spacing_below: none, item_template: Main.AmbitionLever,
+        visible: true, spacing_above: small, spacing_below: small, item_template: Main.AmbitionLever,
         background: ''}
       name: ambition_levers
       layout_properties: {grid_position: 'IPNHGZ,SIGQFA', full_width_row: false}
