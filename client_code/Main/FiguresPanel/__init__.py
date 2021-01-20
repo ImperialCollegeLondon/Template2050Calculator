@@ -29,7 +29,7 @@ class FiguresPanel(FiguresPanelTemplate):
         self.model_solution = anvil.server.call("calculate", list(inputs.values()))
         self.build_graphs()
         self.update_warnings()
-        
+
     def update_warnings(self):
         l4_status = self.model_solution["warning_l4chosen"][0][1]
         if l4_status == 0:

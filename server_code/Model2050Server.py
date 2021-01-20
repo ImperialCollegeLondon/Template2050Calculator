@@ -1,14 +1,9 @@
 import anvil.server
 
+import i18n
+
 from . import interface2050
 from .model2050 import Model2050
-
-# This is a server module. It runs on the Anvil server,
-# rather than in the user's browser.
-#
-# To allow anvil.server.call() to call functions here, we mark
-# them with @anvil.server.callable.
-# Here is an example - you can replace it with your own:
 
 model = Model2050(interface2050)
 
@@ -81,3 +76,14 @@ def calculate(inputs):
     solution["emissions_sector"] = solution["emissions_sector"][-4::-1, 1:9]
     solution["x"] = list(range(2015, 2055, 5))
     return solution
+
+
+i18n.set("filename_format", "{locale}.{format}")
+i18n.set("enable_memoization", True)
+i18n.load_path.append("./Template2050Calculator/server_code/translations")
+
+
+@anvil.server.callable
+def translate(locale, text):
+    i18n.set("locale", locale)
+    return i18n.t(text)

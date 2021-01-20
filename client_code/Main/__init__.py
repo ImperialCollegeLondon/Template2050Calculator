@@ -5,6 +5,9 @@ import anvil.server
 from .FiguresPanel import FiguresPanel
 from .. import Model
 
+# Uncomment for Thai language
+# Model.language = "th"
+
 
 class Main(MainTemplate):
     def __init__(self, **properties):
@@ -21,6 +24,8 @@ class Main(MainTemplate):
         self.ambition_levers.set_event_handler("x-refresh", self.update_graphs)
         self.select_figures()
         self.update_graphs()
+
+        self.title.text = Model.translate("2050 Carbon Calculator")
 
     def select_figures(self):
         self.figures_panel = FiguresPanel()
