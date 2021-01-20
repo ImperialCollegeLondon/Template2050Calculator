@@ -2,3 +2,4 @@ numpy
 openpyxl
 anvil-app-server
 anvil-uplink
+python-i18n[YAML]
