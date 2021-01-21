@@ -89,20 +89,26 @@ def translate(locale, text):
     return i18n.t(text)
 
 
-from openpyxl import load_workbook
+# from openpyxl import load_workbook
 
-wb = load_workbook(
-    filename="../UK_Pathways_Calculator_Model_Development_Climact_200703_publ_template.xlsm"
-)
-ws = wb["WebOutputs"]
+# wb = load_workbook(
+#     filename="../UK_Pathways_Calculator_Model_Development_Climact_200703_publ_template.xlsm"
+# )
+# ws = wb["WebOutputs"]
 
-web_outputs = {}
-for col in ws.iter_cols(3, 14, 31, 68, values_only=True):
-    web_outputs[col[0]] = col[1:]
+# web_outputs = {}
+# for col in ws.iter_cols(3, 14, 31, 68, values_only=True):
+#     web_outputs[col[0]] = col[1:]
 
-print(web_outputs.keys())
+# print(web_outputs.keys())
 
 
 @anvil.server.callable
 def web_outputs_keys():
-    return web_outputs.keys()
+    import json
+    from pathlib import Path
+
+    with open(Path("Template2050Calculator").absolute() / "web_outputs.json") as f:
+        data = json.load(f)
+
+    return data
