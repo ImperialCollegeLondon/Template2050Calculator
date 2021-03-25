@@ -29,6 +29,10 @@ roles:
   components: [TextBox]
 - name: selected
   components: [Link]
+- name: lever-button
+  components: [Button]
+- name: lever-label
+  components: [Label]
 color_scheme:
   preset_groups:
   - name: Primary Colour
