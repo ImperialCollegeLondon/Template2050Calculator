@@ -1,4 +1,5 @@
 import re
+from collections import OrderedDict
 from functools import partial
 
 import numpy as np
@@ -20,10 +21,6 @@ class Model2050:
         # call
         setter_matches = list(self._iter_matching_names(module, SETTER_REGEX))
         setter_matches.sort(key=lambda match: float(match.groupdict()["row"]))
-        self.input_levers = [
-            partial(self._set_input_lever, getattr(module, match.string))
-            for match in setter_matches
-        ]
 
         # extract getter functions that contain output data
         getter_matches = list(self._iter_matching_names(module, GETTER_REGEX))
@@ -31,6 +28,14 @@ class Model2050:
             match.groupdict()["name"]: getattr(module, match.string)
             for match in getter_matches
         }
+
+        lever_names = [
+            row[0] for row in self._values_from_range(module.output_lever_names())
+        ]
+        self.input_levers = OrderedDict(
+            (name, partial(self._set_input_lever, getattr(module, match.string)))
+            for name, match in zip(lever_names, setter_matches)
+        )
 
     def _iter_matching_names(self, module, regex):
         """Generator that yields attributes of `module` that match the provided
@@ -50,13 +55,12 @@ class Model2050:
 
         self.module.reset()
 
-        for func, value in zip(self.input_levers, input_values):
+        for func, value in zip(self.input_levers.values(), input_values):
             assert value in (1, 2, 3, 4)
             func(value)
-            # self._set_input_lever(func, value)
 
         return {
-            name: self._numbers_from_range(output())
+            name: self._values_from_range(output())
             for name, output in self.outputs.items()
         }
 
@@ -70,19 +74,24 @@ class Model2050:
 
     def input_values_default(self):
         """Return a valid input for `self.calculate` with all levers set to 1."""
-        return np.ones_like(self.input_levers)
+        return np.ones(len(self.input_levers))
 
-    def _numbers_from_range(self, excel_range):
+    def _values_from_range(self, excel_range, set_index=False):
         """Wrapper function that converts the model library output datatype to a numpy
         array."""
-        return np.reshape(
+        cells = [
             [
-                self.module.get_cell(excel_range, i).number
-                for i in range(excel_range.rows * excel_range.columns)
-            ],
-            (excel_range.rows, excel_range.columns),
-        )
+                self.module.get_cell(excel_range, j * excel_range.columns + i)
+                for i in range(excel_range.columns)
+            ]
+            for j in range(excel_range.rows)
+        ]
 
-    # this is hard coded nastiness in the extreme
-    # how to automate?
-    reshapers = {"emissions_sector": lambda x: x[:-3, 1:9]}
+        values = [
+            [
+                cell.number if cell.type == self.module.ExcelNumber else cell.string
+                for cell in row
+            ]
+            for row in cells
+        ]
+        return values

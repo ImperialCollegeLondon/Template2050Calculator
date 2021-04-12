@@ -15,53 +15,7 @@ def inputs():
 
 @anvil.server.callable
 def levers():
-    return [
-        "UK Transport Demand",
-        "International Aviation",
-        "Light Vehicles - Electric",
-        "Light Vehicles - Hydrogen",
-        "Light Vehicles - Hybrid",
-        "Light Vehicles - Biofuel",
-        "Heavy Vehicles - Electric",
-        "Heavy Vehicles - Hydrogen",
-        "Heavy Vehicles - Hybrid",
-        "Heavy Vehicles - Biofuel",
-        "Aviation Efficiency",
-        "Aviation Biofuel",
-        "Buildings Temperature",
-        "Buildings Insulation",
-        "District Heat Share",
-        "Heat Pump Share",
-        "Hybrid Heat Share",
-        "Network - Heat Pump",
-        "Heat Network - Biomass",
-        "Lighting and Appliances",
-        "Industrial Efficiency",
-        "Industry Electrification",
-        "Industry Shift to Biomass",
-        "Industry Shift to Gas",
-        "Industry CCS",
-        "Hydrogen Gas Grid Share",
-        "Biomethane Gas Grid Share",
-        "Hydrogen - Biomass CCS",
-        "Hydrogen - Methane CCS",
-        "Hydrogen - Imports",
-        "Greenhouse Gas Removal",
-        "Bio-Conversion with CCS",
-        "CCS Capture Rate",
-        "Seasonal Storage",
-        "Short Term Balancing",
-        "Biomass with CCS",
-        "Nuclear",
-        "Offshore & Onshore Wind",
-        "Solar",
-        "Wave & Tidal",
-        "Gas with CCS",
-        "Farming Yield & Efficiency",
-        "Forestry",
-        "Land for Bioenergy",
-        "Waste Reduction",
-    ]
+    return list(model.input_levers.keys())
 
 
 @anvil.server.callable
@@ -73,7 +27,7 @@ def outputs():
 @anvil.server.callable
 def calculate(inputs):
     solution = model.calculate(inputs)
-    solution["emissions_sector"] = solution["emissions_sector"][-4::-1, 1:9]
+    solution["emissions_sector"] = solution["emissions_sector"][-4::-1]
     solution["x"] = list(range(2015, 2055, 5))
     return solution
 
