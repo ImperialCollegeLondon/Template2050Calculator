@@ -1,11 +1,20 @@
-from pytest import mark
+import sys
+from pathlib import Path
+from unittest.mock import patch
 
-# Skip this test module when the interface2050 module is unavailable (currently in ci)
-# In future, should be able to pull in the interface from a docker image
-try:
-    import server_code.interface2050  # noqa: F401
-except ImportError:
-    pytestmark = mark.skipif(True, reason="No interface module available.")
+sys.path.append(str(Path(__file__).absolute().parent / "test_model"))
+
+import interface2050  # noqa: E402
+
+PATCHER = patch("server_code.interface2050", interface2050, create=True)
+
+
+def setup_module():
+    PATCHER.start()
+
+
+def teardown_module():
+    PATCHER.stop()
 
 
 def test_inputs():
