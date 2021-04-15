@@ -1,13 +1,15 @@
-FROM anvil-app-server
+FROM chrisca/anvil-app-server
+ENTRYPOINT []
 
 USER root
 
-COPY * /apps/Template2050Calculator/
+COPY requirements.txt .
 
-RUN pip install --no-cache-dir -r /apps/Template2050Calculator/requirements.txt
-
+RUN pip install --no-cache-dir -r requirements.txt
+# Add the below just in case the preceding pip install changes the version of
+# anvil-app-server
+RUN anvil-app-server || true
 EXPOSE 3030
 
 USER anvil
-
-CMD ["--app", "/apps/Template2050Calculator"]
+COPY --chown=anvil:anvil . /apps/Template2050Calculator/
