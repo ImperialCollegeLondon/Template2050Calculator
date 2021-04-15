@@ -1,0 +1,9 @@
+*
+!client_code
+!server_code
+!theme
+!anvil.yaml
+!__init__.py
+!requirements.txt
+!.anvil_editor.yaml
+!web_outputs.json
