@@ -4,6 +4,4 @@ For this web app to work, the compiled python interface of a 2050 Calculator mod
 
 It can be run locally in a Python virtual environment. Install the `requirements.txt` and run `anvil-app-server --app Template2050Calculator` from the _parent directory_ of this repo. Additionally, Java is required to run the anvil app server.
 
-The app can be run from within a docker container. The Dockerfile requires an existing docker image named `anvil-app-server` built with [this anvil-runtime Dockerfile](https://github.com/anvil-works/anvil-runtime/blob/master/packaging/app-server/Dockerfile).
-
-Once that image is built, the container and website can be built with `docker-compose build` and run with `docker-compose up`.
+The app can be run from within a docker container by running `docker-compose up`.
