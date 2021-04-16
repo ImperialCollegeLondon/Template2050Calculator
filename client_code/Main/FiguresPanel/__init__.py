@@ -14,8 +14,6 @@ class FiguresPanel(FiguresPanelTemplate):
         # Any code you write here will run when the form opens.
         self.build_tabs()
 
-        self.card_1.add_component(Label(text=anvil.server.call("web_outputs_keys")))
-
     def build_tabs(self):
         for i, output in enumerate(Model.outputs):
             if output in ("x", "warning_l4chosen", "lever_names"):
