@@ -49,14 +49,17 @@ class FiguresPanel(FiguresPanelTemplate):
         self.plot.layout.margin.l = 30
         self.plot.layout.margin.r = 10
         self.plot.layout.hovermode = "closest"
+        x = self.model_solution["x"]
         self.plot.data = [
             go.Scatter(
-                x=self.model_solution["x"],
+                x=x,
                 y=y,
                 mode="lines",
                 stackgroup="one",
+                name=name,
+                showlegend=True,
             )
-            for y in self.model_solution[output]
+            for name, y in _prepare_rows(self.model_solution[output], x)
         ]
 
     @property
@@ -73,3 +76,10 @@ class FiguresPanel(FiguresPanelTemplate):
         """This method is called when the button is clicked"""
         self.selected_tab = event_args["sender"]
         self.build_graphs()
+
+
+def _prepare_rows(data, x):
+    for row in data[::-1]:
+        name = row[0]
+        trace = row[1: len(x) + 1]
+        yield name, trace
