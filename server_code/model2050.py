@@ -76,9 +76,9 @@ class Model2050:
         """Return a valid input for `self.calculate` with all levers set to 1."""
         return np.ones(len(self.input_levers))
 
-    def _values_from_range(self, excel_range, set_index=False):
-        """Wrapper function that converts the model library output datatype to a numpy
-        array."""
+    def _values_from_range(self, excel_range):
+        """Wrapper function that converts the model library output datatype to a nested
+        list."""
         cells = [
             [
                 self.module.get_cell(excel_range, j * excel_range.columns + i)

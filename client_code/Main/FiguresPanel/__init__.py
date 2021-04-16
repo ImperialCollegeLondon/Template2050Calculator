@@ -57,6 +57,7 @@ class FiguresPanel(FiguresPanelTemplate):
                 mode="lines",
                 stackgroup="one",
                 name=name,
+                showlegend=True,
             )
             for name, y in _prepare_rows(self.model_solution[output], x)
         ]
@@ -82,4 +83,3 @@ def _prepare_rows(data, x):
         name = row[0]
         trace = row[1: len(x) + 1]
         yield name, trace
-
