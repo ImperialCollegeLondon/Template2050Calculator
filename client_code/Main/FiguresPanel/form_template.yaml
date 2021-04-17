@@ -16,7 +16,7 @@ components:
     event_bindings: {show: tabs_show}
   - type: FlowPanel
     properties: {}
-    name: flow_panel_1
+    name: sub_tabs
     layout_properties: {grid_position: 'QLXCKV,YCAXIK'}
   - type: ColumnPanel
     properties: {col_widths: '{}'}

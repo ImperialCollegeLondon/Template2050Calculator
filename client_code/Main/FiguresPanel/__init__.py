@@ -15,15 +15,26 @@ class FiguresPanel(FiguresPanelTemplate):
         self.build_tabs()
 
     def build_tabs(self):
-        for i, output in enumerate(Model.outputs):
-            if output in ("x", "warning_l4chosen", "lever_names"):
-                continue
-            tab = Button(text=f"{output.title()} Plot")
-            tab.tag = output
-            tab.set_event_handler("click", self.tab_click)
-            self.tabs.add_component(tab)
-            if i == 0:
-                self.selected_tab = tab
+        layout = Model.layout
+
+        tabs = [self._add_button(self.tabs, tab) for tab in layout.keys()]
+        sub_tab = self.build_sub_tabs(tabs[0])
+        self.selected_tab = tabs[0], sub_tab
+
+    def build_sub_tabs(self, tab):
+        self.sub_tabs.clear()
+        layout = Model.layout
+        sub_tabs = [
+            self._add_button(self.sub_tabs, sub_tab) for sub_tab in layout[tab.tag]
+        ]
+        return sub_tabs[0]
+
+    def _add_button(self, element, name):
+        button = Button(text=name)
+        button.tag = name
+        button.set_event_handler("click", self.tab_click)
+        element.add_component(button)
+        return button
 
     def calculate(self, inputs):
         self.model_solution = anvil.server.call("calculate", list(inputs.values()))
@@ -40,8 +51,10 @@ class FiguresPanel(FiguresPanelTemplate):
             self.l4_warning.icon = "fa:asterisk"
 
     def build_graphs(self):
-        output = self.selected_tab.tag
-        self.plot.layout.title = f"{output.title()} Graph"
+        layout = Model.layout
+        tab, sub_tab = self.selected_tab
+        title, output = layout[tab.tag][sub_tab.tag]["Top"]
+        self.plot.layout.title = f"{title} Graph"
         self.plot.layout.margin.t = 30
         self.plot.layout.margin.b = 20
         self.plot.layout.margin.l = 30
@@ -67,17 +80,27 @@ class FiguresPanel(FiguresPanelTemplate):
     @selected_tab.setter
     def selected_tab(self, tab):
         for t in self.tabs.get_components():
-            t.role = "raised" if t is tab else ""
+            t.role = "raised" if t is tab[0] else ""
+        for t in self.sub_tabs.get_components():
+            t.role = "raised" if t is tab[1] else ""
         self._selected_tab = tab
 
     def tab_click(self, **event_args):
         """This method is called when the button is clicked"""
-        self.selected_tab = event_args["sender"]
+        current_tab, current_sub_tab = self.selected_tab
+        sender = event_args["sender"]
+        if sender in self.tabs.get_components():
+            current_tab = sender
+            current_sub_tab = self.build_sub_tabs(current_tab)
+        elif sender in self.sub_tabs.get_components():
+            current_sub_tab = sender
+        self.selected_tab = current_tab, current_sub_tab
+
         self.build_graphs()
 
 
 def _prepare_rows(data, x):
     for row in data[::-1]:
         name = row[0]
-        trace = row[1: len(x) + 1]
+        trace = row[1 : len(x) + 1]
         yield name, trace

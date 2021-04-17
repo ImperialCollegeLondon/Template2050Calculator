@@ -1,5 +1,5 @@
 import json
-from collections import OrderedDict
+from collections import namedtuple, OrderedDict
 from pathlib import Path
 
 import anvil.server
@@ -55,13 +55,26 @@ def web_outputs_keys():
     return TABLE
 
 
+GraphData = namedtuple("GraphData", ("title", "output"))
+
+
 @anvil.server.callable
 def layout():
     layout = OrderedDict()
-    for tab, sub_tab in zip(TABLE["Webtool Page"], TABLE["Webtool Tab"]):
-        if sub_tab.lower() != "not required":
-            sub_tabs = layout.setdefault(tab, [])
-            if sub_tab not in sub_tabs:
-                sub_tabs.append(sub_tab)
+    for tab, sub_tab, pos, title, named_range in zip(
+        TABLE["Webtool Page"],
+        TABLE["Webtool Tab"],
+        TABLE["Position"],
+        TABLE["Title"],
+        TABLE["Named Range"],
+    ):
+        if sub_tab.lower() == "not required":
+            continue
+
+        sub_tabs = layout.setdefault(tab, OrderedDict())
+        positions = sub_tabs.setdefault(sub_tab, OrderedDict())
+        positions[pos] = GraphData(
+            title, named_range.replace(".", "_").removeprefix("output_")
+        )
 
     return layout

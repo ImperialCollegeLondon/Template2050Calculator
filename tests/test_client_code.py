@@ -1,4 +1,5 @@
 import sys
+from collections import OrderedDict
 from pathlib import Path
 from unittest.mock import patch
 
@@ -32,9 +33,53 @@ def test_model(patch_server_call):
 
 def test_layout():
     from client_code.Model import layout
+    from server_code.Model2050Server import GraphData
 
-    assert layout["Overview"] == [
-        "GHG Emissions / Primary Energy",
-        "GHG Cumulative / Final Energy",
-    ]
-    assert layout["Imports, Map & Flows"] == ["Imports", "Map", "Flows"]
+    overview = OrderedDict(
+        (
+            (
+                "GHG Emissions / Primary Energy",
+                OrderedDict(
+                    (
+                        (
+                            "Top",
+                            GraphData(
+                                "Annual Greenhouse Gas Emissions",
+                                "emissions_sector",
+                            ),
+                        ),
+                        (
+                            "Bottom",
+                            GraphData(
+                                "Primary Energy Consumption",
+                                "primary_energy_consumption",
+                            ),
+                        ),
+                    )
+                ),
+            ),
+            (
+                "GHG Cumulative / Final Energy",
+                OrderedDict(
+                    (
+                        (
+                            "Top",
+                            GraphData(
+                                "Cumulative UK Greenhouse Gas Emissions",
+                                "emissions_cumulative",
+                            ),
+                        ),
+                        (
+                            "Bottom",
+                            GraphData(
+                                "Final Energy Consumption",
+                                "final_energy_consumption",
+                            ),
+                        ),
+                    )
+                ),
+            ),
+        )
+    )
+
+    assert overview == layout["Overview"]
