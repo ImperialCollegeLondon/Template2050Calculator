@@ -51,17 +51,27 @@ class FiguresPanel(FiguresPanelTemplate):
             self.l4_warning.icon = "fa:asterisk"
 
     def build_graphs(self):
+        self.figure_container.clear()
         layout = Model.layout
         tab, sub_tab = self.selected_tab
-        title, output = layout[tab.tag][sub_tab.tag]["Top"]
-        self.plot.layout.title = f"{title} Graph"
-        self.plot.layout.margin.t = 30
-        self.plot.layout.margin.b = 20
-        self.plot.layout.margin.l = 30
-        self.plot.layout.margin.r = 10
-        self.plot.layout.hovermode = "closest"
+        try:
+            self._plot(layout[tab.tag][sub_tab.tag]["Top"])
+            self._plot(layout[tab.tag][sub_tab.tag]["Bottom"])
+        except IndexError:
+            pass
+
+    def _plot(self, graph_data):
+        plot = Plot()
+        self.figure_container.add_component(plot)
+        title, output = graph_data
+        plot.layout.title = f"{title} Graph"
+        plot.layout.margin.t = 30
+        plot.layout.margin.b = 20
+        plot.layout.margin.l = 30
+        plot.layout.margin.r = 10
+        plot.layout.hovermode = "closest"
         x = self.model_solution["x"]
-        self.plot.data = [
+        plot.data = [
             go.Scatter(
                 x=x,
                 y=y,
