@@ -56,13 +56,14 @@ GraphData = namedtuple("GraphData", ("title", "output", "plot_type"))
 @anvil.server.callable
 def layout():
     layout = OrderedDict()
+    weboutputs = TABLE["weboutputs_summary_table"]
     for tab, sub_tab, pos, title, named_range, plot_type in zip(
-        TABLE["Webtool Page"],
-        TABLE["Webtool Tab"],
-        TABLE["Position"],
-        TABLE["Title"],
-        TABLE["Named Range"],
-        TABLE["Graph Type"],
+        weboutputs["Webtool Page"],
+        weboutputs["Webtool Tab"],
+        weboutputs["Position"],
+        weboutputs["Title"],
+        weboutputs["Named Range"],
+        weboutputs["Graph Type"],
     ):
         if sub_tab.lower() == "not required":
             continue
@@ -76,3 +77,8 @@ def layout():
         )
 
     return layout
+
+
+@anvil.server.callable
+def lever_descriptions():
+    return TABLE["lever_descriptions"]

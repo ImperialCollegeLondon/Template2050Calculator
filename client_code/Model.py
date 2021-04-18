@@ -7,6 +7,7 @@ levers = anvil.server.call("levers")
 inputs = anvil.server.call("inputs")
 outputs = anvil.server.call("outputs")
 layout = anvil.server.call("layout")
+lever_descriptions = anvil.server.call("lever_descriptions")
 
 language = "en"
 

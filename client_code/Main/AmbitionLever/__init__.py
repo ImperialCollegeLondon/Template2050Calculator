@@ -12,6 +12,7 @@ class AmbitionLever(AmbitionLeverTemplate):
         self.update_value(self.item["value"])
 
         self.label.text = self.item.get("name", "NoName")
+        self.label.tooltip = self.item.get("tooltip", "")
 
     def update_value(self, value):
         self.item["value"] = value
