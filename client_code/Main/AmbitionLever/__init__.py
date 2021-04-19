@@ -12,7 +12,10 @@ class AmbitionLever(AmbitionLeverTemplate):
         self.update_value(self.item["value"])
 
         self.label.text = self.item.get("name", "NoName")
-        self.label.tooltip = self.item.get("tooltip", "")
+        tooltips = self.item.get("tooltips", "")
+        self.label.tooltip = tooltips[0]
+        for level, tip in zip(self.slider.levels, tooltips[1:]):
+            level.tooltip = tip
 
     def update_value(self, value):
         self.item["value"] = value

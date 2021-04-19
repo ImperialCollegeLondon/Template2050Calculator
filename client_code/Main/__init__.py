@@ -20,9 +20,9 @@ class Main(MainTemplate):
             {
                 "name": name,
                 "value": value,
-                "tooltip": desc[0],
+                "tooltips": descriptions,
             }
-            for name, value, desc in zip(
+            for name, value, descriptions in zip(
                 Model.levers, Model.inputs, Model.lever_descriptions
             )
         ]
