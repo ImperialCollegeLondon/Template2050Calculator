@@ -65,14 +65,12 @@ def layout():
         weboutputs["Named Range"],
         weboutputs["Graph Type"],
     ):
-        if sub_tab.lower() == "not required":
-            continue
 
         sub_tabs = layout.setdefault(tab, OrderedDict())
         positions = sub_tabs.setdefault(sub_tab, OrderedDict())
-        positions[pos] = GraphData(
+        positions[str(pos)] = GraphData(
             title,
-            named_range.replace(".", "_").removeprefix("output_"),
+            named_range.replace(".", "_").removeprefix("output_").lower(),
             plot_type,
         )
 
