@@ -53,6 +53,7 @@ def test_layout():
                             GraphData(
                                 "Annual Greenhouse Gas Emissions",
                                 "emissions_sector",
+                                "Stacked Area with overlying Line(s)",
                             ),
                         ),
                         (
@@ -60,6 +61,7 @@ def test_layout():
                             GraphData(
                                 "Primary Energy Consumption",
                                 "primary_energy_consumption",
+                                "Stacked Area with overlying Line(s)",
                             ),
                         ),
                     )
@@ -74,6 +76,7 @@ def test_layout():
                             GraphData(
                                 "Cumulative UK Greenhouse Gas Emissions",
                                 "emissions_cumulative",
+                                "Line",
                             ),
                         ),
                         (
@@ -81,6 +84,7 @@ def test_layout():
                             GraphData(
                                 "Final Energy Consumption",
                                 "final_energy_consumption",
+                                "Stacked Area with overlying Line(s)",
                             ),
                         ),
                     )

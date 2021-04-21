@@ -64,7 +64,7 @@ class FiguresPanel(FiguresPanelTemplate):
     def _plot(self, graph_data):
         plot = Plot()
         self.figure_container.add_component(plot)
-        title, output = graph_data
+        title, output, plot_type = graph_data
         plot.layout.title = f"{title} Graph"
         plot.layout.margin.t = 30
         plot.layout.margin.b = 20
@@ -72,17 +72,29 @@ class FiguresPanel(FiguresPanelTemplate):
         plot.layout.margin.r = 10
         plot.layout.hovermode = "closest"
         x = self.model_solution["x"]
-        plot.data = [
-            go.Scatter(
-                x=x,
-                y=y,
-                mode="lines",
-                stackgroup="one",
-                name=name,
-                showlegend=True,
-            )
-            for name, y in _prepare_rows(self.model_solution[output], x)
-        ]
+        if plot_type.lower() == "stacked area with overlying line(s)":
+            plot.data = [
+                go.Scatter(
+                    x=x,
+                    y=y,
+                    mode="lines",
+                    stackgroup="one",
+                    name=name,
+                    showlegend=True,
+                )
+                for name, y in _prepare_rows(self.model_solution[output], x)
+            ]
+        elif plot_type.lower() == "line":
+            plot.data = [
+                go.Scatter(
+                    x=x,
+                    y=y,
+                    mode="lines+markers",
+                    name=name,
+                    showlegend=True,
+                )
+                for name, y in _prepare_rows(self.model_solution[output], x)
+            ]
 
     @property
     def selected_tab(self):

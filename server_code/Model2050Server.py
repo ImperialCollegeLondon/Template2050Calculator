@@ -50,18 +50,19 @@ def translate(locale, text):
     return i18n.t(text)
 
 
-GraphData = namedtuple("GraphData", ("title", "output"))
+GraphData = namedtuple("GraphData", ("title", "output", "plot_type"))
 
 
 @anvil.server.callable
 def layout():
     layout = OrderedDict()
-    for tab, sub_tab, pos, title, named_range in zip(
+    for tab, sub_tab, pos, title, named_range, plot_type in zip(
         TABLE["Webtool Page"],
         TABLE["Webtool Tab"],
         TABLE["Position"],
         TABLE["Title"],
         TABLE["Named Range"],
+        TABLE["Graph Type"],
     ):
         if sub_tab.lower() == "not required":
             continue
@@ -69,7 +70,9 @@ def layout():
         sub_tabs = layout.setdefault(tab, OrderedDict())
         positions = sub_tabs.setdefault(sub_tab, OrderedDict())
         positions[pos] = GraphData(
-            title, named_range.replace(".", "_").removeprefix("output_")
+            title,
+            named_range.replace(".", "_").removeprefix("output_"),
+            plot_type,
         )
 
     return layout
