@@ -4,6 +4,7 @@ import anvil.server
 import plotly.graph_objects as go
 
 from ... import Model
+from ...Plots import PLOTS_REGISTRY
 
 
 class FiguresPanel(FiguresPanelTemplate):
@@ -71,30 +72,9 @@ class FiguresPanel(FiguresPanelTemplate):
         plot.layout.margin.l = 30
         plot.layout.margin.r = 10
         plot.layout.hovermode = "closest"
-        x = self.model_solution["x"]
-        if plot_type.lower() == "stacked area with overlying line(s)":
-            plot.data = [
-                go.Scatter(
-                    x=x,
-                    y=y,
-                    mode="lines",
-                    stackgroup="one",
-                    name=name,
-                    showlegend=True,
-                )
-                for name, y in _prepare_rows(self.model_solution[output], x)
-            ]
-        elif plot_type.lower() == "line":
-            plot.data = [
-                go.Scatter(
-                    x=x,
-                    y=y,
-                    mode="lines+markers",
-                    name=name,
-                    showlegend=True,
-                )
-                for name, y in _prepare_rows(self.model_solution[output], x)
-            ]
+        plot.data = PLOTS_REGISTRY[plot_type.lower()](
+            self.model_solution["x"], self.model_solution[output]
+        )
 
     @property
     def selected_tab(self):
@@ -120,10 +100,3 @@ class FiguresPanel(FiguresPanelTemplate):
         self.selected_tab = current_tab, current_sub_tab
 
         self.build_graphs()
-
-
-def _prepare_rows(data, x):
-    for row in data[::-1]:
-        name = row[0]
-        trace = row[1 : len(x) + 1]
-        yield name, trace
