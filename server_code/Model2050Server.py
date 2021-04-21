@@ -1,11 +1,18 @@
-import anvil.server
+import json
+from collections import namedtuple, OrderedDict
+from pathlib import Path
 
+import anvil.server
 import i18n
 
 from . import interface2050
 from .model2050 import Model2050
 
 model = Model2050(interface2050)
+
+
+with open(Path(__file__).absolute().parent.parent / "web_outputs.json") as f:
+    TABLE = json.load(f)
 
 
 @anvil.server.callable
@@ -34,7 +41,7 @@ def calculate(inputs):
 
 i18n.set("filename_format", "{locale}.{format}")
 i18n.set("enable_memoization", True)
-i18n.load_path.append("./Template2050Calculator/server_code/translations")
+i18n.load_path.append(Path(__file__).absolute().parent / "translations")
 
 
 @anvil.server.callable
@@ -43,26 +50,26 @@ def translate(locale, text):
     return i18n.t(text)
 
 
-# from openpyxl import load_workbook
-
-# wb = load_workbook(
-#     filename="../UK_Pathways_Calculator_Model_Development_Climact_200703_publ_template.xlsm"
-# )
-# ws = wb["WebOutputs"]
-
-# web_outputs = {}
-# for col in ws.iter_cols(3, 14, 31, 68, values_only=True):
-#     web_outputs[col[0]] = col[1:]
-
-# print(web_outputs.keys())
+GraphData = namedtuple("GraphData", ("title", "output"))
 
 
 @anvil.server.callable
-def web_outputs_keys():
-    import json
-    from pathlib import Path
+def layout():
+    layout = OrderedDict()
+    for tab, sub_tab, pos, title, named_range in zip(
+        TABLE["Webtool Page"],
+        TABLE["Webtool Tab"],
+        TABLE["Position"],
+        TABLE["Title"],
+        TABLE["Named Range"],
+    ):
+        if sub_tab.lower() == "not required":
+            continue
 
-    with open(Path("Template2050Calculator").absolute() / "web_outputs.json") as f:
-        data = json.load(f)
+        sub_tabs = layout.setdefault(tab, OrderedDict())
+        positions = sub_tabs.setdefault(sub_tab, OrderedDict())
+        positions[pos] = GraphData(
+            title, named_range.replace(".", "_").removeprefix("output_")
+        )
 
-    return data
+    return layout

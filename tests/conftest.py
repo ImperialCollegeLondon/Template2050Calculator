@@ -1,16 +1,21 @@
+from unittest.mock import patch
+
 from pytest import fixture
-from unittest.mock import MagicMock, patch
 
 
 @fixture(autouse=True)
 def patch_server_call():
-    def side_effect(*args):
-        if len(args) == 0:
-            return None
-        if len(args) == 1:
-            return args[0]
-        return args
+    """This fixture simplifies testing by transparently removing the anvil
+    server. Calling a callable from the front-end with this patch in place directly
+    runs that function."""
+    with patch("anvil.server.callable", lambda x: x):
 
-    mocker = MagicMock(side_effect=side_effect)
-    with patch("anvil.server.call", mocker):
-        yield mocker
+        class ServerCallMock:
+            def __call__(self, func_name, *args, **kwargs):
+                from server_code import Model2050Server
+
+                return getattr(Model2050Server, func_name)(*args, **kwargs)
+
+        mocker = ServerCallMock()
+        with patch("anvil.server.call", mocker):
+            yield mocker

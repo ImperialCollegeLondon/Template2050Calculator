@@ -6,6 +6,7 @@ import anvil.server
 levers = anvil.server.call("levers")
 inputs = anvil.server.call("inputs")
 outputs = anvil.server.call("outputs")
+layout = anvil.server.call("layout")
 
 language = "en"
 
