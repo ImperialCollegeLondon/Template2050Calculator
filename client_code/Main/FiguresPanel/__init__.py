@@ -57,7 +57,8 @@ class FiguresPanel(FiguresPanelTemplate):
         try:
             self._plot(layout[tab.tag][sub_tab.tag]["Top"])
             self._plot(layout[tab.tag][sub_tab.tag]["Bottom"])
-        except IndexError:
+            self._plot(layout[tab.tag][sub_tab.tag]["Page"])
+        except KeyError:
             pass
 
     def _plot(self, graph_data):

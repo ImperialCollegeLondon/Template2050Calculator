@@ -14,7 +14,6 @@ def patch_server_call():
             def __call__(self, func_name, *args, **kwargs):
                 from server_code import Model2050Server
 
-                print(func_name)
                 return getattr(Model2050Server, func_name)(*args, **kwargs)
 
         mocker = ServerCallMock()

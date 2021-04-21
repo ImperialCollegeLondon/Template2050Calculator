@@ -50,11 +50,6 @@ def translate(locale, text):
     return i18n.t(text)
 
 
-@anvil.server.callable
-def web_outputs_keys():
-    return TABLE
-
-
 GraphData = namedtuple("GraphData", ("title", "output"))
 
 

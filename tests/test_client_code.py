@@ -1,3 +1,4 @@
+import json
 import sys
 from collections import OrderedDict
 from pathlib import Path
@@ -9,15 +10,21 @@ sys.path.append(str(Path(__file__).absolute().parent / "test_model"))
 
 import interface2050  # noqa: E402
 
-PATCHER = patch("server_code.interface2050", interface2050, create=True)
+with open(Path(__file__).absolute().parent / "test_model" / "web_outputs.json") as f:
+    TABLE = json.load(f)
+
+INTERFACE_PATCHER = patch("server_code.interface2050", interface2050, create=True)
+TABLE_PATCHER = patch("server_code.Model2050Server.TABLE", TABLE)
 
 
 def setup_module():
-    PATCHER.start()
+    INTERFACE_PATCHER.start()
+    TABLE_PATCHER.start()
 
 
 def teardown_module():
-    PATCHER.stop()
+    INTERFACE_PATCHER.stop()
+    TABLE_PATCHER.stop()
 
 
 def test_model(patch_server_call):
