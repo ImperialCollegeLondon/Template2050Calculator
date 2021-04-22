@@ -12,8 +12,8 @@ class Levers(LeversTemplate):
         self.levels = [self.level_1, self.level_2, self.level_3, self.level_4]
 
     def level_click(self, **event_args):
-        """This method is called when the button is clicked"""
-        self.parent.parent.slider_change(int(event_args["sender"].text))
+        """This method is called when the lever is clicked"""
+        self.parent.parent.lever_change(int(event_args["sender"].text))
 
     @property
     def level(self):
