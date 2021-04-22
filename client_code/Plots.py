@@ -35,7 +35,7 @@ def plot_sankey(x, model_output):
     for row in model_output[1::]:
         sources.append(row[0])
         targets.append(row[1])
-        values.append(sum(row[2 : len(x) + 2]))
+        values.append(row[len(x) + 1])
 
     nodes = list(set(sources + targets))
     sources = [nodes.index(source) for source in sources]
