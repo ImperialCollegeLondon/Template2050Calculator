@@ -17,7 +17,7 @@ class FiguresPanel(FiguresPanelTemplate):
 
     def build_tabs(self):
         layout = Model.layout
-  
+
         tabs = [self._add_button(self.tabs, tab) for tab in layout.keys()]
         sub_tab = self.build_sub_tabs(tabs[0])
         self.selected_tab = tabs[0], sub_tab

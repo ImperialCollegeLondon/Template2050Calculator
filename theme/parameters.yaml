@@ -181,3 +181,6 @@ color_scheme:
   - {name: Gray 800, color: '#424242'}
   - {name: Gray 900, color: '#212121'}
   - {name: Black, color: '#000000'}
+  - {name: Gray 700, color: '#585858'}
+  - {name: Gray 400, color: '#D8D8D8'}
+  - {name: Gray 500, color: '#A4A4A4'}

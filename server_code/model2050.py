@@ -49,14 +49,13 @@ class Model2050:
         """Run the model and return a dictionary containing all model
         outputs. `input_values` should be a sequence returing valid values for
         each input lever of the model i.e. 1 to 4.
-
         """
         assert len(input_values) == len(self.input_levers)
 
         self.module.reset()
 
         for func, value in zip(self.input_levers.values(), input_values):
-            assert value in (1, 2, 3, 4)
+            assert value in [i / 10 for i in range(10, 41)]
             func(value)
 
         return {
