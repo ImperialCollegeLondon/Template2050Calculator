@@ -1,3 +1,4 @@
+import anvil.server
 import plotly.graph_objects as go
 
 
@@ -12,23 +13,42 @@ def _partial_scatter(x, y, name, **kwargs):
     return go.Scatter(x=x, y=y, name=name, showlegend=True, **kwargs)
 
 
-def plot_stacked_area(x, model_output):
-    return [
+def format_plot(plot, title):
+    """Apply standard formatting to plot. For Anvil `Plot` objects this must be
+    called before the `data` attribute of the plot is set.
+    """
+    layout = plot.layout
+    layout.margin = dict(t=30, b=20, l=30, r=10)
+    layout.hovermode = "closest"
+    layout.title = dict(text=f"{title}", x=0.5)
+
+
+def plot_stacked_area(plot, model_solution, output, title):
+    format_plot(plot, title)
+    model_output = model_solution[output]
+    x = model_solution["x"]
+    plot.data = [
         _partial_scatter(x, y, name=name, mode="lines", stackgroup="one")
         for name, y in _prepare_rows(model_output, x)
         if "total" not in name.lower()
     ]
 
 
-def plot_line(x, model_output):
-    return [
+def plot_line(plot, model_solution, output, title):
+    format_plot(plot, title)
+    model_output = model_solution[output]
+    x = model_solution["x"]
+    plot.data = [
         _partial_scatter(x, y, name, mode="lines+markers")
         for name, y in _prepare_rows(model_output, x)
         if "total" not in name.lower()
     ]
 
 
-def plot_sankey(x, model_output):
+def plot_sankey(plot, model_solution, output, title):
+    format_plot(plot, title)
+    x = model_solution["x"]
+    model_output = model_solution[output]
     sources = []
     targets = []
     values = []
@@ -41,7 +61,7 @@ def plot_sankey(x, model_output):
     sources = [nodes.index(source) for source in sources]
     targets = [nodes.index(target) for target in targets]
 
-    return [
+    plot.data = [
         go.Sankey(
             valueformat=".0f",
             valuesuffix="TWh",  # Get from Model2050Server.TABLE["Axis Unit"] ?
@@ -53,8 +73,28 @@ def plot_sankey(x, model_output):
     ]
 
 
+def plot_map(plot, model_solution, outputs, title):
+    # 2050 should be a configurable parameter
+    index = model_solution["x"].index(2050)
+    data = {}
+    for output in outputs.split(","):
+        if "area" in output:
+            key = "area"
+        elif "distance" in output:
+            key = "distance"
+        else:
+            continue
+        data.setdefault(key, []).extend(
+            [line[0], line[index]] for line in model_solution[output]
+        )
+    fig = anvil.server.call("map", data)
+    format_plot(fig, title)
+    plot.figure = fig
+
+
 PLOTS_REGISTRY = {
     "stacked area with overlying line(s)": plot_stacked_area,
     "line": plot_line,
     "sankey/flow": plot_sankey,
+    "map": plot_map,
 }

@@ -2,4 +2,5 @@ numpy
 openpyxl
 anvil-app-server
 anvil-uplink
+plotly
 python-i18n[YAML]
