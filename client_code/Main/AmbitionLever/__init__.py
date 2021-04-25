@@ -1,6 +1,4 @@
 from ._anvil_designer import AmbitionLeverTemplate
-from anvil import *
-import anvil.server
 
 
 class AmbitionLever(AmbitionLeverTemplate):

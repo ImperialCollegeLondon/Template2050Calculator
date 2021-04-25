@@ -1,10 +1,9 @@
-from ._anvil_designer import FiguresPanelTemplate
-from anvil import *
 import anvil.server
-import plotly.graph_objects as go
+from anvil import Button, Plot
 
 from ... import Model
 from ...Plots import PLOTS_REGISTRY
+from ._anvil_designer import FiguresPanelTemplate
 
 
 class FiguresPanel(FiguresPanelTemplate):
@@ -71,7 +70,7 @@ class FiguresPanel(FiguresPanelTemplate):
         plot.layout.title = f"{title} Graph"
         plot.layout.margin.t = 30
         plot.layout.margin.b = 20
-        plot.layout.margin.l = 30
+        plot.layout.margin.l = 30  # noqa: E741
         plot.layout.margin.r = 10
         plot.layout.hovermode = "closest"
         plot.data = PLOTS_REGISTRY[plot_type.lower()](

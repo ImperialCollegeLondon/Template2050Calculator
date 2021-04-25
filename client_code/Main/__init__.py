@@ -1,9 +1,6 @@
-from ._anvil_designer import MainTemplate
-from anvil import *
-import anvil.server
-
-from .FiguresPanel import FiguresPanel
 from .. import Model
+from ._anvil_designer import MainTemplate
+from .FiguresPanel import FiguresPanel
 
 # Uncomment for Thai language
 # Model.language = "th"

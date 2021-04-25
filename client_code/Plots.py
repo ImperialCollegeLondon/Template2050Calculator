@@ -46,9 +46,16 @@ def plot_sankey(x, model_output):
             valueformat=".0f",
             valuesuffix="TWh",  # Get from Model2050Server.TABLE["Axis Unit"] ?
             node=dict(
-                pad=15, thickness=15, line=dict(color="black", width=0.5), label=nodes,
+                pad=15,
+                thickness=15,
+                line=dict(color="black", width=0.5),
+                label=nodes,
             ),
-            link=dict(source=sources, target=targets, value=values,),
+            link=dict(
+                source=sources,
+                target=targets,
+                value=values,
+            ),
         )
     ]
 
