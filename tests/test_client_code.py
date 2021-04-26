@@ -28,7 +28,7 @@ def teardown_module():
 
 
 def test_model(patch_server_call):
-    from client_code.Model import language, levers, inputs, outputs, translate
+    from client_code.Model import inputs, language, levers, outputs, translate
 
     assert language == "en"
     assert levers == ["Factor", "Offset"]

@@ -1,0 +1,21 @@
+repos:
+  - repo: https://github.com/asottile/seed-isort-config
+    rev: v2.2.0
+    hooks:
+      - id: seed-isort-config
+  - repo: https://github.com/timothycrosley/isort
+    rev: "5.5.3"
+    hooks:
+      - id: isort
+        additional_dependencies: [toml]
+        exclude: "tests/test_model/interface2050.py"
+  - repo: https://github.com/psf/black
+    rev: "20.8b1"
+    hooks:
+      - id: black
+        exclude: "tests/test_model/interface2050.py"
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: 3.8.3
+    hooks:
+      - id: flake8
+        exclude: "tests/test_model/interface2050.py"
