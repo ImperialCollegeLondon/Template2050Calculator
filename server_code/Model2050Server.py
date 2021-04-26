@@ -1,5 +1,5 @@
 import json
-from collections import namedtuple, OrderedDict
+from collections import OrderedDict, namedtuple
 from pathlib import Path
 
 import anvil.server
