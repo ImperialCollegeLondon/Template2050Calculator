@@ -1,5 +1,5 @@
 import json
-from collections import namedtuple, OrderedDict
+from collections import OrderedDict, namedtuple
 from math import atan, pi, sin, sqrt
 from pathlib import Path
 

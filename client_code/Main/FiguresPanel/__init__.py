@@ -1,10 +1,9 @@
-from ._anvil_designer import FiguresPanelTemplate
-from anvil import *
 import anvil.server
-import plotly.graph_objects as go
+from anvil import Button, Plot
 
 from ... import Model
 from ...Plots import PLOTS_REGISTRY
+from ._anvil_designer import FiguresPanelTemplate
 
 
 class FiguresPanel(FiguresPanelTemplate):
