@@ -12,12 +12,17 @@ class Levers(LeversTemplate):
     def level_click(self, **event_args):
         """This method is called when the lever is clicked"""
         new_level = float(event_args["sender"].text)
+        # Decrese level by 0.1 if already selected button is clicked
         if self.level == new_level and self.level != 1:
             new_level = round(new_level - 0.1, 1)
-            if new_level.is_integer():
+            if new_level == int(new_level):
                 event_args["sender"].text = int(new_level + 1)
             else:
                 event_args["sender"].text = new_level
+        # Ensure button is original integer value when clicked anew
+        elif new_level != int(new_level):
+            new_level = int(new_level) + 1
+            event_args["sender"].text = new_level
         self.parent.parent.lever_change(new_level)
 
     @property
@@ -29,7 +34,10 @@ class Levers(LeversTemplate):
         self._level = level
         for i, level_button in enumerate(self.levels, 1):
             button_value = float(level_button.text)
-            if i <= level:
+            if i < level:
+                level_button.background = "theme:Black"
+                level_button.foreground = "theme:Black"
+            elif i == level:
                 level_button.background = "theme:Black"
                 level_button.foreground = "theme:White"
             elif i - 1 < button_value < i:
