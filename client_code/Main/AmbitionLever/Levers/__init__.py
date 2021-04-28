@@ -29,16 +29,19 @@ class Levers(LeversTemplate):
     @level.setter
     def level(self, level):
         self._level = level
-        colour = "theme:Black"
         for i, level_button in enumerate(self.levels, 1):
-            level_button.background = colour
-            decimal = int(10 * round(level - i + 1, 1))
-            if decimal < 10 and decimal > 0:
+            button_value = float(level_button.text)
+            if i <= level:
+                level_button.background = "theme:Black"
+                level_button.foreground = "theme:White"
+            elif i - 1 < button_value < i:
+                decimal = int(10 * round(level - i + 1, 1))
                 level_button.background = "theme:Gray " + str(decimal) + "00"
-                if decimal < 5:
+                # change button text colour depending on shade of gray
+                if decimal <= 5:
                     level_button.foreground = "theme:Black"
-                    colour = "theme:White"
-                    continue
-            if i >= level:
-                colour = "theme:White"
-            level_button.foreground = colour
+                else:
+                    level_button.foreground = "theme:White"
+            else:
+                level_button.foreground = "theme:White"
+                level_button.background = "theme:White"
