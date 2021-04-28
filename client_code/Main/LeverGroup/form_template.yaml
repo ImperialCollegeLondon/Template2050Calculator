@@ -1,0 +1,27 @@
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{"FIPETE":5,"KRYHHW":55,"BJPINV":5,"WXUHPL":55}'}
+components:
+- type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: 'fa:angle-right'}
+  name: display
+  layout_properties: {grid_position: 'ADSVVV,FIPETE'}
+  event_bindings: {click: display_click}
+- type: form:Main.AmbitionLever
+  properties: {}
+  name: group_lever
+  layout_properties: {grid_position: 'ADSVVV,KRYHHW'}
+- type: Spacer
+  properties: {height: 32}
+  name: lever_spacer
+  layout_properties: {grid_position: 'TUISJM,BJPINV'}
+- type: RepeatingPanel
+  properties: {role: null, tooltip: '', border: '', foreground: '', items: null, visible: true,
+    spacing_above: small, spacing_below: small, item_template: Main.AmbitionLever,
+    background: ''}
+  name: lever_panel
+  layout_properties: {grid_position: 'TUISJM,WXUHPL'}
+is_package: true
