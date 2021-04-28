@@ -1,6 +1,4 @@
 from ._anvil_designer import LeversTemplate
-from anvil import *
-import anvil.server
 
 
 class Levers(LeversTemplate):
