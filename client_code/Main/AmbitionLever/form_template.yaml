@@ -5,9 +5,7 @@ item_type: {table_id: null}
 custom_component: true
 components:
 - type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{"YYJKZE":35,"GIAINH":24}',
-    spacing_below: none, background: ''}
+  properties: {col_widths: '{"YYJKZE":35,"GIAINH":24}'}
   name: column_panel_1
   layout_properties: {grid_position: 'VCPHTS,HPGRLK'}
   components:
