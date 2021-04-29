@@ -61,5 +61,6 @@
             4000
         ]
     },
-    "lever_descriptions": []
+    "lever_descriptions": [],
+    "example_pathways": {}
 }
