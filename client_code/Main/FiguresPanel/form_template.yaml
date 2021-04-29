@@ -34,13 +34,6 @@ components:
     properties: {col_widths: '{}'}
     name: warnings_panel
     layout_properties: {slot: default, grid_position: 'PFCIQQ,OROLTQ', full_width_row: true}
-    components:
-    - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: L4, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: 'fa:asterisk'}
-      name: l4_warning
-      layout_properties: {grid_position: 'CCDXYK,CPXYKM'}
+    components: []
 is_package: true
 custom_component: true
