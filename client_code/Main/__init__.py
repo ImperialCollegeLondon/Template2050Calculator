@@ -1,3 +1,5 @@
+from anvil import get_url_hash, set_url_hash
+
 from .. import Model
 from ._anvil_designer import MainTemplate
 from .FiguresPanel import FiguresPanel
@@ -20,7 +22,7 @@ class Main(MainTemplate):
                 "tooltips": descriptions,
             }
             for name, value, descriptions in zip(
-                Model.levers, Model.inputs, Model.lever_descriptions
+                Model.levers, self.get_lever_vals(), Model.lever_descriptions
             )
         ]
 
@@ -36,5 +38,16 @@ class Main(MainTemplate):
         self.plot_area.add_component(self.figures_panel)
 
     def update_graphs(self, **event_args):
+        """Collect the lever values and update the graphs and url hash."""
         inputs = {item["name"]: item["value"] for item in self.ambition_levers.items}
+        self.set_url(inputs)
         self.figures_panel.calculate(inputs)
+
+    def get_lever_vals(self):
+        """Get lever values from url, if available. Otherwise use defaults."""
+        url_hash = get_url_hash()
+        return map(float, url_hash.split(",")) if url_hash else Model.inputs
+
+    def set_url(self, inputs):
+        """Set lever values in the url."""
+        set_url_hash(",".join([str(val) for val in inputs.values()]))
