@@ -15,16 +15,8 @@ class Main(MainTemplate):
 
         # Any code you write here will run when the form opens.
 
-        self.ambition_levers.items = [
-            {
-                "name": name,
-                "value": value,
-                "tooltips": descriptions,
-            }
-            for name, value, descriptions in zip(
-                Model.levers, self.get_lever_vals(), Model.lever_descriptions
-            )
-        ]
+        self.set_ambition_levers()
+        self.pathways_dropdown.items = Model.example_pathways.keys()
 
         self.ambition_levers.set_event_handler("x-refresh", self.update_graphs)
         self.select_figures()
@@ -40,7 +32,7 @@ class Main(MainTemplate):
     def update_graphs(self, **event_args):
         """Collect the lever values and update the graphs and url hash."""
         inputs = {item["name"]: item["value"] for item in self.ambition_levers.items}
-        self.set_url(inputs)
+        self.set_url(list(inputs.values()))
         self.figures_panel.calculate(inputs)
 
     def get_lever_vals(self):
@@ -49,5 +41,27 @@ class Main(MainTemplate):
         return map(float, url_hash.split(",")) if url_hash else Model.inputs
 
     def set_url(self, inputs):
-        """Set lever values in the url."""
-        set_url_hash(",".join([str(val) for val in inputs.values()]))
+        """Set lever values in the url.
+
+        Args:
+            inputs (list): A list of lever values
+        """
+        set_url_hash(",".join([str(val) for val in inputs]))
+
+    def set_ambition_levers(self):
+        self.ambition_levers.items = [
+            {
+                "name": name,
+                "value": value,
+                "tooltips": descriptions,
+            }
+            for name, value, descriptions in zip(
+                Model.levers, self.get_lever_vals(), Model.lever_descriptions
+            )
+        ]
+
+    def pathways_dropdown_change(self, **event_args):
+        """This method is called when an item is selected from the dropdown"""
+        self.set_url(Model.example_pathways[event_args["sender"].selected_value])
+        self.set_ambition_levers()
+        self.update_graphs()
