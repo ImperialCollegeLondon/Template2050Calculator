@@ -39,8 +39,7 @@ def test_model(patch_server_call):
 
 
 def test_layout():
-    from client_code.Model import layout
-    from server_code.Model2050Server import GraphData
+    from client_code.Model import GraphInfo, layout
 
     overview = OrderedDict(
         (
@@ -50,7 +49,7 @@ def test_layout():
                     (
                         (
                             "Top",
-                            GraphData(
+                            GraphInfo(
                                 "Annual Greenhouse Gas Emissions",
                                 "emissions_sector",
                                 "Stacked Area with overlying Line(s)",
@@ -58,7 +57,7 @@ def test_layout():
                         ),
                         (
                             "Bottom",
-                            GraphData(
+                            GraphInfo(
                                 "Primary Energy Consumption",
                                 "primary_energy_consumption",
                                 "Stacked Area with overlying Line(s)",
@@ -73,7 +72,7 @@ def test_layout():
                     (
                         (
                             "Top",
-                            GraphData(
+                            GraphInfo(
                                 "Cumulative UK Greenhouse Gas Emissions",
                                 "emissions_cumulative",
                                 "Line",
@@ -81,7 +80,7 @@ def test_layout():
                         ),
                         (
                             "Bottom",
-                            GraphData(
+                            GraphInfo(
                                 "Final Energy Consumption",
                                 "final_energy_consumption",
                                 "Stacked Area with overlying Line(s)",

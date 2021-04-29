@@ -1,5 +1,4 @@
 import json
-from collections import OrderedDict, namedtuple
 from pathlib import Path
 
 import anvil.server
@@ -50,29 +49,11 @@ def translate(locale, text):
     return i18n.t(text)
 
 
-GraphData = namedtuple("GraphData", ("title", "output", "plot_type"))
+@anvil.server.callable
+def layout():
+    return TABLE["weboutputs_summary_table"]
 
 
 @anvil.server.callable
-def layout():
-    layout = OrderedDict()
-    for tab, sub_tab, pos, title, named_range, plot_type in zip(
-        TABLE["Webtool Page"],
-        TABLE["Webtool Tab"],
-        TABLE["Position"],
-        TABLE["Title"],
-        TABLE["Named Range"],
-        TABLE["Graph Type"],
-    ):
-        if sub_tab.lower() == "not required":
-            continue
-
-        sub_tabs = layout.setdefault(tab, OrderedDict())
-        positions = sub_tabs.setdefault(sub_tab, OrderedDict())
-        positions[pos] = GraphData(
-            title,
-            named_range.replace(".", "_").removeprefix("output_"),
-            plot_type,
-        )
-
-    return layout
+def lever_descriptions():
+    return TABLE["lever_descriptions"]
