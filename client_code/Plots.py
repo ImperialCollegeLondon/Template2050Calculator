@@ -80,6 +80,18 @@ def plot_sankey(plot, model_solution, output, title):
     ]
 
 
+def plot_table(plot, model_solution, output, title):
+    format_plot(plot, title)
+    model_output = model_solution[output]
+    x = model_solution["x"]
+    plot.data = [
+        go.Table(
+            header=dict(values=["names"] + x),
+            cells=dict(values=[list(x) for x in zip(*model_output)]),
+        )
+    ]
+
+
 def plot_map(plot, model_solution, outputs, title):
     # 2050 should be a configurable parameter
     index = model_solution["x"].index(2050)
@@ -104,4 +116,5 @@ PLOTS_REGISTRY = {
     "line": plot_line,
     "sankey/flow": plot_sankey,
     "map": plot_map,
+    "table": plot_table,
 }

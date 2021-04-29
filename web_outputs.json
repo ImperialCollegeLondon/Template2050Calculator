@@ -37,6 +37,7 @@
             "Imports, Map & Flows",
             "Imports, Map & Flows",
             "Imports, Map & Flows",
+            "Imports, Map & Flows",
             "Imports, Map & Flows"
         ],
         "Webtool Tab": [
@@ -76,6 +77,7 @@
             "Imports",
             "Imports",
             "Map",
+            "Map",
             "Flows"
         ],
         "Position": [
@@ -114,7 +116,8 @@
             "Bottom",
             "Top",
             "Bottom",
-            "Page",
+            "Top",
+            "Bottom",
             "Page"
         ],
         "Title": [
@@ -154,6 +157,7 @@
             "Energy Imports",
             "Energy Import Dependence",
             "Illustration of scale of land and sea use (positions are arbitrary)",
+            "Table of land and sea use",
             "UK Energy Flows"
         ],
         "Axis Unit": [
@@ -193,6 +197,7 @@
             "TWh/yr",
             "Percent",
             "No Units",
+            "No Units",
             "TWh/yr"
         ],
         "Named Range": [
@@ -231,7 +236,8 @@
             "output.bioenergy.imports",
             "output.security.import.energy",
             "output.security.import.fraction",
-            "output.land.map.area,output.land.map.distance,output.land.map.numberunits",
+            "output.land.map.area,output.land.map.distance",
+            "output.land.map.numberunits",
             "output.flows"
         ],
         "Graph Type": [
@@ -271,6 +277,7 @@
             "Stacked Area with overlying Line(s)",
             "Line",
             "Map",
+            "Table",
             "Sankey/Flow"
         ],
         "null": [
@@ -289,6 +296,7 @@
             null,
             null,
             "*output.tra.car.type.share replaced with output.tra.energy.consumption.vehicle",
+            null,
             null,
             null,
             null,
@@ -349,6 +357,7 @@
             0,
             0,
             null,
+            null,
             null
         ],
         "Y axis max": [
@@ -387,6 +396,7 @@
             800,
             4000,
             100,
+            null,
             null,
             null
         ]
