@@ -65,3 +65,10 @@ class Main(MainTemplate):
         self.set_url(Model.example_pathways[event_args["sender"].selected_value])
         self.set_ambition_levers()
         self.update_graphs()
+
+    def reset_button_click(self, **event_args):
+        """This method is called when the button is clicked"""
+        self.pathways_dropdown.selected_value = None
+        self.set_url(Model.inputs)
+        self.set_ambition_levers()
+        self.update_graphs()

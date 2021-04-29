@@ -62,6 +62,7 @@ components:
           italic: false, background: '', bold: false, underline: false, icon: ''}
         name: reset_button
         layout_properties: {grid_position: 'PLRDHP,BHLNYW'}
+        event_bindings: {click: reset_button_click}
     - type: ColumnPanel
       properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
         wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"EUBTYM":40,"WLDFBB":20}',
