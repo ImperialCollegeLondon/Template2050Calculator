@@ -19,7 +19,7 @@ class AmbitionLever(AmbitionLeverTemplate):
         self.item["value"] = value
         self.slider.level = value
 
-    def slider_change(self, level, **event_args):
-        """This method is called when the slider is moved"""
+    def lever_change(self, level, **event_args):
+        """This method is called when lever level is changed"""
         self.update_value(level)
         self.parent.raise_event("x-refresh")
