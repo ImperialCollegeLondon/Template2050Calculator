@@ -57,3 +57,8 @@ def layout():
 @anvil.server.callable
 def lever_descriptions():
     return TABLE["lever_descriptions"]
+
+
+@anvil.server.callable
+def example_pathways():
+    return TABLE["example_pathways"]

@@ -55,6 +55,7 @@ inputs = anvil.server.call("inputs")
 outputs = anvil.server.call("outputs")
 layout = process_layout_data(anvil.server.call("layout"))
 lever_descriptions = anvil.server.call("lever_descriptions")
+example_pathways = anvil.server.call("example_pathways")
 
 language = "en"
 
