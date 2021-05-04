@@ -91,7 +91,7 @@ components:
       name: lever_group_panel
       layout_properties: {grid_position: 'IPNHGZ,SIGQFA', full_width_row: false}
       data_bindings: []
-      event_bindings: {show: ambition_levers_show}
+      event_bindings: {}
   - type: ColumnPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
       wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',

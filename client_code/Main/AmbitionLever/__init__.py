@@ -5,32 +5,30 @@ class AmbitionLever(AmbitionLeverTemplate):
     def __init__(self, **properties):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
+        self.set_event_handler("show", self.show)
 
-        # if init'd outside of a repeating panel self.item will not yet be set
-        try:
-            self.complete_init()
-        except KeyError:
-            pass
-
-    def complete_init(self):
-        """Set lever properties from self.item. __init__ attempts to call this method
-        however if self.item has not yet been set it should be called when the
-        object's `show` event is triggered.
+    def show(self, **event_args):
+        """`show` event handler. Expects self.item to be populated with required
+        data for arguments of `complete_init`.
         """
 
-        self.update_value(self.item["value"])
+        self.complete_init(**self.item)
 
-        self.label.text = self.item["name"]
-        tooltips = self.item.get("tooltips", [""] * 5)
+    def complete_init(self, name, value, event_handler, tooltips=[""] * 5):
+        """Set lever properties"""
+
+        self.value = value
+
+        self.label.text = name
         self.label.tooltip = tooltips[0]
         for i, (level, tip) in enumerate(zip(self.slider.levels, tooltips[1:]), 1):
             level.tooltip = f"Ambition Level {i}:\n" + tip
+        self.set_event_handler("x-refresh", event_handler)
 
-    def update_value(self, value):
-        self.item["value"] = value
+    @property
+    def value(self):
+        return self.slider.level
+
+    @value.setter
+    def value(self, value):
         self.slider.level = value
-
-    def lever_change(self, level, **event_args):
-        """This method is called when lever level is changed"""
-        self.update_value(level)
-        self.parent.raise_event("x-refresh")

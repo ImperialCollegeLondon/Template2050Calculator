@@ -18,7 +18,6 @@ class Main(MainTemplate):
         self.set_ambition_levers()
         self.pathways_dropdown.items = Model.example_pathways.keys()
 
-        self.lever_group_panel.set_event_handler("x-refresh", self.update_graphs)
         self.select_figures()
         self.update_graphs()
 
@@ -32,7 +31,7 @@ class Main(MainTemplate):
     def update_graphs(self):
         """Collect the level values and update the graphs and url hash."""
         inputs = [
-            lever.item["value"]
+            lever.value
             for group in self.lever_group_panel.get_components()
             for lever in group.lever_panel.get_components()
         ]
