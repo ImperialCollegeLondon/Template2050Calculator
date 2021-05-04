@@ -7,13 +7,14 @@ components:
     foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: 'fa:angle-right'}
-  name: display
+  name: arrow_button
   layout_properties: {grid_position: 'ADSVVV,FIPETE'}
-  event_bindings: {click: display_click}
+  event_bindings: {click: arrow_button_click}
 - type: form:Main.AmbitionLever
   properties: {}
   name: group_lever
   layout_properties: {grid_position: 'ADSVVV,KRYHHW'}
+  event_bindings: {show: show_lever}
 - type: Spacer
   properties: {height: 32}
   name: lever_spacer
@@ -22,6 +23,7 @@ components:
   properties: {role: null, tooltip: '', border: '', foreground: '', items: null, visible: true,
     spacing_above: small, spacing_below: small, item_template: Main.AmbitionLever,
     background: ''}
+  event_bindings: {"x-refresh": lever_clicked}
   name: lever_panel
   layout_properties: {grid_position: 'TUISJM,WXUHPL'}
 is_package: true

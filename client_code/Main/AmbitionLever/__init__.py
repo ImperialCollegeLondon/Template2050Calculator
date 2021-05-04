@@ -6,11 +6,22 @@ class AmbitionLever(AmbitionLeverTemplate):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
 
-        # Any code you write here will run when the form opens.
+        # if init'd outside of a repeating panel self.item will not yet be set
+        try:
+            self.complete_init()
+        except KeyError:
+            pass
+
+    def complete_init(self):
+        """Set lever properties from self.item. __init__ attempts to call this method
+        however if self.item has not yet been set it should be called when the
+        object's `show` event is triggered.
+        """
+
         self.update_value(self.item["value"])
 
-        self.label.text = self.item.get("name", "NoName")
-        tooltips = self.item.get("tooltips", "")
+        self.label.text = self.item["name"]
+        tooltips = self.item.get("tooltips", [""] * 5)
         self.label.tooltip = tooltips[0]
         for i, (level, tip) in enumerate(zip(self.slider.levels, tooltips[1:]), 1):
             level.tooltip = f"Ambition Level {i}:\n" + tip

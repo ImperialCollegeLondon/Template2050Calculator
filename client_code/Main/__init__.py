@@ -18,7 +18,7 @@ class Main(MainTemplate):
         self.set_ambition_levers()
         self.pathways_dropdown.items = Model.example_pathways.keys()
 
-        self.ambition_levers.set_event_handler("x-refresh", self.update_graphs)
+        self.lever_group_panel.set_event_handler("x-refresh", self.update_graphs)
         self.select_figures()
         self.update_graphs()
 
@@ -29,10 +29,14 @@ class Main(MainTemplate):
         self.plot_area.clear()
         self.plot_area.add_component(self.figures_panel)
 
-    def update_graphs(self, **event_args):
-        """Collect the lever values and update the graphs and url hash."""
-        inputs = {item["name"]: item["value"] for item in self.ambition_levers.items}
-        self.set_url(list(inputs.values()))
+    def update_graphs(self):
+        """Collect the level values and update the graphs and url hash."""
+        inputs = [
+            lever.item["value"]
+            for group in self.lever_group_panel.get_components()
+            for lever in group.lever_panel.get_components()
+        ]
+        self.set_url(inputs)
         self.figures_panel.calculate(inputs)
 
     def get_lever_vals(self):
@@ -49,15 +53,14 @@ class Main(MainTemplate):
         set_url_hash(",".join([str(val) for val in inputs]))
 
     def set_ambition_levers(self):
-        self.ambition_levers.items = [
+        input_values = list(self.get_lever_vals())
+        self.lever_group_panel.items = [
             {
                 "name": name,
-                "value": value,
-                "tooltips": descriptions,
+                "levers": levers,
+                "inputs": [input_values.pop(0) for _ in range(len(levers["names"]))],
             }
-            for name, value, descriptions in zip(
-                Model.levers, self.get_lever_vals(), Model.lever_descriptions
-            )
+            for name, levers in Model.lever_groups.items()
         ]
 
     def pathways_dropdown_change(self, **event_args):
