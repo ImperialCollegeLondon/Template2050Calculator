@@ -27,9 +27,11 @@ class LeverGroup(LeverGroupTemplate):
             name=self.item["name"],
             value=group_value,
             event_handler=self.group_lever_clicked,
+            bold=True,
         )
 
         self.lever_panel.visible = False
+        self.lever_spacer.visible = False
 
     def lever_clicked(self, **event_args):
         """`x-refresh` event handler used for ambition levers that are part of the
@@ -55,6 +57,7 @@ class LeverGroup(LeverGroupTemplate):
     def arrow_button_click(self, **event_args):
         """This method is called when the button is clicked"""
         self.lever_panel.visible = not self.lever_panel.visible
+        self.lever_spacer.visible = not self.lever_spacer.visible
         if self.lever_panel.visible:
             self.arrow_button.icon = "fa:angle-down"
         else:
