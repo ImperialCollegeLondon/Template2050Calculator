@@ -1,5 +1,4 @@
 import json
-from collections import OrderedDict, namedtuple
 from math import atan, pi, sin, sqrt
 from pathlib import Path
 
@@ -65,37 +64,14 @@ def translate(locale, text):
     return i18n.t(text)
 
 
-GraphData = namedtuple("GraphData", ("title", "output", "plot_type"))
+@anvil.server.callable
+def layout():
+    return TABLE["weboutputs_summary_table"]
 
 
 @anvil.server.callable
-def layout():
-    layout = OrderedDict()
-    for tab, sub_tab, pos, title, named_ranges, plot_type in zip(
-        TABLE["Webtool Page"],
-        TABLE["Webtool Tab"],
-        TABLE["Position"],
-        TABLE["Title"],
-        TABLE["Named Range"],
-        TABLE["Graph Type"],
-    ):
-        if sub_tab.lower() == "not required":
-            continue
-        # may be multiple comma seperated named_ranges in string, we want to
-        # remove the "output." prefix from all of them
-        named_ranges = ",".join(
-            r.removeprefix("output.") for r in named_ranges.split(",")
-        ).replace(".", "_")
-
-        sub_tabs = layout.setdefault(tab, OrderedDict())
-        positions = sub_tabs.setdefault(sub_tab, OrderedDict())
-        positions[pos] = GraphData(
-            title,
-            named_ranges,
-            plot_type,
-        )
-
-    return layout
+def lever_descriptions():
+    return TABLE["lever_descriptions"]
 
 
 @anvil.server.callable
@@ -160,3 +136,8 @@ def map(data):
         ),
     )
     return fig
+
+
+@anvil.server.callable
+def example_pathways():
+    return TABLE["example_pathways"]

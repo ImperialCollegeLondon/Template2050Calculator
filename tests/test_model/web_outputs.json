@@ -1,62 +1,66 @@
 {
-    "Webtool Page": [
-        "Overview",
-        "Overview",
-        "Overview",
-        "Overview"
-    ],
-    "Webtool Tab": [
-        "GHG Emissions / Primary Energy",
-        "GHG Emissions / Primary Energy",
-        "GHG Cumulative / Final Energy",
-        "GHG Cumulative / Final Energy"
-    ],
-    "Position": [
-        "Top",
-        "Bottom",
-        "Top",
-        "Bottom"
-    ],
-    "Title": [
-        "Annual Greenhouse Gas Emissions",
-        "Primary Energy Consumption",
-        "Cumulative UK Greenhouse Gas Emissions",
-        "Final Energy Consumption"
-    ],
-    "Axis Unit": [
-        "MtCO2e/yr",
-        "TWh/yr",
-        "MtCO2e",
-        "TWh/yr"
-    ],
-    "Named Range": [
-        "output.emissions.sector",
-        "output.primary.energy.consumption",
-        "output.emissions.cumulative",
-        "output.final.energy.consumption"
-    ],
-    "Graph Type": [
-        "Stacked Area with overlying Line(s)",
-        "Stacked Area with overlying Line(s)",
-        "Line",
-        "Stacked Area with overlying Line(s)"
-    ],
-    "null": [
-        null,
-        null,
-        null,
-        null
-    ],
-    "Y axis min": [
-        -500,
-        0,
-        0,
-        0
-    ],
-    "Y axis max": [
-        750,
-        4000,
-        50000,
-        4000
-    ]
+    "weboutputs_summary_table": {
+        "Webtool Page": [
+            "Overview",
+            "Overview",
+            "Overview",
+            "Overview"
+        ],
+        "Webtool Tab": [
+            "GHG Emissions / Primary Energy",
+            "GHG Emissions / Primary Energy",
+            "GHG Cumulative / Final Energy",
+            "GHG Cumulative / Final Energy"
+        ],
+        "Position": [
+            "Top",
+            "Bottom",
+            "Top",
+            "Bottom"
+        ],
+        "Title": [
+            "Annual Greenhouse Gas Emissions",
+            "Primary Energy Consumption",
+            "Cumulative UK Greenhouse Gas Emissions",
+            "Final Energy Consumption"
+        ],
+        "Axis Unit": [
+            "MtCO2e/yr",
+            "TWh/yr",
+            "MtCO2e",
+            "TWh/yr"
+        ],
+        "Named Range": [
+            "output.emissions.sector",
+            "output.primary.energy.consumption",
+            "output.emissions.cumulative",
+            "output.final.energy.consumption"
+        ],
+        "Graph Type": [
+            "Stacked Area with overlying Line(s)",
+            "Stacked Area with overlying Line(s)",
+            "Line",
+            "Stacked Area with overlying Line(s)"
+        ],
+        "null": [
+            null,
+            null,
+            null,
+            null
+        ],
+        "Y axis min": [
+            -500,
+            0,
+            0,
+            0
+        ],
+        "Y axis max": [
+            750,
+            4000,
+            50000,
+            4000
+        ]
+    },
+    "lever_descriptions": [],
+    "example_pathways": {}
 }

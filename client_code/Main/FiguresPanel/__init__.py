@@ -1,5 +1,5 @@
 import anvil.server
-from anvil import Button, Plot
+from anvil import Button, Label, Plot
 
 from ... import Model
 from ...Plots import PLOTS_REGISTRY
@@ -17,7 +17,11 @@ class FiguresPanel(FiguresPanelTemplate):
     def build_tabs(self):
         layout = Model.layout
 
-        tabs = [self._add_button(self.tabs, tab) for tab in layout.keys()]
+        tabs = [
+            self._add_button(self.tabs, tab)
+            for tab in layout.keys()
+            if tab.lower() not in ("warnings", "key indicators")
+        ]
         sub_tab = self.build_sub_tabs(tabs[0])
         self.selected_tab = tabs[0], sub_tab
 
@@ -39,16 +43,26 @@ class FiguresPanel(FiguresPanelTemplate):
     def calculate(self, inputs):
         self.model_solution = anvil.server.call("calculate", list(inputs.values()))
         self.build_graphs()
-        self.update_warnings()
+        self.build_warnings()
 
-    def update_warnings(self):
-        l4_status = self.model_solution["warning_l4chosen"][0][1]
-        if l4_status == 0:
-            self.l4_warning.icon = "fa:square-o"
-        elif l4_status == 1:
-            self.l4_warning.icon = "fa:check-square"
-        else:
-            self.l4_warning.icon = "fa:asterisk"
+    def build_warnings(self):
+        self.warnings_panel.clear()
+        warnings = Model.layout["Warnings"]["Not required"]
+
+        for key in warnings:
+            name, output, plot_type = warnings[key]
+            data = self.model_solution[output]
+            active = data[0][1]
+            tooltip = data[1][1]
+
+            label = Label()
+            if active:
+                label.icon = "fa:check-square"
+            else:
+                label.icon = "fa:square-o"
+            self.warnings_panel.add_component(label)
+            label.text = name
+            label.tooltip = tooltip
 
     def build_graphs(self):
         self.figure_container.clear()
