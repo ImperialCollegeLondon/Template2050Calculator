@@ -5,21 +5,31 @@ class AmbitionLever(AmbitionLeverTemplate):
     def __init__(self, **properties):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
+        self.set_event_handler("show", self.show)
 
-        # Any code you write here will run when the form opens.
-        self.update_value(self.item["value"])
+    def show(self, **event_args):
+        """`show` event handler. Expects self.item to be populated with required
+        data for arguments of `complete_init`.
+        """
 
-        self.label.text = self.item.get("name", "NoName")
-        tooltips = self.item.get("tooltips", "")
+        self.complete_init(**self.item)
+
+    def complete_init(self, name, value, event_handler, tooltips=[""] * 5, bold=False):
+        """Set lever properties"""
+
+        self.value = value
+
+        self.label.text = name
+        self.label.bold = bold
         self.label.tooltip = tooltips[0]
         for i, (level, tip) in enumerate(zip(self.slider.levels, tooltips[1:]), 1):
             level.tooltip = f"Ambition Level {i}:\n" + tip
+        self.set_event_handler("x-refresh", event_handler)
 
-    def update_value(self, value):
-        self.item["value"] = value
+    @property
+    def value(self):
+        return self.slider.level
+
+    @value.setter
+    def value(self, value):
         self.slider.level = value
-
-    def lever_change(self, level, **event_args):
-        """This method is called when lever level is changed"""
-        self.update_value(level)
-        self.parent.raise_event("x-refresh")

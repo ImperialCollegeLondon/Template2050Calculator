@@ -28,14 +28,21 @@ def teardown_module():
 
 
 def test_model(patch_server_call):
-    from client_code.Model import inputs, language, levers, outputs, translate
+    from client_code.Model import inputs, language, lever_groups, outputs, translate
 
     assert language == "en"
-    assert levers == ["Factor", "Offset"]
     assert np.all(inputs == [1, 1])
     assert outputs == ["a", "b", "lever_names"]
 
     assert translate("text") == "text"
+
+    assert lever_groups["group1"] == {
+        "names": ["name1", "name2"],
+        "tooltips": [
+            ["label_tip", "button_tip1", "button_tip2", "button_tip4", "button_tip4"],
+            ["label_tip", "button_tip1", "button_tip2", "button_tip4", "button_tip4"],
+        ],
+    }
 
 
 def test_layout():

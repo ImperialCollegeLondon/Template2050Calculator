@@ -391,323 +391,6 @@
             null
         ]
     },
-    "lever_descriptions": [
-        [
-            "How far and by what methods passengers travel in the UK",
-            "By 2050 the average annual distance travelled per person is 10% further than in 2015. 81% of this is done by car.",
-            "By 2050 the average annual distance travelled per person is 2% less than in 2015. 72.5% of this is done by car.",
-            "By 2050 the average annual distance travelled per person is 9% less than in 2015. 63% of this is done by car.",
-            "By 2050 the average annual distance travelled per person is 24% less than in 2015. 48.5% of this is done by car."
-        ],
-        [
-            "Distance flown abroad by passengers from the UK",
-            "By 2050 the average annual distance travelled per person internationally is 41% further than in 2015.",
-            "By 2050 the average annual distance travelled per person internationally is 27% further than in 2015.",
-            "By 2050 the average annual distance travelled per person internationally is 12% further than in 2015.",
-            "By 2050 the average annual distance travelled per person internationally is 3% less than in 2015."
-        ],
-        [
-            "Share of cars, vans and small trucks that are battery electric vehicles",
-            "0% of cars are electric by 2050 (0% of vans and 0% of small trucks).",
-            "50% of cars are electric by 2050 (50% of vans and 20% of small trucks).",
-            "95% of cars are electric by 2050 (95% of vans and 50% of small trucks).",
-            "100% of cars are electric by 2050 (100% of vans and 100% of small trucks)."
-        ],
-        [
-            "Share of cars, vans and small trucks that are hydrogen-fuelled",
-            "0% of cars are hydrogen-fuelled by 2050 (0% of vans and 0% of small trucks).",
-            "33% of cars are hydrogen-fuelled by 2050 (33% of vans and 5% of small trucks).",
-            "67% of cars are hydrogen-fuelled by 2050 (67% of vans and 50% of small trucks).",
-            "100% of cars are hydrogen-fuelled by 2050 (100% of vans and 100% of small trucks)."
-        ],
-        [
-            "Share of cars, vans and small trucks that are plug-in hybrid vehicles",
-            "0% of cars are hybrids by 2050 (0% of vans and 0% of small trucks).",
-            "33% of cars are hybrids by 2050 (33% of vans and 20% of small trucks).",
-            "67% of cars are hybrids by 2050 (67% of vans and 50% of small trucks).",
-            "100% of cars are hybrids by 2050 (100% of vans and 100% of small trucks)."
-        ],
-        [
-            "Share of fuel in conventional cars, vans and small trucks that is biofuel",
-            "3% of fuel used in conventional cars is biofuel by 2050 (3% of vans and 2% of small trucks).",
-            "25% of fuel used in conventional cars is biofuel by 2050 (25% of vans and 25% of small trucks).",
-            "50% of fuel used in conventional cars is biofuel by 2050 (50% of vans and 50% of small trucks).",
-            "100% of fuel used in conventional cars is biofuel by 2050 (100% of vans and 100% of small trucks)."
-        ],
-        [
-            "Share of large trucks, buses and trains that are battery electric vehicles",
-            "0% of large trucks, 0% of buses and 65% of passenger trains are electric by 2050.",
-            "2% of large trucks, 40% of buses and 80% of passenger trains are electric by 2050.",
-            "15% of large trucks, 60% of buses and 90% of passenger trains are electric by 2050.",
-            "100% of large trucks, 100% of buses and 100% of passenger trains are electric by 2050."
-        ],
-        [
-            "Share of large trucks and buses that are hydrogen-fuelled",
-            "0% of large trucks and 0% of buses are hydrogen-fuelled by 2050.",
-            "50% of large trucks and 40% of buses are hydrogen-fuelled by 2050.",
-            "80% of large trucks and 60% of buses are hydrogen-fuelled by 2050.",
-            "100% of large trucks and 100% of buses are hydrogen-fuelled by 2050."
-        ],
-        [
-            "Share of large trucks and buses that are plug-in hybrid vehicles",
-            "0% of large trucks and 0% of buses are hybrids by 2050.",
-            "25% of large trucks and 40% of buses are hybrids by 2050.",
-            "60% of large trucks and 60% of buses are hybrids by 2050.",
-            "100% of large trucks and 100% of buses are hybrids by 2050."
-        ],
-        [
-            "Share of fuel in conventional large trucks, buses, trains and ships that is biofuel",
-            "2% of fuel used in convensional large trucks is biofuel, 2% in buses, 2% in trains by 2050.",
-            "25% of buses, 25% of passenger trains and 25% of large trucks use biofuel by 2050.",
-            "50% of buses, 50% of passenger trains and 50% of large trucks use biofuel by 2050.",
-            "100% of buses, 100% of passenger trains and 100% of large trucks use biofuel by 2050."
-        ],
-        [
-            "Energy intensity of aircraft travel and the share of aircrafts that are hybrid electric",
-            "Aircrafts are 18% more efficient than in 2015 and 0% are plug-in hybrid electric vehicles, by 2050.",
-            "Aircrafts are 43% more efficient than in 2015 and 0% are plug-in hybrid electric vehicles, by 2050.",
-            "Aircrafts are 54% more efficient than in 2015 and 50% are plug-in hybrid electric vehicles, by 2050.",
-            "Aircrafts are 67% more efficient than in 2015 and 100% are plug-in hybrid electric vehicles, by 2050."
-        ],
-        [
-            "Share of fuel used in conventional aircrafts that is biofuel.",
-            "0% of liquid fuel used in aircraft is biofuel by 2050.",
-            "10% of liquid fuel used in aircraft is biofuel by 2050.",
-            "30% of liquid fuel used in aircraft is biofuel by 2050.",
-            "100% of liquid fuel used in aircraft is biofuel by 2050."
-        ],
-        [
-            "Average temperature of homes, demand for hot water and penetration of air conditioning (AC)",
-            "By 2050, the average house temperature is 20°C, 50% of homes have AC and domestic hot water demand is 43% more than in 2015.",
-            "By 2050, the average house temperature is 18°C, 33% of homes have AC and domestic hot water demand is 3% more than in 2015.",
-            "By 2050, the average house temperature is 17°C, 17% of homes have AC and domestic hot water demand is 23% less than in 2015.",
-            "By 2050, the average house temperature is 16°C, 0% of homes have AC and domestic hot water demand is 49% less than in 2015."
-        ],
-        [
-            "Retrofit insulation deployment and new build thermal performance standards. ",
-            "By 2040, insulation measures have been added to 9% of existing homes and heat losses from new builds are the same as in 2015.",
-            "By 2040, insulation measures have been added to 34% of existing homes and heat losses from new builds are 33% less than in 2015.",
-            "By 2040, insulation measures have been added to 58% of existing homes and heat losses from new builds are 58% less than in 2015.",
-            "By 2040, insulation measures have been added to 83% of existing homes and heat losses from new builds are 83% less than in 2015."
-        ],
-        [
-            "Share of heat supplied by district heating",
-            "4% of homes are heated by district heat by 2050 (the same as in 2015).",
-            "20% of homes are heated by district heat by 2050 (compared to 4% in 2015).",
-            "40% of homes are heated by district heat by 2050 (compared to 4% in 2015).",
-            "60% of homes are heated by district heat by 2050 (compared to 4% in 2015)."
-        ],
-        [
-            "Share of heat supplied by heat pumps",
-            "0% of homes are heated by heat pumps by 2050 (the same as in 2015).",
-            "20% of homes are heated by heat pumps by 2050 (compared to 0% in 2015).",
-            "40% of homes are heated by heat pumps by 2050 (compared to 0% in 2015).",
-            "90% of homes are heated by heat pumps by 2050 (compared to 0% in 2015)."
-        ],
-        [
-            "Share of heat supply from hybrid heat pump / gas boilers",
-            "0% of homes are heated by hybrid heat pumps by 2050 (the same as in 2015).",
-            "25% of homes are heated by hybrid heat pumps by 2050 (compared to 0% in 2015).",
-            "50% of homes are heated by hybrid heat pumps by 2050 (compared to 0% in 2015).",
-            "90% of homes are heated by hybrid heat pumps by 2050 (compared to 0% in 2015)."
-        ],
-        [
-            "District/Network heat supplied by water-source (WS) and ground-source (GS) heat pumps",
-            "Heat Pumps do not contribute to heat networks by 2050 (in 2015 neither are used).",
-            "70 TWh from large scale heat pumps, 20 TWh from WS and 50 TWh from GS by 2050 (in 2015 neither are used).",
-            "140 TWh from large scale heat pumps, 40 TWh from WS and 100 TWh from GS by 2050 (in 2015 neither are used).",
-            "305 TWh from large scale heat pumps, 80 TWh from WS and 225 TWh from GS by 2050 (in 2015 neither are used)."
-        ],
-        [
-            "District/Network heat supply from biomass CHP",
-            "Biomass CHP does not contribute to heat networks by 2050",
-            "25 TWh heat supplied to heat networks from biomass CHP by 2050",
-            "50 TWh heat supplied to heat networks from biomass CHP by 2050",
-            "100 TWh heat supplied to heat networks from biomass CHP by 2050"
-        ],
-        [
-            "Energy intensity of and demand for lighting and appliances",
-            "By 2050, compared to 2015, domestic lighting demand per person is 50% higher and 22% more efficient, appliance demand is 50% higher and 10% more efficient.",
-            "By 2050, compared to 2015, domestic lighting demand per person is the same and 67% more efficient, appliance demand is 0% lower and 23% more efficient.",
-            "By 2050, compared to 2015, domestic lighting demand per person is 15% lower and 67% more efficient, appliance demand is 25% lower and 37% more efficient.",
-            "By 2050, compared to 2015, domestic lighting demand per person is 30% lower and 75% more efficient, appliance demand is 50% lower and 50% more efficient."
-        ],
-        [
-            "Energy and emissions intensity of industrial processes",
-            "No change to 13% decrease in energy consumption and no change in process emissions, per unit of output by 2050",
-            "No change to 28% decrease in energy consumption and 13% decrease in process emissions, per unit of output by 2050",
-            "10% decrease to 49% decrease in energy consumption and 27% decrease in process emissions, per unit of output by 2050",
-            "25% decrease to 60% decrease in energy consumption and 40% decrease in process emissions, per unit of output by 2050"
-        ],
-        [
-            "Share of industrial heat produced from electricity",
-            "3% to 20% of heat generated from electricity in industry sub-sectors by 2050 (compared to 3% to 20% in 2015).",
-            "21% to 43% of heat generated from electricity in industry sub-sectors by 2050 (compared to 3% to 20% in 2015).",
-            "44% to 50% of heat generated from electricity in industry sub-sectors by 2050 (compared to 3% to 20% in 2015).",
-            "85% to 90% of heat generated from electricity in industry sub-sectors by 2050 (compared to 3% to 20% in 2015)."
-        ],
-        [
-            "Share of industrial heat produced from biomass",
-            "0% to 8% of heat generated from biomass in industry sub-sectors by 2050 (compared to 0% to 8% in 2015).",
-            "23% to 31% of heat generated from biomass in industry sub-sectors by 2050 (compared to 0% to 8% in 2015).",
-            "47% to 60% of heat generated from biomass in industry sub-sectors by 2050 (compared to 0% to 8% in 2015).",
-            "70% to 90% of heat generated from biomass in industry sub-sectors by 2050 (compared to 0% to 8% in 2015)."
-        ],
-        [
-            "Share of industrial heat produced from gas (natural gas, biomethane or hydrogen)",
-            "3% to 74% of heat generated from gas in industry sub-sectors by 2050 (compared to 3% to 74% in 2015).",
-            "32% to 78% of heat generated from gas in industry sub-sectors by 2050 (compared to 3% to 74% in 2015).",
-            "52% to 83% of heat generated from gas in industry sub-sectors by 2050 (compared to 3% to 74% in 2015).",
-            "70% to 90% of heat generated from gas in industry sub-sectors by 2050 (compared to 3% to 74% in 2015)."
-        ],
-        [
-            "Share of polluting industrial combustion processes with Carbon Capture and Storage (CCS) applied",
-            "0% of processes have CCS applied across industrial sub-sectors by 2060 (compared to 0% in 2015).",
-            "23% to 30% of processes have CCS applied across industrial sub-sectors by 2060 (compared to 0% in 2015).",
-            "51% to 60% of processes have CCS applied across industrial sub-sectors by 2060 (compared to 0% in 2015).",
-            "98% to 100% of processes have CCS applied across industrial sub-sectors by 2060 (compared to 0% in 2015)."
-        ],
-        [
-            "Share of the gas grid converted to Hydrogen",
-            "0% of the gas grid converted to hydrogen by 2050 (the same as in 2015).",
-            "33% of the gas grid converted to hydrogen by 2050 (compared to 0% in 2015).",
-            "67% of the gas grid converted to hydrogen by 2050 (compared to 0% in 2015).",
-            "100% of the gas grid converted to hydrogen by 2050 (compared to 0% in 2015)."
-        ],
-        [
-            "Share of gas grid demand supplied by biomethane (substituted into grid)",
-            "0.5% of the gas in the grid is biomethane by 2050 (compared to 0.2% in 2015).",
-            "5% of the gas in the grid is biomethane by 2050 (compared to 0.2% in 2015).",
-            "25% of the gas in the grid is biomethane by 2050 (compared to 0.2% in 2015).",
-            "100% of the gas in the grid is biomethane by 2050 (compared to 0.2% in 2015)."
-        ],
-        [
-            "Hydrogen produced using the gasification of biomass with CCS",
-            "No hydrogen is produced using biomass gasification with CCS by 2060 (compared to 0 TWh in 2015).",
-            "50 TWh of hydrogen is produced using biomass gasification with CCS by 2060 (compared to 0 TWh in 2015).",
-            "100 TWh of hydrogen is produced using biomass gasification with CCS by 2060 (compared to 0 TWh in 2015).",
-            "200 TWh of hydrogen is produced using biomass gasification with CCS by 2060 (compared to 0 TWh in 2015)."
-        ],
-        [
-            "Hydrogen produced using Steam Methane Reformation (SMR) with CCS",
-            "No hydrogen is produced using SMR with CCS by 2060 (compared to 0 TWh in 2015).",
-            "188 TWh of hydrogen is produced using SMR with CCS by 2060 (compared to 0 TWh in 2015).",
-            "375 TWh of hydrogen is produced using SMR with CCS by 2060 (compared to 0 TWh in 2015).",
-            "750 TWh of hydrogen is produced using SMR with CCS by 2060 (compared to 0 TWh in 2015)."
-        ],
-        [
-            "Amount of zero-carbon hydrogen imports",
-            "No hydrogen imported",
-            "138 TWh of zero-carbon hydrogen is imported by 2060.",
-            "275 TWh of zero-carbon hydrogen is imported by 2060.",
-            "600 TWh of zero-carbon hydrogen is imported by 2060."
-        ],
-        [
-            "Carbon dioxide captured with Direct Air Capture (DAC) and Enhanced Weathering (EW)",
-            "No emissions captured",
-            "No emissions captured",
-            "20 Mt.CO2e of CO2 captured by 2100 (15 from DAC and 5 from EW)",
-            "90 Mt.CO2e of CO2 captured by 2100 (75 from DAC and 15 from EW)"
-        ],
-        [
-            "Share of bioenergy conversion processes with CCS applied",
-            "0% of bio-conversion processes have CCS applied by 2050",
-            "33% of bio-conversion processes have CCS applied by 2050",
-            "67% of bio-conversion processes have CCS applied by 2050",
-            "100% of bio-conversion processes have CCS applied by 2050"
-        ],
-        [
-            "The share of carbon captured in CCS for industrial processes, bio-conversion, electricity and hydrogen production.",
-            "65% to 85% capture rate range for CCS processes by 2035.",
-            "77% to 90% capture rate range for CCS processes by 2035.",
-            "88% to 95% capture rate range for CCS processes by 2035.",
-            "100% capture rate for CCS processes by 2035."
-        ],
-        [
-            "Electricity stored between seasons to better balance supply and demand",
-            "No electricity stored between seasons (none stored in 2015).",
-            "15 TWh of electricity stored each year by 2050 (none stored in 2015).",
-            "30 TWh of electricity stored each year by 2050 (none stored in 2015).",
-            "60 TWh of electricity stored each year by 2050 (none stored in 2015)."
-        ],
-        [
-            "Short term demand shifting potential through interconnection, demand side response (DSR), vehicle-to-grid (V2G) charging and batteries",
-            "6.5 GW of interconnectors and 5 GW of demand shifting capacity by 2050 (4.1 GW and 2.828 GW in 2015).",
-            "9 GW of interconnectors and 25 GW of demand shifting capacity by 2050 (4.1 GW and 2.828 GW in 2015).",
-            "14.5 GW of interconnectors and 50 GW of demand shifting capacity by 2050 (4.1 GW and 2.828 GW in 2015).",
-            "20 GW of interconnectors and 100 GW of demand shifting capacity by 2050 (4.1 GW and 2.828 GW in 2015)."
-        ],
-        [
-            "Electricity generation from the combustion of biomass with CCS (generating negative emissions credits under accounting rules)",
-            "0 GW capacity by 2050 (the same as 2015).",
-            "5 GW capacity by 2050 (0 GW in 2015) capable of generating up to 37 TWh per year.",
-            "10 GW capacity by 2050 (0 GW in 2015) capable of generating up to 74 TWh per year.",
-            "15 GW capacity by 2050 (0 GW in 2015) capable of generating up to 110 TWh per year."
-        ],
-        [
-            "Electricity generation using nuclear power",
-            "4.5 GW capacity by 2050 (0.5x the 9.6 GW capacity in 2015) capable of generating up to 35 TWh per year. Equivalent to 1.5 3 GW plants..",
-            "15 GW capacity by 2050 (1.6x the 9.6 GW capacity in 2015) capable of generating up to 117 TWh per year. Equivalent to 5 3 GW plants..",
-            "30 GW capacity by 2050 (3.1x the 9.6 GW capacity in 2015) capable of generating up to 234 TWh per year. Equivalent to 10 3 GW plants..",
-            "62 GW capacity by 2050 (6.5x the 9.6 GW capacity in 2015) capable of generating up to 484 TWh per year. Equivalent to 20.7 3 GW plants.."
-        ],
-        [
-            "Electricity generation using onshore and offshore wind",
-            "0 GW capacity by 2050, 0 GW onshore and 0 GW offshore (0x the 14.3 GW capacity in 2015) capable of generating up to 0 TWh per year.",
-            "77 GW capacity by 2050, 22 GW onshore and 55 GW offshore (5.4x the 14.3 GW capacity in 2015) capable of generating up to 296 TWh per year.",
-            "155 GW capacity by 2050, 35 GW onshore and 120 GW offshore (10.8x the 14.3 GW capacity in 2015) capable of generating up to 611 TWh per year.",
-            "280 GW capacity by 2050, 80 GW onshore and 200 GW offshore (19.6x the 14.3 GW capacity in 2015) capable of generating up to 1076 TWh per year."
-        ],
-        [
-            "Electricity generation using solar power",
-            "0 GW capacity by 2050 (0x the 9.5 GW capacity in 2015) capable of generating up to 0 TWh per year.",
-            "70 GW capacity by 2050 (7.3x the 9.5 GW capacity in 2015) capable of generating up to 67 TWh per year.",
-            "165 GW capacity by 2050 (17.3x the 9.5 GW capacity in 2015) capable of generating up to 159 TWh per year.",
-            "300 GW capacity by 2050 (31.5x the 9.5 GW capacity in 2015) capable of generating up to 289 TWh per year."
-        ],
-        [
-            "Electricity generation using wave and tidal power",
-            "0 GW capacity by 2050, 0 GW tidal stream, 0 GW tidal range and 0 GW wave (the same as 2015).",
-            "9.7 GW capacity by 2050, 8 GW tidal stream, 0.2 GW tidal range and 1.5 GW wave (0 GW capacity in 2015) capable of generating up to 26 TWh per year.",
-            "34 GW capacity by 2050, 16 GW tidal stream, 15 GW tidal range and 3 GW wave (0 GW capacity in 2015) capable of generating up to 78 TWh per year.",
-            "68 GW capacity by 2050, 22 GW tidal stream, 33 GW tidal range and 13 GW wave (0 GW capacity in 2015) capable of generating up to 152 TWh per year."
-        ],
-        [
-            "Electricity generation from the combustion of gas with CCS",
-            "0 GW capacity by 2050 (the same as 2015).",
-            "10 GW capacity by 2050 (0 GW in 2015) capable of generating up to 77 TWh per year.",
-            "30 GW capacity by 2050 (0 GW in 2015) capable of generating up to 231 TWh per year.",
-            "60 GW capacity by 2050 (0 GW in 2015) capable of generating up to 463 TWh per year."
-        ],
-        [
-            "Reductions in the number of livestock, crop yield improvements and the emissions intensity of agricultural processes",
-            "In 2050, emissions intensity is unchanged, land yield is 0-25% higher, there are 0% more cattle, 0% more poultry and 0% more other livestock compared to 2015.",
-            "In 2050, emissions intensity is 4-7% lower, land yield is 10-37% higher, there are 16% fewer cattle, 10% more poultry and 11% fewer other livestock compared to 2015.",
-            "In 2050, emissions intensity is 9-15% lower, land yield is 20-48% higher, there are 32% fewer cattle, 21% more poultry and 23% fewer other livestock compared to 2015.",
-            "In 2050, emissions intensity is 13-22% lower, land yield is 30-72% higher, there are 49% fewer cattle, 31% more poultry and 34% fewer other livestock compared to 2015."
-        ],
-        [
-            "Land dedicated to planting forest (requires land to be freed up using the Farming Yield & Efficiency lever)",
-            "14% of UK land area covered by forest by 2070 (compared to 14% in 2015).",
-            "20% of UK land area covered by forest by 2070 (compared to 14% in 2015).",
-            "23% of UK land area covered by forest by 2070 (compared to 14% in 2015).",
-            "29% of UK land area covered by forest by 2070 (compared to 14% in 2015)."
-        ],
-        [
-            "Land dedicated to growing bio-crops (requires land to be freed up using the Farming Yield & Efficiency lever)",
-            "0.4% of UK land area covered by biocrops by 2050 (compared to 0.4% in 2015) and 10-19% of agricultural wastes are collected for energy.",
-            "2.9% of UK land area covered by biocrops by 2050 (compared to 0.4% in 2015) and 13-38% of agricultural wastes are collected for energy.",
-            "5.7% of UK land area covered by biocrops by 2050 (compared to 0.4% in 2015) and 17-69% of agricultural wastes are collected for energy.",
-            "8.2% of UK land area covered by biocrops by 2050 (compared to 0.4% in 2015) and 18-100% of agricultural wastes are collected for energy."
-        ],
-        [
-            "Amount of waste produced, recycled and diverted to energy processes",
-            "By 2050, 25% increase in dry waste (50% recycled, 3% used for energy), 20% increase in wet waste (85% recycled, 4% used for energy).",
-            "By 2050, No change in dry waste (65% recycled, 10% used for energy), 20% increase in wet waste (85% recycled, 8% used for energy).",
-            "By 2050, 15% decrease in dry waste (80% recycled, 20% used for energy), 20% increase in wet waste (85% recycled, 12% used for energy).",
-            "By 2050, 35% decrease in dry waste (90% recycled, 10% used for energy), 20% increase in wet waste (85% recycled, 15% used for energy)."
-        ]
-    ],
     "example_pathways": {
         "ESC Illustrative Net Zero": [
             3,
@@ -850,5 +533,403 @@
             3,
             3
         ]
+    },
+    "output_lever_names_grouped": {
+        "Transport": {
+            "names": [
+                "UK Transport Demand",
+                "International Aviation",
+                "Light Vehicles - Electric",
+                "Light Vehicles - Hydrogen",
+                "Light Vehicles - Hybrid",
+                "Light Vehicles - Biofuel",
+                "Heavy Vehicles - Electric",
+                "Heavy Vehicles - Hydrogen",
+                "Heavy Vehicles - Hybrid",
+                "Heavy Vehicles - Biofuel",
+                "Aviation Efficiency",
+                "Aviation Biofuel"
+            ],
+            "tooltips": [
+                [
+                    "How far and by what methods passengers travel in the UK",
+                    "By 2050 the average annual distance travelled per person is 10% further than in 2015. 81% of this is done by car.",
+                    "By 2050 the average annual distance travelled per person is 2% less than in 2015. 72.5% of this is done by car.",
+                    "By 2050 the average annual distance travelled per person is 9% less than in 2015. 63% of this is done by car.",
+                    "By 2050 the average annual distance travelled per person is 24% less than in 2015. 48.5% of this is done by car."
+                ],
+                [
+                    "Distance flown abroad by passengers from the UK",
+                    "By 2050 the average annual distance travelled per person internationally is 41% further than in 2015.",
+                    "By 2050 the average annual distance travelled per person internationally is 27% further than in 2015.",
+                    "By 2050 the average annual distance travelled per person internationally is 12% further than in 2015.",
+                    "By 2050 the average annual distance travelled per person internationally is 3% less than in 2015."
+                ],
+                [
+                    "Share of cars, vans and small trucks that are battery electric vehicles",
+                    "0% of cars are electric by 2050 (0% of vans and 0% of small trucks).",
+                    "50% of cars are electric by 2050 (50% of vans and 20% of small trucks).",
+                    "95% of cars are electric by 2050 (95% of vans and 50% of small trucks).",
+                    "100% of cars are electric by 2050 (100% of vans and 100% of small trucks)."
+                ],
+                [
+                    "Share of cars, vans and small trucks that are hydrogen-fuelled",
+                    "0% of cars are hydrogen-fuelled by 2050 (0% of vans and 0% of small trucks).",
+                    "33% of cars are hydrogen-fuelled by 2050 (33% of vans and 5% of small trucks).",
+                    "67% of cars are hydrogen-fuelled by 2050 (67% of vans and 50% of small trucks).",
+                    "100% of cars are hydrogen-fuelled by 2050 (100% of vans and 100% of small trucks)."
+                ],
+                [
+                    "Share of cars, vans and small trucks that are plug-in hybrid vehicles",
+                    "0% of cars are hybrids by 2050 (0% of vans and 0% of small trucks).",
+                    "33% of cars are hybrids by 2050 (33% of vans and 20% of small trucks).",
+                    "67% of cars are hybrids by 2050 (67% of vans and 50% of small trucks).",
+                    "100% of cars are hybrids by 2050 (100% of vans and 100% of small trucks)."
+                ],
+                [
+                    "Share of fuel in conventional cars, vans and small trucks that is biofuel",
+                    "3% of fuel used in conventional cars is biofuel by 2050 (3% of vans and 2% of small trucks).",
+                    "25% of fuel used in conventional cars is biofuel by 2050 (25% of vans and 25% of small trucks).",
+                    "50% of fuel used in conventional cars is biofuel by 2050 (50% of vans and 50% of small trucks).",
+                    "100% of fuel used in conventional cars is biofuel by 2050 (100% of vans and 100% of small trucks)."
+                ],
+                [
+                    "Share of large trucks, buses and trains that are battery electric vehicles",
+                    "0% of large trucks, 0% of buses and 65% of passenger trains are electric by 2050.",
+                    "2% of large trucks, 40% of buses and 80% of passenger trains are electric by 2050.",
+                    "15% of large trucks, 60% of buses and 90% of passenger trains are electric by 2050.",
+                    "100% of large trucks, 100% of buses and 100% of passenger trains are electric by 2050."
+                ],
+                [
+                    "Share of large trucks and buses that are hydrogen-fuelled",
+                    "0% of large trucks and 0% of buses are hydrogen-fuelled by 2050.",
+                    "50% of large trucks and 40% of buses are hydrogen-fuelled by 2050.",
+                    "80% of large trucks and 60% of buses are hydrogen-fuelled by 2050.",
+                    "100% of large trucks and 100% of buses are hydrogen-fuelled by 2050."
+                ],
+                [
+                    "Share of large trucks and buses that are plug-in hybrid vehicles",
+                    "0% of large trucks and 0% of buses are hybrids by 2050.",
+                    "25% of large trucks and 40% of buses are hybrids by 2050.",
+                    "60% of large trucks and 60% of buses are hybrids by 2050.",
+                    "100% of large trucks and 100% of buses are hybrids by 2050."
+                ],
+                [
+                    "Share of fuel in conventional large trucks, buses, trains and ships that is biofuel",
+                    "2% of fuel used in convensional large trucks is biofuel, 2% in buses, 2% in trains by 2050.",
+                    "25% of buses, 25% of passenger trains and 25% of large trucks use biofuel by 2050.",
+                    "50% of buses, 50% of passenger trains and 50% of large trucks use biofuel by 2050.",
+                    "100% of buses, 100% of passenger trains and 100% of large trucks use biofuel by 2050."
+                ],
+                [
+                    "Energy intensity of aircraft travel and the share of aircrafts that are hybrid electric",
+                    "Aircrafts are 18% more efficient than in 2015 and 0% are plug-in hybrid electric vehicles, by 2050.",
+                    "Aircrafts are 43% more efficient than in 2015 and 0% are plug-in hybrid electric vehicles, by 2050.",
+                    "Aircrafts are 54% more efficient than in 2015 and 50% are plug-in hybrid electric vehicles, by 2050.",
+                    "Aircrafts are 67% more efficient than in 2015 and 100% are plug-in hybrid electric vehicles, by 2050."
+                ],
+                [
+                    "Share of fuel used in conventional aircrafts that is biofuel.",
+                    "0% of liquid fuel used in aircraft is biofuel by 2050.",
+                    "10% of liquid fuel used in aircraft is biofuel by 2050.",
+                    "30% of liquid fuel used in aircraft is biofuel by 2050.",
+                    "100% of liquid fuel used in aircraft is biofuel by 2050."
+                ]
+            ]
+        },
+        "Buildings": {
+            "names": [
+                "Buildings Temperature",
+                "Buildings Insulation",
+                "District Heat Share",
+                "Heat Pump Share",
+                "Hybrid Heat Share",
+                "Network - Heat Pump",
+                "Heat Network - Biomass",
+                "Lighting and Appliances"
+            ],
+            "tooltips": [
+                [
+                    "Average temperature of homes, demand for hot water and penetration of air conditioning (AC)",
+                    "By 2050, the average house temperature is 20Â°C, 50% of homes have AC and domestic hot water demand is 43% more than in 2015.",
+                    "By 2050, the average house temperature is 18Â°C, 33% of homes have AC and domestic hot water demand is 3% more than in 2015.",
+                    "By 2050, the average house temperature is 17Â°C, 17% of homes have AC and domestic hot water demand is 23% less than in 2015.",
+                    "By 2050, the average house temperature is 16Â°C, 0% of homes have AC and domestic hot water demand is 49% less than in 2015."
+                ],
+                [
+                    "Retrofit insulation deployment and new build thermal performance standards. ",
+                    "By 2040, insulation measures have been added to 9% of existing homes and heat losses from new builds are the same as in 2015.",
+                    "By 2040, insulation measures have been added to 34% of existing homes and heat losses from new builds are 33% less than in 2015.",
+                    "By 2040, insulation measures have been added to 58% of existing homes and heat losses from new builds are 58% less than in 2015.",
+                    "By 2040, insulation measures have been added to 83% of existing homes and heat losses from new builds are 83% less than in 2015."
+                ],
+                [
+                    "Share of heat supplied by district heating",
+                    "4% of homes are heated by district heat by 2050 (the same as in 2015).",
+                    "20% of homes are heated by district heat by 2050 (compared to 4% in 2015).",
+                    "40% of homes are heated by district heat by 2050 (compared to 4% in 2015).",
+                    "60% of homes are heated by district heat by 2050 (compared to 4% in 2015)."
+                ],
+                [
+                    "Share of heat supplied by heat pumps",
+                    "0% of homes are heated by heat pumps by 2050 (the same as in 2015).",
+                    "20% of homes are heated by heat pumps by 2050 (compared to 0% in 2015).",
+                    "40% of homes are heated by heat pumps by 2050 (compared to 0% in 2015).",
+                    "90% of homes are heated by heat pumps by 2050 (compared to 0% in 2015)."
+                ],
+                [
+                    "Share of heat supply from hybrid heat pump / gas boilers",
+                    "0% of homes are heated by hybrid heat pumps by 2050 (the same as in 2015).",
+                    "25% of homes are heated by hybrid heat pumps by 2050 (compared to 0% in 2015).",
+                    "50% of homes are heated by hybrid heat pumps by 2050 (compared to 0% in 2015).",
+                    "90% of homes are heated by hybrid heat pumps by 2050 (compared to 0% in 2015)."
+                ],
+                [
+                    "District/Network heat supplied by water-source (WS) and ground-source (GS) heat pumps",
+                    "Heat Pumps do not contribute to heat networks by 2050 (in 2015 neither are used).",
+                    "70 TWh from large scale heat pumps, 20 TWh from WS and 50 TWh from GS by 2050 (in 2015 neither are used).",
+                    "140 TWh from large scale heat pumps, 40 TWh from WS and 100 TWh from GS by 2050 (in 2015 neither are used).",
+                    "305 TWh from large scale heat pumps, 80 TWh from WS and 225 TWh from GS by 2050 (in 2015 neither are used)."
+                ],
+                [
+                    "District/Network heat supply from biomass CHP",
+                    "Biomass CHP does not contribute to heat networks by 2050",
+                    "25 TWh heat supplied to heat networks from biomass CHP by 2050",
+                    "50 TWh heat supplied to heat networks from biomass CHP by 2050",
+                    "100 TWh heat supplied to heat networks from biomass CHP by 2050"
+                ],
+                [
+                    "Energy intensity of and demand for lighting and appliances",
+                    "By 2050, compared to 2015, domestic lighting demand per person is 50% higher and 22% more efficient, appliance demand is 50% higher and 10% more efficient.",
+                    "By 2050, compared to 2015, domestic lighting demand per person is the same and 67% more efficient, appliance demand is 0% lower and 23% more efficient.",
+                    "By 2050, compared to 2015, domestic lighting demand per person is 15% lower and 67% more efficient, appliance demand is 25% lower and 37% more efficient.",
+                    "By 2050, compared to 2015, domestic lighting demand per person is 30% lower and 75% more efficient, appliance demand is 50% lower and 50% more efficient."
+                ]
+            ]
+        },
+        "Industry": {
+            "names": [
+                "Industrial Efficiency",
+                "Industry Electrification",
+                "Industry Shift to Biomass",
+                "Industry Shift to Gas",
+                "Industry CCS"
+            ],
+            "tooltips": [
+                [
+                    "Energy and emissions intensity of industrial processes",
+                    "No change to 13% decrease in energy consumption and no change in process emissions, per unit of output by 2050",
+                    "No change to 28% decrease in energy consumption and 13% decrease in process emissions, per unit of output by 2050",
+                    "10% decrease to 49% decrease in energy consumption and 27% decrease in process emissions, per unit of output by 2050",
+                    "25% decrease to 60% decrease in energy consumption and 40% decrease in process emissions, per unit of output by 2050"
+                ],
+                [
+                    "Share of industrial heat produced from electricity",
+                    "3% to 20% of heat generated from electricity in industry sub-sectors by 2050 (compared to 3% to 20% in 2015).",
+                    "21% to 43% of heat generated from electricity in industry sub-sectors by 2050 (compared to 3% to 20% in 2015).",
+                    "44% to 50% of heat generated from electricity in industry sub-sectors by 2050 (compared to 3% to 20% in 2015).",
+                    "85% to 90% of heat generated from electricity in industry sub-sectors by 2050 (compared to 3% to 20% in 2015)."
+                ],
+                [
+                    "Share of industrial heat produced from biomass",
+                    "0% to 8% of heat generated from biomass in industry sub-sectors by 2050 (compared to 0% to 8% in 2015).",
+                    "23% to 31% of heat generated from biomass in industry sub-sectors by 2050 (compared to 0% to 8% in 2015).",
+                    "47% to 60% of heat generated from biomass in industry sub-sectors by 2050 (compared to 0% to 8% in 2015).",
+                    "70% to 90% of heat generated from biomass in industry sub-sectors by 2050 (compared to 0% to 8% in 2015)."
+                ],
+                [
+                    "Share of industrial heat produced from gas (natural gas, biomethane or hydrogen)",
+                    "3% to 74% of heat generated from gas in industry sub-sectors by 2050 (compared to 3% to 74% in 2015).",
+                    "32% to 78% of heat generated from gas in industry sub-sectors by 2050 (compared to 3% to 74% in 2015).",
+                    "52% to 83% of heat generated from gas in industry sub-sectors by 2050 (compared to 3% to 74% in 2015).",
+                    "70% to 90% of heat generated from gas in industry sub-sectors by 2050 (compared to 3% to 74% in 2015)."
+                ],
+                [
+                    "Share of polluting industrial combustion processes with Carbon Capture and Storage (CCS) applied",
+                    "0% of processes have CCS applied across industrial sub-sectors by 2060 (compared to 0% in 2015).",
+                    "23% to 30% of processes have CCS applied across industrial sub-sectors by 2060 (compared to 0% in 2015).",
+                    "51% to 60% of processes have CCS applied across industrial sub-sectors by 2060 (compared to 0% in 2015).",
+                    "98% to 100% of processes have CCS applied across industrial sub-sectors by 2060 (compared to 0% in 2015)."
+                ]
+            ]
+        },
+        "CO2 Removal & Gases": {
+            "names": [
+                "Hydrogen Gas Grid Share",
+                "Biomethane Gas Grid Share",
+                "Hydrogen - Biomass CCS",
+                "Hydrogen - Methane CCS",
+                "Hydrogen - Imports",
+                "Greenhouse Gas Removal",
+                "Bio-Conversion with CCS",
+                "CCS Capture Rate"
+            ],
+            "tooltips": [
+                [
+                    "Share of the gas grid converted to Hydrogen",
+                    "0% of the gas grid converted to hydrogen by 2050 (the same as in 2015).",
+                    "33% of the gas grid converted to hydrogen by 2050 (compared to 0% in 2015).",
+                    "67% of the gas grid converted to hydrogen by 2050 (compared to 0% in 2015).",
+                    "100% of the gas grid converted to hydrogen by 2050 (compared to 0% in 2015)."
+                ],
+                [
+                    "Share of gas grid demand supplied by biomethane (substituted into grid)",
+                    "0.5% of the gas in the grid is biomethane by 2050 (compared to 0.2% in 2015).",
+                    "5% of the gas in the grid is biomethane by 2050 (compared to 0.2% in 2015).",
+                    "25% of the gas in the grid is biomethane by 2050 (compared to 0.2% in 2015).",
+                    "100% of the gas in the grid is biomethane by 2050 (compared to 0.2% in 2015)."
+                ],
+                [
+                    "Hydrogen produced using the gasification of biomass with CCS",
+                    "No hydrogen is produced using biomass gasification with CCS by 2060 (compared to 0 TWh in 2015).",
+                    "50 TWh of hydrogen is produced using biomass gasification with CCS by 2060 (compared to 0 TWh in 2015).",
+                    "100 TWh of hydrogen is produced using biomass gasification with CCS by 2060 (compared to 0 TWh in 2015).",
+                    "200 TWh of hydrogen is produced using biomass gasification with CCS by 2060 (compared to 0 TWh in 2015)."
+                ],
+                [
+                    "Hydrogen produced using Steam Methane Reformation (SMR) with CCS",
+                    "No hydrogen is produced using SMR with CCS by 2060 (compared to 0 TWh in 2015).",
+                    "188 TWh of hydrogen is produced using SMR with CCS by 2060 (compared to 0 TWh in 2015).",
+                    "375 TWh of hydrogen is produced using SMR with CCS by 2060 (compared to 0 TWh in 2015).",
+                    "750 TWh of hydrogen is produced using SMR with CCS by 2060 (compared to 0 TWh in 2015)."
+                ],
+                [
+                    "Amount of zero-carbon hydrogen imports",
+                    "No hydrogen imported",
+                    "138 TWh of zero-carbon hydrogen is imported by 2060.",
+                    "275 TWh of zero-carbon hydrogen is imported by 2060.",
+                    "600 TWh of zero-carbon hydrogen is imported by 2060."
+                ],
+                [
+                    "Carbon dioxide captured with Direct Air Capture (DAC) and Enhanced Weathering (EW)",
+                    "No emissions captured",
+                    "No emissions captured",
+                    "20 Mt.CO2e of CO2 captured by 2100 (15 from DAC and 5 from EW)",
+                    "90 Mt.CO2e of CO2 captured by 2100 (75 from DAC and 15 from EW)"
+                ],
+                [
+                    "Share of bioenergy conversion processes with CCS applied",
+                    "0% of bio-conversion processes have CCS applied by 2050",
+                    "33% of bio-conversion processes have CCS applied by 2050",
+                    "67% of bio-conversion processes have CCS applied by 2050",
+                    "100% of bio-conversion processes have CCS applied by 2050"
+                ],
+                [
+                    "The share of carbon captured in CCS for industrial processes, bio-conversion, electricity and hydrogen production.",
+                    "65% to 85% capture rate range for CCS processes by 2035.",
+                    "77% to 90% capture rate range for CCS processes by 2035.",
+                    "88% to 95% capture rate range for CCS processes by 2035.",
+                    "100% capture rate for CCS processes by 2035."
+                ]
+            ]
+        },
+        "Electricity": {
+            "names": [
+                "Seasonal Storage",
+                "Short Term Balancing",
+                "Biomass with CCS",
+                "Nuclear",
+                "Offshore & Onshore Wind",
+                "Solar",
+                "Wave & Tidal",
+                "Gas with CCS"
+            ],
+            "tooltips": [
+                [
+                    "Electricity stored between seasons to better balance supply and demand",
+                    "No electricity stored between seasons (none stored in 2015).",
+                    "15 TWh of electricity stored each year by 2050 (none stored in 2015).",
+                    "30 TWh of electricity stored each year by 2050 (none stored in 2015).",
+                    "60 TWh of electricity stored each year by 2050 (none stored in 2015)."
+                ],
+                [
+                    "Short term demand shifting potential through interconnection, demand side response (DSR), vehicle-to-grid (V2G) charging and batteries",
+                    "6.5 GW of interconnectors and 5 GW of demand shifting capacity by 2050 (4.1 GW and 2.828 GW in 2015).",
+                    "9 GW of interconnectors and 25 GW of demand shifting capacity by 2050 (4.1 GW and 2.828 GW in 2015).",
+                    "14.5 GW of interconnectors and 50 GW of demand shifting capacity by 2050 (4.1 GW and 2.828 GW in 2015).",
+                    "20 GW of interconnectors and 100 GW of demand shifting capacity by 2050 (4.1 GW and 2.828 GW in 2015)."
+                ],
+                [
+                    "Electricity generation from the combustion of biomass with CCS (generating negative emissions credits under accounting rules)",
+                    "0 GW capacity by 2050 (the same as 2015).",
+                    "5 GW capacity by 2050 (0 GW in 2015) capable of generating up to 37 TWh per year.",
+                    "10 GW capacity by 2050 (0 GW in 2015) capable of generating up to 74 TWh per year.",
+                    "15 GW capacity by 2050 (0 GW in 2015) capable of generating up to 110 TWh per year."
+                ],
+                [
+                    "Electricity generation using nuclear power",
+                    "4.5 GW capacity by 2050 (0.5x the 9.6 GW capacity in 2015) capable of generating up to 35 TWh per year. Equivalent to 1.5 3 GW plants..",
+                    "15 GW capacity by 2050 (1.6x the 9.6 GW capacity in 2015) capable of generating up to 117 TWh per year. Equivalent to 5 3 GW plants..",
+                    "30 GW capacity by 2050 (3.1x the 9.6 GW capacity in 2015) capable of generating up to 234 TWh per year. Equivalent to 10 3 GW plants..",
+                    "62 GW capacity by 2050 (6.5x the 9.6 GW capacity in 2015) capable of generating up to 484 TWh per year. Equivalent to 20.7 3 GW plants.."
+                ],
+                [
+                    "Electricity generation using onshore and offshore wind",
+                    "0 GW capacity by 2050, 0 GW onshore and 0 GW offshore (0x the 14.3 GW capacity in 2015) capable of generating up to 0 TWh per year.",
+                    "77 GW capacity by 2050, 22 GW onshore and 55 GW offshore (5.4x the 14.3 GW capacity in 2015) capable of generating up to 296 TWh per year.",
+                    "155 GW capacity by 2050, 35 GW onshore and 120 GW offshore (10.8x the 14.3 GW capacity in 2015) capable of generating up to 611 TWh per year.",
+                    "280 GW capacity by 2050, 80 GW onshore and 200 GW offshore (19.6x the 14.3 GW capacity in 2015) capable of generating up to 1076 TWh per year."
+                ],
+                [
+                    "Electricity generation using solar power",
+                    "0 GW capacity by 2050 (0x the 9.5 GW capacity in 2015) capable of generating up to 0 TWh per year.",
+                    "70 GW capacity by 2050 (7.3x the 9.5 GW capacity in 2015) capable of generating up to 67 TWh per year.",
+                    "165 GW capacity by 2050 (17.3x the 9.5 GW capacity in 2015) capable of generating up to 159 TWh per year.",
+                    "300 GW capacity by 2050 (31.5x the 9.5 GW capacity in 2015) capable of generating up to 289 TWh per year."
+                ],
+                [
+                    "Electricity generation using wave and tidal power",
+                    "0 GW capacity by 2050, 0 GW tidal stream, 0 GW tidal range and 0 GW wave (the same as 2015).",
+                    "9.7 GW capacity by 2050, 8 GW tidal stream, 0.2 GW tidal range and 1.5 GW wave (0 GW capacity in 2015) capable of generating up to 26 TWh per year.",
+                    "34 GW capacity by 2050, 16 GW tidal stream, 15 GW tidal range and 3 GW wave (0 GW capacity in 2015) capable of generating up to 78 TWh per year.",
+                    "68 GW capacity by 2050, 22 GW tidal stream, 33 GW tidal range and 13 GW wave (0 GW capacity in 2015) capable of generating up to 152 TWh per year."
+                ],
+                [
+                    "Electricity generation from the combustion of gas with CCS",
+                    "0 GW capacity by 2050 (the same as 2015).",
+                    "10 GW capacity by 2050 (0 GW in 2015) capable of generating up to 77 TWh per year.",
+                    "30 GW capacity by 2050 (0 GW in 2015) capable of generating up to 231 TWh per year.",
+                    "60 GW capacity by 2050 (0 GW in 2015) capable of generating up to 463 TWh per year."
+                ]
+            ]
+        },
+        "Land, Bioenergy & Waste": {
+            "names": [
+                "Farming Yield & Efficiency",
+                "Forestry",
+                "Land for Bioenergy",
+                "Waste Reduction"
+            ],
+            "tooltips": [
+                [
+                    "Reductions in the number of livestock, crop yield improvements and the emissions intensity of agricultural processes",
+                    "In 2050, emissions intensity is unchanged, land yield is 0-25% higher, there are 0% more cattle, 0% more poultry and 0% more other livestock compared to 2015.",
+                    "In 2050, emissions intensity is 4-7% lower, land yield is 10-37% higher, there are 16% fewer cattle, 10% more poultry and 11% fewer other livestock compared to 2015.",
+                    "In 2050, emissions intensity is 9-15% lower, land yield is 20-48% higher, there are 32% fewer cattle, 21% more poultry and 23% fewer other livestock compared to 2015.",
+                    "In 2050, emissions intensity is 13-22% lower, land yield is 30-72% higher, there are 49% fewer cattle, 31% more poultry and 34% fewer other livestock compared to 2015."
+                ],
+                [
+                    "Land dedicated to planting forest (requires land to be freed up using the Farming Yield & Efficiency lever)",
+                    "14% of UK land area covered by forest by 2070 (compared to 14% in 2015).",
+                    "20% of UK land area covered by forest by 2070 (compared to 14% in 2015).",
+                    "23% of UK land area covered by forest by 2070 (compared to 14% in 2015).",
+                    "29% of UK land area covered by forest by 2070 (compared to 14% in 2015)."
+                ],
+                [
+                    "Land dedicated to growing bio-crops (requires land to be freed up using the Farming Yield & Efficiency lever)",
+                    "0.4% of UK land area covered by biocrops by 2050 (compared to 0.4% in 2015) and 10-19% of agricultural wastes are collected for energy.",
+                    "2.9% of UK land area covered by biocrops by 2050 (compared to 0.4% in 2015) and 13-38% of agricultural wastes are collected for energy.",
+                    "5.7% of UK land area covered by biocrops by 2050 (compared to 0.4% in 2015) and 17-69% of agricultural wastes are collected for energy.",
+                    "8.2% of UK land area covered by biocrops by 2050 (compared to 0.4% in 2015) and 18-100% of agricultural wastes are collected for energy."
+                ],
+                [
+                    "Amount of waste produced, recycled and diverted to energy processes",
+                    "By 2050, 25% increase in dry waste (50% recycled, 3% used for energy), 20% increase in wet waste (85% recycled, 4% used for energy).",
+                    "By 2050, No change in dry waste (65% recycled, 10% used for energy), 20% increase in wet waste (85% recycled, 8% used for energy).",
+                    "By 2050, 15% decrease in dry waste (80% recycled, 20% used for energy), 20% increase in wet waste (85% recycled, 12% used for energy).",
+                    "By 2050, 35% decrease in dry waste (90% recycled, 10% used for energy), 20% increase in wet waste (85% recycled, 15% used for energy)."
+                ]
+            ]
+        }
     }
 }
