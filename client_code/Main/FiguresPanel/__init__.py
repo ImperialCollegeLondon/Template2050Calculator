@@ -41,7 +41,7 @@ class FiguresPanel(FiguresPanelTemplate):
         return button
 
     def calculate(self, inputs):
-        self.model_solution = anvil.server.call("calculate", list(inputs.values()))
+        self.model_solution = anvil.server.call("calculate", list(inputs))
         self.build_graphs()
         self.build_warnings()
 

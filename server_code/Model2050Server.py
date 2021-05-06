@@ -20,8 +20,8 @@ def inputs():
 
 
 @anvil.server.callable
-def levers():
-    return list(model.input_levers.keys())
+def lever_groups():
+    return TABLE["output_lever_names_grouped"]
 
 
 @anvil.server.callable
@@ -52,11 +52,6 @@ def translate(locale, text):
 @anvil.server.callable
 def layout():
     return TABLE["weboutputs_summary_table"]
-
-
-@anvil.server.callable
-def lever_descriptions():
-    return TABLE["lever_descriptions"]
 
 
 @anvil.server.callable
