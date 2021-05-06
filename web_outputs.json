@@ -231,7 +231,7 @@
             "output.bioenergy.imports",
             "output.security.import.energy",
             "output.security.import.fraction",
-            "output.land.map.area,output.land.map.distance,output.landarea.numberunits",
+            "output.land.map.area,output.land.map.distance,output.land.map.numberunits",
             "output.flows"
         ],
         "Graph Type": [

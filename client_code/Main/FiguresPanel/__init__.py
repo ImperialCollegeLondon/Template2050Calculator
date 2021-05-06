@@ -81,15 +81,7 @@ class FiguresPanel(FiguresPanelTemplate):
         plot = Plot()
         self.figure_container.add_component(plot)
         title, output, plot_type = graph_data
-        plot.layout.title = f"{title} Graph"
-        plot.layout.margin.t = 30
-        plot.layout.margin.b = 20
-        plot.layout.margin.l = 30  # noqa: E741
-        plot.layout.margin.r = 10
-        plot.layout.hovermode = "closest"
-        plot.data = PLOTS_REGISTRY[plot_type.lower()](
-            self.model_solution["x"], self.model_solution[output]
-        )
+        PLOTS_REGISTRY[plot_type.lower()](plot, self.model_solution, output, title)
 
     @property
     def selected_tab(self):

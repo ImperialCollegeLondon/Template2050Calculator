@@ -23,7 +23,7 @@ def process_layout_data(data):
     GraphInfo instance = The relevant metadata required to built an output
     """
     layout = OrderedDict()
-    for tab, sub_tab, pos, title, named_range, plot_type in zip(
+    for tab, sub_tab, pos, title, named_ranges, plot_type in zip(
         data["Webtool Page"],
         data["Webtool Tab"],
         data["Position"],
@@ -31,6 +31,13 @@ def process_layout_data(data):
         data["Named Range"],
         data["Graph Type"],
     ):
+
+        # may be multiple comma seperated named_ranges in string, we want to
+        # remove the "output." prefix from all of them
+        named_ranges = (
+            ",".join(r[7:] for r in named_ranges.split(",")).replace(".", "_").lower()
+        )
+
         # the following could be much neater with use of `setdefault` however,
         # at time of writing, the client environment for Anvil (based on
         # anvil-app-server==1.4) contains a bug which prevents its use
@@ -44,7 +51,7 @@ def process_layout_data(data):
 
         positions[pos] = GraphInfo(
             title,
-            named_range.replace(".", "_").lower()[7:],  # remove "output_" prefix
+            named_ranges,
             plot_type,
         )
     return layout
