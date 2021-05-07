@@ -5,7 +5,7 @@ item_type: {table_id: null}
 custom_component: true
 components:
 - type: ColumnPanel
-  properties: {col_widths: '{"YYJKZE":35,"GIAINH":24}'}
+  properties: {col_widths: '{"YYJKZE":36,"GIAINH":34,"WBNOXS":10}'}
   name: column_panel_1
   layout_properties: {grid_position: 'VCPHTS,HPGRLK'}
   components:
@@ -21,10 +21,14 @@ components:
     properties: {}
     name: slider
     layout_properties: {grid_position: 'ZECWTP,GIAINH'}
+  - type: form:Main.AmbitionLever.YearSelector
+    properties: {}
+    name: years
+    layout_properties: {grid_position: 'ZECWTP,WBNOXS'}
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: never, col_spacing: small, spacing_above: none, col_widths: '{}', spacing_below: none,
-    background: ''}
+    wrap_on: never, col_spacing: small, spacing_above: none, col_widths: '{"HPGRLK":60}',
+    spacing_below: none, background: ''}
   data_bindings: []
   event_bindings: {refreshing_data_bindings: form_refreshing_data_bindings}

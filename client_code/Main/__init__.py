@@ -91,3 +91,13 @@ class Main(MainTemplate):
         self.set_url(Model.inputs)
         self.set_ambition_levers()
         self.update_graphs()
+
+    def expert_toggle_click(self, **event_args):
+        """This method is called when the button is clicked"""
+        self.expert_label.visible = not self.expert_label.visible
+        for group in self.lever_group_panel.get_components():
+            for lever in group.lever_panel.get_components():
+                if self.expert_label.visible:
+                    lever.years.show(lever.start_year, lever.end_year, self.figures_panel.model_solution["x"])
+                else:
+                    lever.years.hide()

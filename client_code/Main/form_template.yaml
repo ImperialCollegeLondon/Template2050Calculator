@@ -84,6 +84,13 @@ components:
           underline: false, icon: ''}
         name: label_3
         layout_properties: {grid_position: 'AWRAPM,WLDFBB', full_width_row: false}
+      - type: Label
+        properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: Start and End Year, font_size: null, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: expert_label
+        layout_properties: {grid_position: 'AWRAPM,VKSOUD', full_width_row: false}
     - type: RepeatingPanel
       properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
         visible: true, spacing_above: small, spacing_below: small, item_template: Main.LeverGroup,
@@ -92,6 +99,14 @@ components:
       layout_properties: {grid_position: 'IPNHGZ,SIGQFA', full_width_row: false}
       data_bindings: []
       event_bindings: {}
+    - type: Button
+      properties: {role: primary-color, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: false, text: Switch to 2100 Mode, font_size: null,
+        font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: expert_toggle
+      layout_properties: {grid_position: 'LRIAJT,HLZOEC'}
+      event_bindings: {click: expert_toggle_click}
   - type: ColumnPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
       wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
