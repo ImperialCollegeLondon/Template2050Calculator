@@ -18,6 +18,8 @@ class AmbitionLever(AmbitionLeverTemplate):
         """Set lever properties"""
 
         self.value = value
+        # self.start_year = 2020
+        # self.end_year = 2055
 
         self.label.text = name
         self.label.bold = bold
@@ -33,3 +35,11 @@ class AmbitionLever(AmbitionLeverTemplate):
     @value.setter
     def value(self, value):
         self.slider.level = value
+
+    @property
+    def start_year(self):
+        return 2020
+
+    @property
+    def end_year(self):
+        return 2050

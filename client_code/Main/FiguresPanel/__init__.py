@@ -40,8 +40,10 @@ class FiguresPanel(FiguresPanelTemplate):
         element.add_component(button)
         return button
 
-    def calculate(self, inputs):
-        self.model_solution = anvil.server.call("calculate", list(inputs))
+    def calculate(self, inputs, start_year, end_year):
+        self.model_solution = anvil.server.call(
+            "calculate", list(inputs), start_year, end_year
+        )
         self.build_graphs()
         self.build_warnings()
 
