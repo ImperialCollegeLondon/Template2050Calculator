@@ -1,6 +1,8 @@
 import sys
 from pathlib import Path
 
+from pytest import approx, mark, raises
+
 from server_code import model2050
 
 sys.path.append(str(Path(__file__).absolute().parent / "test_model"))
@@ -10,25 +12,89 @@ import interface2050  # noqa: E402
 model = model2050.Model2050(interface2050)
 
 
-def output_a(factor, offset):
+def output_a(ambition, start, end):
+    factor, offset = ambition
     xs = [i / 10 for i in range(0, 21)]
-    return [x * factor + offset for x in xs]
+    return [x * factor + offset + start[0] - end[0] for x in xs]
 
 
-def output_b(factor, offset):
+def output_b(ambition, start, end):
+    factor, offset = ambition
     xs = [i / 10 for i in range(0, 21)]
-    return [x ** factor + offset for x in xs]
+    return [x ** factor + offset + start[1] - end[1] for x in xs]
 
 
-def test_model():
-    sheet_inputs = [2, 1]
-    calc = model.calculate(sheet_inputs)
+@mark.parametrize(
+    "ambition,start,end",
+    [
+        [  # spreadsheet defaults for all
+            [2, 1],
+            None,
+            None,
+        ],
+        [  # vary lever ambition inputs
+            [3, 2],
+            None,
+            None,
+        ],
+        [  # vary lever start inputs
+            [2, 1],
+            [2020, 2025],
+            None,
+        ],
+        [  # vary lever end inputs
+            [2, 1],
+            None,
+            [2020, 2025],
+        ],
+    ],
+)
+def test_model(ambition, start, end):
 
-    assert list(calc["a"][0]) == output_a(*sheet_inputs)
-    assert list(calc["b"][0]) == output_b(*sheet_inputs)
+    calc = model.calculate(ambition, start, end)
 
-    mod_inputs = [3, 2]
-    calc = model.calculate(mod_inputs)
+    start = [1, 2] if not start else start
+    end = [1, 2] if not end else end
 
-    assert list(calc["a"][0]) == output_a(*mod_inputs)
-    assert list(calc["b"][0]) == output_b(*mod_inputs)
+    assert list(calc["output_a"][0]) == approx(output_a(ambition, start, end), 7)
+    assert list(calc["output_b"][0]) == approx(output_b(ambition, start, end), 7)
+
+
+@mark.parametrize(
+    "ambition,start,end",
+    [
+        [  # too many ambition values
+            [1, 1, 1],
+            None,
+            None,
+        ],
+        [  # too many start values
+            [1, 1],
+            [1, 1, 1],
+            None,
+        ],
+        [  # too many end values
+            [1, 1],
+            None,
+            [1, 1, 1],
+        ],
+        [  # ambition value out of range
+            [0.5, 1],
+            None,
+            None,
+        ],
+        [  # start value out of range
+            [1, 1],
+            [2000, 2020],
+            None,
+        ],
+        [  # end value out of range
+            [1, 1],
+            None,
+            [2000, 2020],
+        ],
+    ],
+)
+def test_invalid_inputs(ambition, start, end):
+    with raises(ValueError):
+        model.calculate(ambition, start, end)

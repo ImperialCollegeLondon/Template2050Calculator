@@ -30,25 +30,14 @@ with open(Path(__file__).absolute().parent.parent / "web_outputs.json") as f:
 
 
 @anvil.server.callable
-def inputs():
-    return model.input_values_default()
-
-
-@anvil.server.callable
 def lever_groups():
     return TABLE["output_lever_names_grouped"]
 
 
 @anvil.server.callable
-def outputs():
-
-    return list(model.outputs.keys())
-
-
-@anvil.server.callable
 def calculate(inputs):
     solution = model.calculate(inputs)
-    solution["emissions_sector"] = solution["emissions_sector"][-4::-1]
+    solution["output_emissions_sector"] = solution["output_emissions_sector"][-4::-1]
     solution["x"] = list(range(2015, 2055, 5))
     return solution
 
