@@ -14,12 +14,21 @@ class AmbitionLever(AmbitionLeverTemplate):
 
         self.complete_init(**self.item)
 
-    def complete_init(self, name, value, event_handler, tooltips=[""] * 5, bold=False):
+    def complete_init(
+        self,
+        name,
+        value,
+        event_handler,
+        start_year=None,
+        end_year=None,
+        tooltips=[""] * 5,
+        bold=False,
+    ):
         """Set lever properties"""
 
         self.value = value
-        # self.start_year = 2020
-        # self.end_year = 2055
+        self.start_year = start_year
+        self.end_year = end_year
 
         self.label.text = name
         self.label.bold = bold
@@ -38,8 +47,16 @@ class AmbitionLever(AmbitionLeverTemplate):
 
     @property
     def start_year(self):
-        return 2020
+        return int(self.years.start_year.selected_value)
+
+    @start_year.setter
+    def start_year(self, start_year):
+        self.years.start_year.selected_value = str(start_year)
 
     @property
     def end_year(self):
-        return 2050
+        return int(self.years.end_year.selected_value)
+
+    @end_year.setter
+    def end_year(self, end_year):
+        self.years.end_year.selected_value = str(end_year)

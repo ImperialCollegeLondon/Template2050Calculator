@@ -10,15 +10,19 @@ class LeverGroup(LeverGroupTemplate):
 
         levers = self.item["levers"]
         inputs = self.item["inputs"]
+        start_years = self.item["start_years"]
+        end_years = self.item["end_years"]
         self.lever_panel.items = [
             dict(
                 name=name,
                 tooltips=tooltips,
                 value=value,
                 event_handler=self.lever_clicked,
+                start_year=start_year,
+                end_year=end_year,
             )
-            for name, tooltips, value in zip(
-                levers["names"], levers["tooltips"], inputs
+            for name, tooltips, value, start_year, end_year in zip(
+                levers["names"], levers["tooltips"], inputs, start_years, end_years
             )
         ]
 

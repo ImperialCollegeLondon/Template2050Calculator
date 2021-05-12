@@ -22,6 +22,7 @@ class Main(MainTemplate):
         self.update_graphs()
 
         self.title.text = Model.translate("2050 Carbon Calculator")
+        self.expert_label.visible = False
 
     def select_figures(self):
         self.figures_panel = FiguresPanel()
@@ -38,57 +39,75 @@ class Main(MainTemplate):
         self.set_url(*zip(*inputs))
         self.figures_panel.calculate(*zip(*inputs))
 
-    def get_lever_vals(self):
+    def get_url_vals(self):
         """Get lever values from url, if available. Otherwise use defaults."""
         url_hash = get_url_hash()
-        return (
-            (
-                tuple(map(float, input_str.split(",")))
-                for input_str in url_hash.split(";")
+        if url_hash:
+            return dict(
+                inputs=list(map(float, url_hash["inputs"].split("-"))),
+                start_years=list(map(int, url_hash["start_years"].split("-"))),
+                end_years=list(map(int, url_hash["end_years"].split("-"))),
             )
-            if url_hash
-            else ((val, 2020, 2050) for val in Model.inputs)
-        )
+        else:
+            inputs = Model.default_inputs.copy()
+            start_years = [2020] * len(Model.default_inputs)
+            end_years = [2050] * len(Model.default_inputs)
+            self.set_url(inputs, start_years, end_years)
+            return dict(inputs=inputs, start_years=start_years, end_years=end_years)
 
-    def set_url(self, inputs, start_years=None, end_years=None):
+    def set_url(self, inputs, start_years, end_years):
         """Set lever values in the url.
 
         Args:
             inputs (list): A list of lever values
         """
-        if start_years and end_years:
-            set_url_hash(
-                ";".join(
-                    [
-                        f"{val},{start},{end}"
-                        for val, start, end in zip(inputs, start_years, end_years)
-                    ]
-                )
+        set_url_hash(
+            dict(
+                inputs="-".join(map(str, inputs)),
+                start_years="-".join(map(str, start_years)),
+                end_years="-".join(map(str, end_years)),
             )
-        else:
-            set_url_hash(";".join([f"{val},{2020},{2050}" for val in inputs]))
+        )
 
     def set_ambition_levers(self):
-        input_values = list(self.get_lever_vals())
+        input_values = self.get_url_vals()
         self.lever_group_panel.items = [
             {
                 "name": name,
                 "levers": levers,
-                "inputs": [input_values.pop(0)[0] for _ in range(len(levers["names"]))],
+                "inputs": [
+                    input_values["inputs"].pop(0) for _ in range(len(levers["names"]))
+                ],
+                "start_years": [
+                    input_values["start_years"].pop(0)
+                    for _ in range(len(levers["names"]))
+                ],
+                "end_years": [
+                    input_values["end_years"].pop(0)
+                    for _ in range(len(levers["names"]))
+                ],
             }
             for name, levers in Model.lever_groups.items()
         ]
 
     def pathways_dropdown_change(self, **event_args):
         """This method is called when an item is selected from the dropdown"""
-        self.set_url(Model.example_pathways[event_args["sender"].selected_value])
+        self.set_url(
+            Model.example_pathways[event_args["sender"].selected_value],
+            [2020] * len(Model.default_inputs),
+            [2050] * len(Model.default_inputs),
+        )
         self.set_ambition_levers()
         self.update_graphs()
 
     def reset_button_click(self, **event_args):
         """This method is called when the button is clicked"""
         self.pathways_dropdown.selected_value = None
-        self.set_url(Model.inputs)
+        self.set_url(
+            Model.default_inputs.copy(),
+            [2020] * len(Model.default_inputs),
+            [2050] * len(Model.default_inputs),
+        )
         self.set_ambition_levers()
         self.update_graphs()
 
@@ -97,7 +116,4 @@ class Main(MainTemplate):
         self.expert_label.visible = not self.expert_label.visible
         for group in self.lever_group_panel.get_components():
             for lever in group.lever_panel.get_components():
-                if self.expert_label.visible:
-                    lever.years.show(lever.start_year, lever.end_year, self.figures_panel.model_solution["x"])
-                else:
-                    lever.years.hide()
+                lever.years.visible = self.expert_label.visible

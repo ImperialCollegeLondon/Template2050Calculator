@@ -41,9 +41,12 @@ class FiguresPanel(FiguresPanelTemplate):
         return button
 
     def calculate(self, inputs, start_year, end_year):
-        self.model_solution = anvil.server.call(
-            "calculate", list(inputs), start_year, end_year
-        )
+        if all(start_year) and all(end_year):
+            self.model_solution = anvil.server.call(
+                "calculate", inputs, start_year, end_year
+            )
+        else:
+            self.model_solution = anvil.server.call("calculate", inputs)
         self.build_graphs()
         self.build_warnings()
 

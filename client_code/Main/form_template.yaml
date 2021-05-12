@@ -101,7 +101,7 @@ components:
       event_bindings: {}
     - type: Button
       properties: {role: primary-color, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: false, text: Switch to 2100 Mode, font_size: null,
+        foreground: '', visible: true, text: Switch to 2100 Mode, font_size: null,
         font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
         background: '', bold: false, underline: false, icon: ''}
       name: expert_toggle

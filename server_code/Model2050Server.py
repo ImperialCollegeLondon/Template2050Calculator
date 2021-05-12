@@ -128,5 +128,5 @@ def example_pathways():
 
 
 @anvil.server.callable
-def inputs():
+def default_inputs():
     return model.input_values_default()
