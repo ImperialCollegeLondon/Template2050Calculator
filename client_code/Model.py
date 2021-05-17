@@ -32,12 +32,6 @@ def process_layout_data(data):
         data["Graph Type"],
     ):
 
-        # may be multiple comma seperated named_ranges in string, we want to
-        # remove the "output." prefix from all of them
-        named_ranges = (
-            ",".join(r[7:] for r in named_ranges.split(",")).replace(".", "_").lower()
-        )
-
         # the following could be much neater with use of `setdefault` however,
         # at time of writing, the client environment for Anvil (based on
         # anvil-app-server==1.4) contains a bug which prevents its use
@@ -51,17 +45,16 @@ def process_layout_data(data):
 
         positions[pos] = GraphInfo(
             title,
-            named_ranges,
+            named_ranges.replace(".", "_").lower(),
             plot_type,
         )
     return layout
 
 
 lever_groups = anvil.server.call("lever_groups")
-inputs = anvil.server.call("inputs")
-outputs = anvil.server.call("outputs")
 layout = process_layout_data(anvil.server.call("layout"))
 example_pathways = anvil.server.call("example_pathways")
+inputs = anvil.server.call("inputs")
 
 language = "en"
 

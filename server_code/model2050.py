@@ -1,11 +1,8 @@
 import re
-from collections import OrderedDict
-from functools import partial
 
 import numpy as np
 
-SETTER_REGEX = re.compile("set_(?P<sheet>\\S*)_(?P<col>[a-z]+)(?P<row>\\d+)")
-GETTER_REGEX = re.compile("output_(?P<name>\\S*)")
+GETTER_REGEX = re.compile(r"(?P<name>output_\S*)")
 
 
 class Model2050:
@@ -16,26 +13,22 @@ class Model2050:
         """`module` should be Python module produced by SWIG to be wrapped."""
         self.module = module
 
-        # Extract setter functions that control model input levers. Order by the
-        # row in which they appear in the sheet and wrap them so they're easy to
-        # call
-        setter_matches = list(self._iter_matching_names(module, SETTER_REGEX))
-        setter_matches.sort(key=lambda match: float(match.groupdict()["row"]))
+        # Wrap required input functions
+        self.lever_ambition = self._wrap_input_function(module.set_input_lever_ambition)
+        self.lever_start = self._wrap_input_function(module.set_input_lever_start)
+        self.lever_end = self._wrap_input_function(module.set_input_lever_end)
 
-        # extract getter functions that contain output data
+        # extract getter functions that contain output data and wrap them for
+        # convenience
         getter_matches = list(self._iter_matching_names(module, GETTER_REGEX))
         self.outputs = {
-            match.groupdict()["name"]: getattr(module, match.string)
+            match.groupdict()["name"]: self._wrap_output_function(
+                getattr(module, match.string)
+            )
             for match in getter_matches
         }
 
-        lever_names = [
-            row[0] for row in self._values_from_range(module.output_lever_names())
-        ]
-        self.input_levers = OrderedDict(
-            (name, partial(self._set_input_lever, getattr(module, match.string)))
-            for name, match in zip(lever_names, setter_matches)
-        )
+        self.number_of_levers = len(self.outputs["output_lever_names"]())
 
     def _iter_matching_names(self, module, regex):
         """Generator that yields attributes of `module` that match the provided
@@ -45,39 +38,84 @@ class Model2050:
             if match:
                 yield match
 
-    def calculate(self, input_values):
+    def calculate(self, ambition_values, start_values=None, end_values=None):
         """Run the model and return a dictionary containing all model
-        outputs. `input_values` should be a sequence returing valid values for
-        each input lever of the model i.e. 1 to 4.
+        outputs. `ambition_values` should be a sequence returing valid values
+        for each input lever of the model i.e. 1 to 4. `start_values` and
+        `end_values` should provide a sequence of integer values representing
+        years up to 2100 for each input lever. If no keyword arguments are
+        provided model defaults are used instead.
         """
-        assert len(input_values) == len(self.input_levers)
 
         self.module.reset()
 
-        for func, value in zip(self.input_levers.values(), input_values):
-            assert value in [i / 10 for i in range(10, 41)]
-            func(value)
+        self._check_input_values(ambition_values, "ambition")
+        self.lever_ambition(ambition_values)
 
-        return {
-            name: self._values_from_range(output())
-            for name, output in self.outputs.items()
-        }
+        if start_values:
+            self._check_input_values(start_values, "start")
+            self.lever_start(start_values)
 
-    def _set_input_lever(self, func, value):
-        """Wrapper function that creates an appropriate input datatype to interact with
-        the model library."""
-        ev = self.module.excel_value()
-        ev.type = self.module.ExcelNumber
-        ev.number = value
-        func(ev)
+        if end_values:
+            self._check_input_values(end_values, "end")
+            self.lever_end(end_values)
+
+        return {name: output() for name, output in self.outputs.items()}
+
+    def _check_input_values(self, values, lever_type):
+        """Validate number of input `values` and their ranges based on `lever_type`"""
+        if len(values) != self.number_of_levers:
+            raise ValueError(
+                f"Number of {lever_type} values does not match number of levers"
+            )
+        if lever_type == "ambition":
+            lower_limit, upper_limit = 1, 4
+        else:
+            lower_limit, upper_limit = 2020, 2100
+
+        if any([not (lower_limit <= value <= upper_limit) for value in values]):
+            raise ValueError(f"Input value out of range for {lever_type} values")
+
+    def _wrap_input_function(self, func):
+        """Wrap a model input `func` that expects a column of cells so it may be called
+        with a list values.
+        """
+
+        def wrapper(values):
+            ev = self.module.excel_value()
+            ev.type = self.module.ExcelRange
+            ev.columns = 1
+            ev.rows = len(values)
+
+            # create_range performs memory allocation
+            self.module.create_range(ev, len(values))
+            for i, value in enumerate(values):
+                self.module.set_cell(ev, i, value)
+            func(ev)
+
+            # free allocated memory
+            self.module.destroy_range(ev)
+
+        return wrapper
+
+    def _wrap_output_function(self, func):
+        """Wrap a model output `func` such that values are returned as a 2-d nested
+        list.
+        """
+
+        def wrapper():
+            return self._values_from_range(func())
+
+        return wrapper
 
     def input_values_default(self):
         """Return a valid input for `self.calculate` with all levers set to 1."""
-        return np.ones(len(self.input_levers))
+        return np.ones(self.number_of_levers)
 
     def _values_from_range(self, excel_range):
-        """Wrapper function that converts the model library output datatype to a nested
-        list."""
+        """Convenience function that converts the model library output datatype to a
+        nested list.
+        """
         cells = [
             [
                 self.module.get_cell(excel_range, j * excel_range.columns + i)

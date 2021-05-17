@@ -96,9 +96,21 @@ except __builtin__.Exception:
     _newclass = 0
 
 
+def create_range(range, size):
+    return _interface2050.create_range(range, size)
+create_range = _interface2050.create_range
+
+def destroy_range(range):
+    return _interface2050.destroy_range(range)
+destroy_range = _interface2050.destroy_range
+
 def get_cell(range, index):
     return _interface2050.get_cell(range, index)
 get_cell = _interface2050.get_cell
+
+def set_cell(range, index, number):
+    return _interface2050.set_cell(range, index, number)
+set_cell = _interface2050.set_cell
 
 def output_a():
     return _interface2050.output_a()
@@ -112,21 +124,29 @@ def output_lever_names():
     return _interface2050.output_lever_names()
 output_lever_names = _interface2050.output_lever_names
 
-def control_b1():
-    return _interface2050.control_b1()
-control_b1 = _interface2050.control_b1
+def input_lever_ambition():
+    return _interface2050.input_lever_ambition()
+input_lever_ambition = _interface2050.input_lever_ambition
 
-def set_control_b1(newValue):
-    return _interface2050.set_control_b1(newValue)
-set_control_b1 = _interface2050.set_control_b1
+def set_input_lever_ambition(newValue):
+    return _interface2050.set_input_lever_ambition(newValue)
+set_input_lever_ambition = _interface2050.set_input_lever_ambition
 
-def control_b2():
-    return _interface2050.control_b2()
-control_b2 = _interface2050.control_b2
+def input_lever_start():
+    return _interface2050.input_lever_start()
+input_lever_start = _interface2050.input_lever_start
 
-def set_control_b2(newValue):
-    return _interface2050.set_control_b2(newValue)
-set_control_b2 = _interface2050.set_control_b2
+def set_input_lever_start(newValue):
+    return _interface2050.set_input_lever_start(newValue)
+set_input_lever_start = _interface2050.set_input_lever_start
+
+def input_lever_end():
+    return _interface2050.input_lever_end()
+input_lever_end = _interface2050.input_lever_end
+
+def set_input_lever_end(newValue):
+    return _interface2050.set_input_lever_end(newValue)
+set_input_lever_end = _interface2050.set_input_lever_end
 
 def reset():
     return _interface2050.reset()

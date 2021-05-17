@@ -4,8 +4,6 @@ from collections import OrderedDict
 from pathlib import Path
 from unittest.mock import patch
 
-import numpy as np
-
 sys.path.append(str(Path(__file__).absolute().parent / "test_model"))
 
 import interface2050  # noqa: E402
@@ -28,12 +26,9 @@ def teardown_module():
 
 
 def test_model(patch_server_call):
-    from client_code.Model import inputs, language, lever_groups, outputs, translate
+    from client_code.Model import language, lever_groups, translate
 
     assert language == "en"
-    assert np.all(inputs == [1, 1])
-    assert outputs == ["a", "b", "lever_names"]
-
     assert translate("text") == "text"
 
     assert lever_groups["group1"] == {
@@ -58,7 +53,7 @@ def test_layout():
                             "Top",
                             GraphInfo(
                                 "Annual Greenhouse Gas Emissions",
-                                "emissions_sector",
+                                "output_emissions_sector",
                                 "Stacked Area with overlying Line(s)",
                             ),
                         ),
@@ -66,7 +61,7 @@ def test_layout():
                             "Bottom",
                             GraphInfo(
                                 "Primary Energy Consumption",
-                                "primary_energy_consumption",
+                                "output_primary_energy_consumption",
                                 "Stacked Area with overlying Line(s)",
                             ),
                         ),
@@ -81,7 +76,7 @@ def test_layout():
                             "Top",
                             GraphInfo(
                                 "Cumulative UK Greenhouse Gas Emissions",
-                                "emissions_cumulative",
+                                "output_emissions_cumulative",
                                 "Line",
                             ),
                         ),
@@ -89,7 +84,7 @@ def test_layout():
                             "Bottom",
                             GraphInfo(
                                 "Final Energy Consumption",
-                                "final_energy_consumption",
+                                "output_final_energy_consumption",
                                 "Stacked Area with overlying Line(s)",
                             ),
                         ),
