@@ -125,3 +125,8 @@ def map(data):
 @anvil.server.callable
 def example_pathways():
     return TABLE["example_pathways"]
+
+
+@anvil.server.callable
+def inputs():
+    return model.input_values_default()
