@@ -98,3 +98,8 @@ def test_model(ambition, start, end):
 def test_invalid_inputs(ambition, start, end):
     with raises(ValueError):
         model.calculate(ambition, start, end)
+
+
+def test_default_values():
+    assert model.start_values_default() == [1.0, 2.0]
+    assert model.end_values_default() == [1.0, 2.0]
