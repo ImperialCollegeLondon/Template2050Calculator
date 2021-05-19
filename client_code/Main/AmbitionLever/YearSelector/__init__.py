@@ -6,7 +6,7 @@ class YearSelector(YearSelectorTemplate):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
 
-        year_list = list(map(str, range(2020, 2055, 5)))
+        year_list = list(map(str, range(2020, 2105, 5)))
 
         self.end_year.items = year_list
         self.start_year.items = year_list

@@ -50,8 +50,8 @@ class Main(MainTemplate):
             )
         else:
             inputs = Model.default_inputs.copy()
-            start_years = [2020] * len(Model.default_inputs)
-            end_years = [2050] * len(Model.default_inputs)
+            start_years = Model.default_start_years.copy()
+            end_years = Model.default_end_years.copy()
             self.set_url(inputs, start_years, end_years)
             return dict(inputs=inputs, start_years=start_years, end_years=end_years)
 
@@ -94,8 +94,8 @@ class Main(MainTemplate):
         """This method is called when an item is selected from the dropdown"""
         self.set_url(
             Model.example_pathways[event_args["sender"].selected_value],
-            [2020] * len(Model.default_inputs),
-            [2050] * len(Model.default_inputs),
+            Model.default_start_years.copy(),
+            Model.default_end_years.copy(),
         )
         self.set_ambition_levers()
         self.update_graphs()
@@ -105,8 +105,8 @@ class Main(MainTemplate):
         self.pathways_dropdown.selected_value = None
         self.set_url(
             Model.default_inputs.copy(),
-            [2020] * len(Model.default_inputs),
-            [2050] * len(Model.default_inputs),
+            Model.default_start_years.copy(),
+            Model.default_end_years.copy(),
         )
         self.set_ambition_levers()
         self.update_graphs()

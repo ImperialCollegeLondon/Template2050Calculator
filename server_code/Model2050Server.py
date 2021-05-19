@@ -130,3 +130,13 @@ def example_pathways():
 @anvil.server.callable
 def default_inputs():
     return model.input_values_default()
+
+
+@anvil.server.callable
+def default_start_years():
+    return model.start_values_default()
+
+
+@anvil.server.callable
+def default_end_years():
+    return model.end_values_default()
