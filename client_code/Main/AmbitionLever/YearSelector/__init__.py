@@ -10,8 +10,6 @@ class YearSelector(YearSelectorTemplate):
 
         self.end_year.items = year_list
         self.start_year.items = year_list
-        self.start_year.selected_value = "2020"
-        self.end_year.selected_value = "2050"
 
         self.visible = False
 
