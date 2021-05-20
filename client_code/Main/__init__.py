@@ -18,11 +18,16 @@ class Main(MainTemplate):
         self.set_ambition_levers()
         self.pathways_dropdown.items = Model.example_pathways.keys()
 
+        self.set_event_handler("show", self.show)
+
+    def show(self, **event_args):
+        """`show` event handler. Last function to be called."""
+        self.expert_label.visible = False
+        self.expert_toggle.text = "Switch to 2100 Mode"
         self.select_figures()
         self.update_graphs()
 
         self.title.text = Model.translate("2050 Carbon Calculator")
-        self.expert_label.visible = False
 
     def select_figures(self):
         self.figures_panel = FiguresPanel()
@@ -37,37 +42,56 @@ class Main(MainTemplate):
             for lever in group.lever_panel.get_components()
         ]
         self.set_url(*zip(*inputs))
-        self.figures_panel.calculate(*zip(*inputs))
+        self.figures_panel.calculate(
+            *zip(*inputs), expert_mode=self.expert_label.visible
+        )
 
     def get_url_vals(self):
         """Get lever values from url, if available. Otherwise use defaults."""
         url_hash = get_url_hash()
-        if url_hash:
-            return dict(
-                inputs=list(map(float, url_hash["inputs"].split("-"))),
-                start_years=list(map(int, url_hash["start_years"].split("-"))),
-                end_years=list(map(int, url_hash["end_years"].split("-"))),
-            )
-        else:
-            inputs = Model.default_inputs.copy()
-            start_years = Model.default_start_years.copy()
-            end_years = Model.default_end_years.copy()
-            self.set_url(inputs, start_years, end_years)
-            return dict(inputs=inputs, start_years=start_years, end_years=end_years)
+        if not url_hash:
+            self.set_defaults()
+            url_hash = get_url_hash()
+        return dict(
+            inputs=list(map(float, url_hash["inputs"].split("-"))),
+            start_years=list(map(int, url_hash["start_years"].split("-"))),
+            end_years=list(map(int, url_hash["end_years"].split("-"))),
+        )
 
-    def set_url(self, inputs, start_years, end_years):
+    def set_url(self, inputs=None, start_years=None, end_years=None):
         """Set lever values in the url.
 
         Args:
             inputs (list): A list of lever values
         """
-        set_url_hash(
-            dict(
-                inputs="-".join(map(str, inputs)),
-                start_years="-".join(map(str, start_years)),
-                end_years="-".join(map(str, end_years)),
+        url_hash = get_url_hash()
+        if inputs is None:
+            inputs = url_hash["inputs"]
+        else:
+            inputs = "-".join(map(str, inputs))
+
+        if start_years is None or end_years is None:
+            start_years = url_hash["start_years"]
+            end_years = url_hash["end_years"]
+        else:
+            start_years = "-".join(map(str, start_years))
+            end_years = "-".join(map(str, end_years))
+
+        set_url_hash(dict(inputs=inputs, start_years=start_years, end_years=end_years))
+
+    def set_defaults(self, years_only=False):
+        """Set the url values to their defaults"""
+        if years_only:
+            self.set_url(
+                start_years=Model.default_start_years.copy(),
+                end_years=Model.default_end_years.copy(),
             )
-        )
+        else:
+            self.set_url(
+                Model.default_inputs.copy(),
+                Model.default_start_years.copy(),
+                Model.default_end_years.copy(),
+            )
 
     def set_ambition_levers(self):
         input_values = self.get_url_vals()
@@ -92,28 +116,27 @@ class Main(MainTemplate):
 
     def pathways_dropdown_change(self, **event_args):
         """This method is called when an item is selected from the dropdown"""
-        self.set_url(
-            Model.example_pathways[event_args["sender"].selected_value],
-            Model.default_start_years.copy(),
-            Model.default_end_years.copy(),
-        )
+        self.set_url(Model.example_pathways[event_args["sender"].selected_value])
         self.set_ambition_levers()
         self.update_graphs()
 
     def reset_button_click(self, **event_args):
         """This method is called when the button is clicked"""
         self.pathways_dropdown.selected_value = None
-        self.set_url(
-            Model.default_inputs.copy(),
-            Model.default_start_years.copy(),
-            Model.default_end_years.copy(),
-        )
+        self.set_defaults()
         self.set_ambition_levers()
         self.update_graphs()
 
     def expert_toggle_click(self, **event_args):
         """This method is called when the button is clicked"""
         self.expert_label.visible = not self.expert_label.visible
+        if self.expert_label.visible:
+            self.expert_toggle.text = "Go back to 2050 Mode"
+        else:
+            self.expert_toggle.text = "Switch to 2100 Mode"
+            self.set_defaults(years_only=True)
+
         for group in self.lever_group_panel.get_components():
             for lever in group.lever_panel.get_components():
                 lever.years.visible = self.expert_label.visible
+        self.update_graphs()

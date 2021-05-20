@@ -35,10 +35,10 @@ def lever_groups():
 
 
 @anvil.server.callable
-def calculate(inputs, start_year=None, end_year=None):
+def calculate(inputs, start_year, end_year, expert_mode=False):
     solution = model.calculate(inputs, start_year, end_year)
     solution["output_emissions_sector"] = solution["output_emissions_sector"][-4::-1]
-    solution["x"] = list(range(start_year[0], end_year[0] + 5, 5))
+    solution["x"] = list(range(2015, 2105 if expert_mode else 2055, 5))
     return solution
 
 

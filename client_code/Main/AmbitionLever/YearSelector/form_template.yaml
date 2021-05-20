@@ -13,8 +13,10 @@ components:
     properties: {}
     name: start_year
     layout_properties: {grid_position: 'XFWSTA,UJUTII'}
+    event_bindings: {change: year_change}
   - type: DropDown
     properties: {}
     name: end_year
     layout_properties: {grid_position: 'XFWSTA,VPYFGE'}
+    event_bindings: {change: year_change}
 is_package: true

@@ -14,3 +14,8 @@ class YearSelector(YearSelectorTemplate):
         self.end_year.selected_value = "2050"
 
         self.visible = False
+
+    def year_change(self, **event_args):
+        """This method is called when the start or end year is changed"""
+        ambition_lever = self.parent.parent
+        ambition_lever.raise_event("x-refresh")
