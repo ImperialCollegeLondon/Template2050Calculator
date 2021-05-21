@@ -9,14 +9,14 @@ components:
   name: column_panel_1
   layout_properties: {grid_position: 'LXYILM,BTMJGK'}
   components:
-  - type: DropDown
+  - type: form:DSCY5LZM4DWODPJI:Slider
     properties: {}
     name: start_year
-    layout_properties: {grid_position: 'XFWSTA,UJUTII'}
+    layout_properties: {grid_position: 'XFWSTA,TGKDON'}
     event_bindings: {change: year_change}
-  - type: DropDown
+  - type: form:DSCY5LZM4DWODPJI:Slider
     properties: {}
     name: end_year
-    layout_properties: {grid_position: 'XFWSTA,VPYFGE'}
+    layout_properties: {grid_position: 'XFWSTA,SSHHGO'}
     event_bindings: {change: year_change}
 is_package: true
