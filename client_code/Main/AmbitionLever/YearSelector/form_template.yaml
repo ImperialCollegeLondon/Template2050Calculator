@@ -5,10 +5,14 @@ container:
     spacing_below: small, background: ''}
 components:
 - type: ColumnPanel
-  properties: {col_widths: '{}'}
+  properties: {col_widths: '{"ZOVFUP":10,"TGKDON":25,"SSHHGO":25,"KTPSOI":15}'}
   name: column_panel_1
-  layout_properties: {grid_position: 'LXYILM,BTMJGK'}
+  layout_properties: {grid_position: 'LXYILM,CYSHPZ'}
   components:
+  - type: Label
+    properties: {}
+    name: start_label
+    layout_properties: {grid_position: 'XFWSTA,ZOVFUP'}
   - type: form:DSCY5LZM4DWODPJI:Slider
     properties: {}
     name: start_year
@@ -19,4 +23,8 @@ components:
     name: end_year
     layout_properties: {grid_position: 'XFWSTA,SSHHGO'}
     event_bindings: {change: year_change}
+  - type: Label
+    properties: {}
+    name: end_label
+    layout_properties: {grid_position: 'XFWSTA,KTPSOI'}
 is_package: true

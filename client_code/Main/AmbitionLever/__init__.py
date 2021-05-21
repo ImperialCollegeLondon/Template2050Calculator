@@ -47,16 +47,16 @@ class AmbitionLever(AmbitionLeverTemplate):
 
     @property
     def start_year(self):
-        return int(self.years.start_year.selected_value)
+        return int(self.years.start_year.level)
 
     @start_year.setter
     def start_year(self, start_year):
-        self.years.start_year.selected_value = str(start_year)
+        self.years.start_year.level = str(start_year)
 
     @property
     def end_year(self):
-        return int(self.years.end_year.selected_value)
+        return int(self.years.end_year.level)
 
     @end_year.setter
     def end_year(self, end_year):
-        self.years.end_year.selected_value = str(end_year)
+        self.years.end_year.level = str(end_year)
