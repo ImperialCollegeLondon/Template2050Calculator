@@ -6,33 +6,33 @@ container:
 components:
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{"ZOVFUP":10,"TGKDON":25,"SSHHGO":25,"KTPSOI":15}',
-    spacing_below: none, background: ''}
+    wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none,
+    background: ''}
   name: column_panel_1
-  layout_properties: {grid_position: 'LXYILM,CYSHPZ'}
+  layout_properties: {grid_position: 'LXYILM,CYSHPZ', full_width_row: true}
   components:
   - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+    properties: {role: lever-label, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
       spacing_below: none, italic: false, background: '', bold: false, underline: false,
       icon: ''}
     name: start_label
-    layout_properties: {grid_position: 'XFWSTA,ZOVFUP'}
+    layout_properties: {grid_position: 'NAXTZQ,LZXNOB', full_width_row: true}
   - type: form:DSCY5LZM4DWODPJI:Slider
     properties: {}
     name: start_year
-    layout_properties: {grid_position: 'XFWSTA,TGKDON'}
+    layout_properties: {grid_position: 'NAXTZQ,PIYUJO', full_width_row: true}
     event_bindings: {change: year_change}
   - type: form:DSCY5LZM4DWODPJI:Slider
     properties: {}
     name: end_year
-    layout_properties: {grid_position: 'XFWSTA,SSHHGO'}
+    layout_properties: {grid_position: 'NAXTZQ,UMDOXC', full_width_row: true}
     event_bindings: {change: year_change}
   - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+    properties: {role: lever-label, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
       spacing_below: none, italic: false, background: '', bold: false, underline: false,
       icon: ''}
     name: end_label
-    layout_properties: {grid_position: 'XFWSTA,KTPSOI'}
+    layout_properties: {grid_position: 'NAXTZQ,GHYTNF', full_width_row: true}
 is_package: true

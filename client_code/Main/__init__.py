@@ -138,5 +138,5 @@ class Main(MainTemplate):
 
         for group in self.lever_group_panel.get_components():
             for lever in group.lever_panel.get_components():
-                lever.years.visible = self.expert_label.visible
+                lever.show_years(self.expert_label.visible)
         self.update_graphs()
