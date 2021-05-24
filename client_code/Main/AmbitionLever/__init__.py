@@ -13,7 +13,7 @@ class AmbitionLever(AmbitionLeverTemplate):
         data for arguments of `complete_init`.
         """
 
-        self.years = YearSelector()
+        self.show_years(False)
         self.complete_init(**self.item)
 
     def complete_init(

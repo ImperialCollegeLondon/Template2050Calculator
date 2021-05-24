@@ -21,6 +21,10 @@ components:
     properties: {}
     name: slider
     layout_properties: {grid_position: 'ZECWTP,GIAINH'}
+  - type: form:Main.AmbitionLever.YearSelector
+    properties: {}
+    name: custom_1
+    layout_properties: {}
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
