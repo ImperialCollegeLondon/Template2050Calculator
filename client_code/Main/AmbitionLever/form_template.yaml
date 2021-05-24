@@ -4,29 +4,34 @@ events: []
 item_type: {table_id: null}
 custom_component: true
 components:
-- type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-    spacing_below: small, background: ''}
-  name: column_panel_1
-  layout_properties: {grid_position: 'KSGOFE,PSPIOY', full_width_row: true}
+- type: FlowPanel
+  properties: {}
+  name: flow_panel_1
+  layout_properties: {grid_position: 'EVSFRP,FLLTHZ'}
   components:
-  - type: Label
-    properties: {role: lever-label, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
-      spacing_below: none, italic: false, background: '', bold: false, underline: false,
-      icon: ''}
-    name: label
-    layout_properties: {grid_position: 'TNYSIB,WRCAGD', full_width_row: true}
-    data_bindings: []
-  - type: form:Main.AmbitionLever.Levers
-    properties: {}
-    name: slider
-    layout_properties: {grid_position: 'TNYSIB,DDVWMK', width: 200, full_width_row: true}
+  - type: ColumnPanel
+    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+      spacing_below: small, background: ''}
+    name: column_panel_1
+    layout_properties: {grid_position: 'EVSFRP,PYOYUP', full_width_row: true, width: 300}
+    components:
+    - type: Label
+      properties: {role: lever-label, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: ''}
+      name: label
+      layout_properties: {grid_position: 'TNYSIB,WRCAGD', full_width_row: true}
+      data_bindings: []
+    - type: form:Main.AmbitionLever.Levers
+      properties: {}
+      name: slider
+      layout_properties: {grid_position: 'TNYSIB,DDVWMK', width: 200, full_width_row: true}
   - type: form:Main.AmbitionLever.YearSelector
     properties: {}
     name: years
-    layout_properties: {grid_position: 'TNYSIB,HHURBW', full_width_row: true}
+    layout_properties: {grid_position: 'EVSFRP,ILBTUQ', full_width_row: true}
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
