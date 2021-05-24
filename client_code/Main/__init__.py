@@ -135,6 +135,7 @@ class Main(MainTemplate):
         else:
             self.expert_toggle.text = "Switch to 2100 Mode"
             self.set_defaults(years_only=True)
+            self.set_ambition_levers()
 
         for group in self.lever_group_panel.get_components():
             for lever in group.lever_panel.get_components():
