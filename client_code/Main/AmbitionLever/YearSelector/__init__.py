@@ -6,8 +6,13 @@ class YearSelector(YearSelectorTemplate):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
 
+        self.start_year.slider_min = 2020
         self.end_year.slider_min = 2020
         self.start_year.slider_max = 2105
+        self.end_year.slider_max = 2105
+
+        self.end_year.step = 5
+        self.start_year.step = 5
 
         self.visible = False
 
