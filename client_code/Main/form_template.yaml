@@ -16,7 +16,9 @@ components:
   name: title
   layout_properties: {slot: title}
 - type: ColumnPanel
-  properties: {col_widths: '{"BITUCV":20,"PKRSVT":40}'}
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: small, spacing_above: small, col_widths: '{"BITUCV":25,"PKRSVT":35}',
+    spacing_below: small, background: ''}
   name: main_area
   layout_properties: {slot: default}
   components:
