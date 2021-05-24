@@ -3,13 +3,13 @@ container:
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
     spacing_below: small, background: ''}
+  event_bindings: {show: form_show}
 components:
-- type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none,
-    background: ''}
-  name: column_panel_1
-  layout_properties: {grid_position: 'LXYILM,CYSHPZ', full_width_row: true}
+- type: FlowPanel
+  properties: {role: null, spacing: medium, align: left, tooltip: '', border: '',
+    foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
+  name: flow_panel_1
+  layout_properties: {grid_position: 'BQYYOR,VTGSFE', full_width_row: true}
   components:
   - type: Label
     properties: {role: lever-label, align: left, tooltip: '', border: '', foreground: '',

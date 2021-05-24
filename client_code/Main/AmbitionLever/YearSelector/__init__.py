@@ -15,11 +15,19 @@ class YearSelector(YearSelectorTemplate):
         self.start_year.step = 5
 
         self.visible = False
-
-    def year_change(self, **event_args):
-        """This method is called when the start or end year is changed"""
+        
+    def update_text(self):
         self.start_label.text = str(self.start_year.level)
         self.end_label.text = str(self.end_year.level)
 
+    def year_change(self, **event_args):
+        """This method is called when the start or end year is changed"""
+        
+        self.update_text()
+
         ambition_lever = self.parent.parent
         ambition_lever.raise_event("x-refresh")
+
+    def form_show(self, **event_args):
+      """This method is called when the column panel is shown on the screen"""
+      self.update_text()

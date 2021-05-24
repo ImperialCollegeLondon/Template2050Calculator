@@ -4,10 +4,12 @@ events: []
 item_type: {table_id: null}
 custom_component: true
 components:
-- type: FlowPanel
-  properties: {}
-  name: panel
-  layout_properties: {grid_position: 'CITTTK,UQXYBY'}
+- type: ColumnPanel
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+    spacing_below: small, background: ''}
+  name: column_panel_1
+  layout_properties: {grid_position: 'KSGOFE,PSPIOY', full_width_row: true}
   components:
   - type: Label
     properties: {role: lever-label, align: left, tooltip: '', border: '', foreground: '',
@@ -15,16 +17,16 @@ components:
       spacing_below: none, italic: false, background: '', bold: false, underline: false,
       icon: ''}
     name: label
-    layout_properties: {grid_position: 'ZECWTP,YYJKZE'}
+    layout_properties: {grid_position: 'TNYSIB,WRCAGD', full_width_row: true}
     data_bindings: []
   - type: form:Main.AmbitionLever.Levers
     properties: {}
     name: slider
-    layout_properties: {grid_position: 'ZECWTP,GIAINH'}
+    layout_properties: {grid_position: 'TNYSIB,DDVWMK', width: 200, full_width_row: true}
   - type: form:Main.AmbitionLever.YearSelector
     properties: {}
     name: years
-    layout_properties: {}
+    layout_properties: {grid_position: 'TNYSIB,HHURBW', full_width_row: true}
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
