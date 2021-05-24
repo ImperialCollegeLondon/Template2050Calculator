@@ -33,6 +33,8 @@ roles:
   components: [Button]
 - name: lever-label
   components: [Label]
+- name: year-dropdown
+  components: [DropDown]
 color_scheme:
   preset_groups:
   - name: Primary Colour

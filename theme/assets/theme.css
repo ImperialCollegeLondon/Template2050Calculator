@@ -709,6 +709,12 @@ textarea.anvil-component {
     padding: 4px 4px;
 }
 
+.anvil-role-year-dropdown > .anvil-dropdown
+{
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
 .anvil-component select, .anvil-datepicker input { margin-bottom: 4px; }
 input.anvil-component.anvil-spacing-below-none { margin-bottom: 4px; }
 input.anvil-component.anvil-spacing-below-small { margin-bottom: 8px; }

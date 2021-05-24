@@ -16,7 +16,7 @@ components:
   name: title
   layout_properties: {slot: title}
 - type: ColumnPanel
-  properties: {col_widths: '{"BITUCV":15,"PKRSVT":45}'}
+  properties: {col_widths: '{"BITUCV":20,"PKRSVT":40}'}
   name: main_area
   layout_properties: {slot: default}
   components:
