@@ -23,7 +23,7 @@ components:
     layout_properties: {grid_position: 'ZECWTP,GIAINH'}
   - type: form:Main.AmbitionLever.YearSelector
     properties: {}
-    name: custom_1
+    name: years
     layout_properties: {}
 container:
   type: ColumnPanel

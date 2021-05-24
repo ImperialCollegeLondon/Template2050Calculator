@@ -1,6 +1,5 @@
 from ._anvil_designer import AmbitionLeverTemplate
 
-from .YearSelector import YearSelector
 
 class AmbitionLever(AmbitionLeverTemplate):
     def __init__(self, **properties):
@@ -13,7 +12,6 @@ class AmbitionLever(AmbitionLeverTemplate):
         data for arguments of `complete_init`.
         """
 
-        self.show_years(False)
         self.complete_init(**self.item)
 
     def complete_init(
@@ -38,12 +36,6 @@ class AmbitionLever(AmbitionLeverTemplate):
         for i, (level, tip) in enumerate(zip(self.slider.levels, tooltips[1:]), 1):
             level.tooltip = f"Ambition Level {i}:\n" + tip
         self.set_event_handler("x-refresh", event_handler)
-        
-    def show_years(self, show):
-        if show:
-            self.panel.add_component(self.years)
-        else:
-            self.years.remove_from_parent()
 
     @property
     def value(self):
