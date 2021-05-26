@@ -114,6 +114,7 @@ class Main(MainTemplate):
 
     def pathways_dropdown_change(self, **event_args):
         """This method is called when an item is selected from the dropdown"""
+        self.set_expert_mode(False)
         self.set_url(Model.example_pathways[event_args["sender"].selected_value])
         self.set_ambition_levers()
         self.update_graphs()
@@ -121,6 +122,7 @@ class Main(MainTemplate):
     def reset_button_click(self, **event_args):
         """This method is called when the button is clicked"""
         self.pathways_dropdown.selected_value = None
+        self.set_expert_mode(False)
         self.set_defaults()
         self.set_ambition_levers()
         self.update_graphs()
@@ -131,7 +133,11 @@ class Main(MainTemplate):
 
     def expert_toggle_click(self, **event_args):
         """This method is called when the button is clicked"""
-        if not self.expert_mode:
+        self.set_expert_mode(not self.expert_mode)
+        self.update_graphs()
+
+    def set_expert_mode(self, expert_mode):
+        if expert_mode:
             self.expert_toggle.text = "Go back to 2050 Mode"
             self.settings_title_card.add_component(self.expert_label)
         else:
@@ -142,5 +148,4 @@ class Main(MainTemplate):
 
         for group in self.lever_group_panel.get_components():
             for lever in group.lever_panel.get_components():
-                lever.show_years(self.expert_mode)
-        self.update_graphs()
+                lever.show_years(expert_mode)
