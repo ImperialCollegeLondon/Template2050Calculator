@@ -11,8 +11,6 @@ class YearSelector(YearSelectorTemplate):
         self.end_year.items = year_list
         self.start_year.items = year_list
 
-        self.visible = False
-
     def year_change(self, **event_args):
         """This method is called when the start or end year is changed"""
         ambition_lever = self.parent.parent

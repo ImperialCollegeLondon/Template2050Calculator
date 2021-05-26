@@ -1,4 +1,4 @@
-from anvil import get_url_hash, set_url_hash
+from anvil import Label, get_url_hash, set_url_hash
 
 from .. import Model
 from ._anvil_designer import MainTemplate
@@ -22,7 +22,7 @@ class Main(MainTemplate):
 
     def show(self, **event_args):
         """`show` event handler. Last function to be called."""
-        self.expert_label.visible = False
+        self.expert_label = Label(text="Start and End Year")
         self.expert_toggle.text = "Switch to 2100 Mode"
         self.select_figures()
         self.update_graphs()
@@ -42,9 +42,7 @@ class Main(MainTemplate):
             for lever in group.lever_panel.get_components()
         ]
         self.set_url(*zip(*inputs))
-        self.figures_panel.calculate(
-            *zip(*inputs), expert_mode=self.expert_label.visible
-        )
+        self.figures_panel.calculate(*zip(*inputs), expert_mode=self.expert_mode)
 
     def get_url_vals(self):
         """Get lever values from url, if available. Otherwise use defaults."""
@@ -127,17 +125,22 @@ class Main(MainTemplate):
         self.set_ambition_levers()
         self.update_graphs()
 
+    @property
+    def expert_mode(self):
+        return self.expert_label in self.settings_title_card.get_components()
+
     def expert_toggle_click(self, **event_args):
         """This method is called when the button is clicked"""
-        self.expert_label.visible = not self.expert_label.visible
-        if self.expert_label.visible:
+        if not self.expert_mode:
             self.expert_toggle.text = "Go back to 2050 Mode"
+            self.settings_title_card.add_component(self.expert_label)
         else:
             self.expert_toggle.text = "Switch to 2100 Mode"
+            self.expert_label.remove_from_parent()
             self.set_defaults(years_only=True)
             self.set_ambition_levers()
 
         for group in self.lever_group_panel.get_components():
             for lever in group.lever_panel.get_components():
-                lever.years.visible = self.expert_label.visible
+                lever.show_years(self.expert_mode)
         self.update_graphs()

@@ -4,35 +4,24 @@ events: []
 item_type: {table_id: null}
 custom_component: true
 components:
-- type: FlowPanel
+- type: DataRowPanel
   properties: {role: null, spacing: medium, align: left, tooltip: '', border: '',
     foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
-  name: flow_panel_1
+  name: panel
   layout_properties: {grid_position: 'ZYFNDP,DABWEW', full_width_row: true}
   components:
-  - type: ColumnPanel
-    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"YYJKZE":36,"GIAINH":34}',
-      spacing_below: small, background: ''}
-    name: column_panel_1
-    layout_properties: {grid_position: 'VCPHTS,HPGRLK', width: 400}
-    components:
-    - type: Label
-      properties: {role: lever-label, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
-        spacing_below: none, italic: false, background: '', bold: false, underline: false,
-        icon: ''}
-      name: label
-      layout_properties: {grid_position: 'ZECWTP,YYJKZE'}
-      data_bindings: []
-    - type: form:Main.AmbitionLever.Levers
-      properties: {}
-      name: slider
-      layout_properties: {grid_position: 'ZECWTP,GIAINH'}
-  - type: form:Main.AmbitionLever.YearSelector
+  - type: Label
+    properties: {role: lever-label, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+      spacing_below: none, italic: false, background: '', bold: false, underline: false,
+      icon: ''}
+    name: label
+    layout_properties: {grid_position: 'ZECWTP,YYJKZE'}
+    data_bindings: []
+  - type: form:Main.AmbitionLever.Levers
     properties: {}
-    name: years
-    layout_properties: {grid_position: 'ZECWTP,WBNOXS'}
+    name: slider
+    layout_properties: {grid_position: 'ZECWTP,GIAINH'}
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
