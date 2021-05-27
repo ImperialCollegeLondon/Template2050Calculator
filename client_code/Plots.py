@@ -54,9 +54,8 @@ def plot_line(plot, model_solution, output, title):
     model_output = model_solution[output]
     x = model_solution["x"]
     plot.data = [
-        _partial_scatter(x, y, name, mode="lines+markers")
-        for name, y in _prepare_rows(model_output, x)
-        if "total" not in name.lower()
+        _partial_scatter(x, y, name, mode="lines+markers", marker=dict(symbol=num))
+        for num, (name, y) in enumerate(_prepare_rows(model_output, x))
     ]
 
 
