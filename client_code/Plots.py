@@ -29,23 +29,33 @@ def plot_stacked_area(plot, model_solution, output, title):
     x = model_solution["x"]
 
     data = []
-    total = None
+    total = []
+    indirect = []
+    international = []
     for name, y in _prepare_rows(model_output, x):
-        print(name, all(val <= 0 for val in y))
         if "total" in name.lower():
-            total = _partial_scatter(
-                x, y, name, mode="lines", line=dict(width=4, color="black")
+            total.append(
+                _partial_scatter(
+                    x, y, name, mode="lines", line=dict(width=4, color="black")
+                )
+            )
+        elif "indirect" in name.lower():
+            indirect.append(
+                _partial_scatter(x, y, name=name, mode="lines", stackgroup="positive")
+            )
+        elif "international" in name.lower():
+            international.append(
+                _partial_scatter(x, y, name=name, mode="lines", stackgroup="positive")
             )
         elif all(val <= 0 for val in y):
             data.append(
-                _partial_scatter(x, y, name=name, mode="lines", stackgroup="two")
+                _partial_scatter(x, y, name=name, mode="lines", stackgroup="negative")
             )
         else:
             data.append(
-                _partial_scatter(x, y, name=name, mode="lines", stackgroup="one")
+                _partial_scatter(x, y, name=name, mode="lines", stackgroup="positive")
             )
-    if total:
-        data.append(total)
+    data += international + indirect + total
     plot.data = data
 
 
