@@ -38,6 +38,8 @@ class LeverGroup(LeverGroupTemplate):
         group.
         """
         levers = self.lever_panel.get_components()
+        for lever in levers:
+            lever.item["value"] = lever.value
         mean_value = sum(lever.value for lever in levers) / len(levers)
         self.group_lever.value = mean_value
         # now update model based on new values
@@ -50,6 +52,7 @@ class LeverGroup(LeverGroupTemplate):
         value = self.group_lever.value
         for lever in self.lever_panel.get_components():
             lever.value = value
+            lever.item["value"] = value
         # now update model based on new values
         main = get_open_form()
         main.update_graphs()
