@@ -25,6 +25,12 @@ class Main(MainTemplate):
         self.expert_label.role = "subheading"
         self.expert_toggle.text = "Switch to 2100 Mode"
         self.select_figures()
+        input_values = self.get_url_vals()
+        if (
+            input_values["start_years"] != Model.default_start_years
+            or input_values["end_years"] != Model.default_end_years
+        ):
+            self.set_expert_mode(True)
         self.update_graphs()
 
         self.title.text = translate("2050 Carbon Calculator")
