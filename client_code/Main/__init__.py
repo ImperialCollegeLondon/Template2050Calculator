@@ -48,14 +48,15 @@ class Main(MainTemplate):
     def get_url_vals(self):
         """Get lever values from url, if available. Otherwise use defaults."""
         url_hash = get_url_hash()
-        if not url_hash:
+        try:
+            return dict(
+                inputs=list(map(float, url_hash["inputs"].split("-"))),
+                start_years=list(map(int, url_hash["start_years"].split("-"))),
+                end_years=list(map(int, url_hash["end_years"].split("-"))),
+            )
+        except (ValueError, KeyError, TypeError):
             self.set_defaults()
-            url_hash = get_url_hash()
-        return dict(
-            inputs=list(map(float, url_hash["inputs"].split("-"))),
-            start_years=list(map(int, url_hash["start_years"].split("-"))),
-            end_years=list(map(int, url_hash["end_years"].split("-"))),
-        )
+            return self.get_url_vals()
 
     def set_url(self, inputs=None, start_years=None, end_years=None):
         """Set lever values in the url.
