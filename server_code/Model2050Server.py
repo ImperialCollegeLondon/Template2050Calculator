@@ -140,3 +140,15 @@ def default_start_years():
 @anvil.server.callable
 def default_end_years():
     return model.end_values_default()
+
+
+@anvil.server.callable
+def initial_values():
+    return (
+        lever_groups(),
+        layout(),
+        example_pathways(),
+        default_inputs(),
+        default_start_years(),
+        default_end_years(),
+    )
