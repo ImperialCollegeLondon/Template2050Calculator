@@ -16,9 +16,9 @@ class YearSelector(YearSelectorTemplate):
 
         if self.start_year.selected_value >= self.end_year.selected_value:
             if event_args["sender"] is self.start_year:
-                self.end_year.selected_value += 10
+                self.end_year.selected_value = self.start_year.selected_value + 5
             elif event_args["sender"] is self.end_year:
-                self.start_year.selected_value -= 10
+                self.start_year.selected_value = self.end_year.selected_value - 5
 
         ambition_lever = self.parent.parent
         ambition_lever.raise_event("x-refresh")
