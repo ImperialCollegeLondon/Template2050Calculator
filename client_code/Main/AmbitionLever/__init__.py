@@ -7,13 +7,13 @@ class AmbitionLever(AmbitionLeverTemplate):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
         self.set_event_handler("show", self.show)
+        self.years = YearSelector()
 
     def show(self, **event_args):
         """`show` event handler. Expects self.item to be populated with required
         data for arguments of `complete_init`.
         """
 
-        self.years = YearSelector()
         self.complete_init(**self.item)
 
     def complete_init(
@@ -39,16 +39,13 @@ class AmbitionLever(AmbitionLeverTemplate):
             level.tooltip = f"Ambition Level {i}:\n" + tip
         self.set_event_handler("x-refresh", event_handler)
 
-    def show_years(self, show):
-        if show:
-            self.panel.add_component(self.years)
-            self.slider.spacing_above = "medium"
-        else:
-            self.years.remove_from_parent()
-            self.slider.spacing_above = "none"
+    def show_years(self):
+        self.panel.add_component(self.years)
+        self.slider.spacing_above = "medium"
 
     @property
     def value(self):
+        self.item["value"] = self.slider.level
         return self.slider.level
 
     @value.setter
