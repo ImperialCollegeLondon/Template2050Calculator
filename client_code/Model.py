@@ -51,12 +51,15 @@ def process_layout_data(data):
     return layout
 
 
-lever_groups = anvil.server.call("lever_groups")
-layout = process_layout_data(anvil.server.call("layout"))
-example_pathways = anvil.server.call("example_pathways")
-default_inputs = anvil.server.call("default_inputs")
-default_start_years = anvil.server.call("default_start_years")
-default_end_years = anvil.server.call("default_end_years")
+(
+    lever_groups,
+    layout,
+    example_pathways,
+    default_inputs,
+    default_start_years,
+    default_end_years,
+) = anvil.server.call("initial_values")
+layout = process_layout_data(layout)
 
 language = "en"
 
