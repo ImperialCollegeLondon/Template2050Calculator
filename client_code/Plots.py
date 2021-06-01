@@ -27,11 +27,25 @@ def plot_stacked_area(plot, model_solution, output, title):
     format_plot(plot, title)
     model_output = model_solution[output]
     x = model_solution["x"]
-    plot.data = [
-        _partial_scatter(x, y, name=name, mode="lines", stackgroup="one")
-        for name, y in _prepare_rows(model_output, x)
-        if "total" not in name.lower()
-    ]
+
+    data = []
+    total = None
+    for name, y in _prepare_rows(model_output, x):
+        if "total" in name.lower():
+            total = _partial_scatter(
+                x, y, name, mode="lines", line=dict(width=4, color="black")
+            )
+        elif all(val <= 0 for val in y):
+            data.append(
+                _partial_scatter(x, y, name=name, mode="lines", stackgroup="two")
+            )
+        else:
+            data.append(
+                _partial_scatter(x, y, name=name, mode="lines", stackgroup="one")
+            )
+    if total:
+        data.append(total)
+    plot.data = data
 
 
 def plot_line(plot, model_solution, output, title):
@@ -39,9 +53,8 @@ def plot_line(plot, model_solution, output, title):
     model_output = model_solution[output]
     x = model_solution["x"]
     plot.data = [
-        _partial_scatter(x, y, name, mode="lines+markers")
-        for name, y in _prepare_rows(model_output, x)
-        if "total" not in name.lower()
+        _partial_scatter(x, y, name, mode="lines+markers", marker=dict(symbol=num))
+        for num, (name, y) in enumerate(_prepare_rows(model_output, x))
     ]
 
 
