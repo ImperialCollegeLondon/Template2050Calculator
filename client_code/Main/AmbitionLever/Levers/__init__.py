@@ -8,7 +8,6 @@ class Levers(LeversTemplate):
 
         # Any code you write here will run when the form opens.
         self.levels = [self.level_1, self.level_2, self.level_3, self.level_4]
-        self.level = 1
 
     def level_click(self, **event_args):
         """This method is called when the lever is clicked"""

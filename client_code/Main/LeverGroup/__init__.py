@@ -10,15 +10,19 @@ class LeverGroup(LeverGroupTemplate):
 
         levers = self.item["levers"]
         inputs = self.item["inputs"]
+        start_years = self.item["start_years"]
+        end_years = self.item["end_years"]
         self.lever_panel.items = [
             dict(
                 name=name,
                 tooltips=tooltips,
                 value=value,
                 event_handler=self.lever_clicked,
+                start_year=start_year,
+                end_year=end_year,
             )
-            for name, tooltips, value in zip(
-                levers["names"], levers["tooltips"], inputs
+            for name, tooltips, value, start_year, end_year in zip(
+                levers["names"], levers["tooltips"], inputs, start_years, end_years
             )
         ]
 
@@ -38,6 +42,8 @@ class LeverGroup(LeverGroupTemplate):
         group.
         """
         levers = self.lever_panel.get_components()
+        for lever in levers:
+            lever.item["value"] = lever.value
         mean_value = sum(lever.value for lever in levers) / len(levers)
         self.group_lever.value = mean_value
         # now update model based on new values
@@ -50,6 +56,7 @@ class LeverGroup(LeverGroupTemplate):
         value = self.group_lever.value
         for lever in self.lever_panel.get_components():
             lever.value = value
+            lever.item["value"] = value
         # now update model based on new values
         main = get_open_form()
         main.update_graphs()

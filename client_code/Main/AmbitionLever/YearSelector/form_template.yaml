@@ -1,0 +1,53 @@
+container:
+  type: ColumnPanel
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}',
+    spacing_below: none, background: ''}
+components:
+- type: DropDown
+  properties:
+    role: null
+    align: full
+    tooltip: ''
+    placeholder: ''
+    border: ''
+    enabled: true
+    foreground: ''
+    items: []
+    visible: true
+    font_size: 12
+    font: ''
+    spacing_above: none
+    spacing_below: none
+    italic: false
+    background: ''
+    bold: false
+    underline: false
+    include_placeholder: false
+  name: start_year
+  layout_properties: {grid_position: 'XFWSTA,UJUTII'}
+  event_bindings: {change: year_change}
+- type: DropDown
+  properties:
+    role: null
+    align: full
+    tooltip: ''
+    placeholder: ''
+    border: ''
+    enabled: true
+    foreground: ''
+    items: []
+    visible: true
+    font_size: 12
+    font: ''
+    spacing_above: none
+    spacing_below: none
+    italic: false
+    background: ''
+    bold: false
+    underline: false
+    include_placeholder: false
+  name: end_year
+  layout_properties: {grid_position: 'XFWSTA,VPYFGE'}
+  event_bindings: {change: year_change}
+is_package: true

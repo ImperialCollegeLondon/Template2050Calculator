@@ -31,7 +31,6 @@ def plot_stacked_area(plot, model_solution, output, title):
     data = []
     total = None
     for name, y in _prepare_rows(model_output, x):
-        print(name, all(val <= 0 for val in y))
         if "total" in name.lower():
             total = _partial_scatter(
                 x, y, name, mode="lines", line=dict(width=4, color="black")

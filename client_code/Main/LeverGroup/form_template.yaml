@@ -23,7 +23,7 @@ components:
   properties: {role: null, tooltip: '', border: '', foreground: '', items: null, visible: true,
     spacing_above: small, spacing_below: small, item_template: Main.AmbitionLever,
     background: ''}
-  event_bindings: {"x-refresh": lever_clicked}
+  event_bindings: {x-refresh: lever_clicked}
   name: lever_panel
   layout_properties: {grid_position: 'TUISJM,WXUHPL'}
 is_package: true

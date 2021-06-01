@@ -16,19 +16,17 @@ components:
   name: title
   layout_properties: {slot: title}
 - type: ColumnPanel
-  properties: {col_widths: '{"BITUCV":15,"PKRSVT":45}'}
+  properties: {col_widths: '{"BITUCV":20,"PKRSVT":40}'}
   name: main_area
   layout_properties: {slot: default}
   components:
-  - type: ColumnPanel
-    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-      spacing_below: small, background: ''}
+  - type: LinearPanel
+    properties: {}
     name: sliders_column
     layout_properties: {grid_position: 'GYKMWG,BITUCV', slot: left-nav, full_width_row: true}
     components:
     - type: ColumnPanel
-      properties: {role: card, col_widths: '{"OXNENJ":35,"BHLNYW":25}'}
+      properties: {role: card, col_widths: '{}'}
       name: pathways_card
       layout_properties: {grid_position: 'QSNDWO,JOEWHC'}
       components:
@@ -63,12 +61,9 @@ components:
         name: reset_button
         layout_properties: {grid_position: 'PLRDHP,BHLNYW'}
         event_bindings: {click: reset_button_click}
-    - type: ColumnPanel
-      properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-        wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"EUBTYM":40,"WLDFBB":20}',
-        spacing_below: none, background: ''}
-      name: card_3
-      layout_properties: {grid_position: 'CWGXZX,IUXNYN', full_width_row: false}
+    - type: FlowPanel
+      properties: {role: card, align: justify}
+      name: settings_title_card
       components:
       - type: Label
         properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
@@ -92,7 +87,15 @@ components:
       layout_properties: {grid_position: 'IPNHGZ,SIGQFA', full_width_row: false}
       data_bindings: []
       event_bindings: {}
-  - type: ColumnPanel
+    - type: Button
+      properties: {role: primary-color, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Switch to 2100 Mode, font_size: null,
+        font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: expert_toggle
+      layout_properties: {grid_position: 'LRIAJT,HLZOEC'}
+      event_bindings: {click: expert_toggle_click}
+  - type: LinearPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
       wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
       spacing_below: small, background: ''}

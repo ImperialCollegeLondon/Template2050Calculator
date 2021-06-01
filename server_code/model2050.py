@@ -18,6 +18,11 @@ class Model2050:
         self.lever_start = self._wrap_input_function(module.set_input_lever_start)
         self.lever_end = self._wrap_input_function(module.set_input_lever_end)
 
+        self.start_values_default = self._wrap_output_function_1d(
+            module.input_lever_start
+        )
+        self.end_values_default = self._wrap_output_function_1d(module.input_lever_end)
+
         # extract getter functions that contain output data and wrap them for
         # convenience
         getter_matches = list(self._iter_matching_names(module, GETTER_REGEX))
@@ -105,6 +110,14 @@ class Model2050:
 
         def wrapper():
             return self._values_from_range(func())
+
+        return wrapper
+
+    def _wrap_output_function_1d(self, func):
+        """Wrap a model output `func` such that values are returned as a list."""
+
+        def wrapper():
+            return [v[0] for v in self._values_from_range(func())]
 
         return wrapper
 

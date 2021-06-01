@@ -29,16 +29,15 @@ with open(Path(__file__).absolute().parent.parent / "web_outputs.json") as f:
     TABLE = json.load(f)
 
 
-@anvil.server.callable
 def lever_groups():
     return TABLE["output_lever_names_grouped"]
 
 
 @anvil.server.callable
-def calculate(inputs):
-    solution = model.calculate(inputs)
+def calculate(inputs, start_year, end_year, expert_mode=False):
+    solution = model.calculate(inputs, start_year, end_year)
     solution["output_emissions_sector"] = solution["output_emissions_sector"][:-2]
-    solution["x"] = list(range(2015, 2055, 5))
+    solution["x"] = list(range(2015, 2105 if expert_mode else 2055, 5))
     return solution
 
 
@@ -53,7 +52,6 @@ def translate(locale, text):
     return i18n.t(text)
 
 
-@anvil.server.callable
 def layout():
     return TABLE["weboutputs_summary_table"]
 
@@ -122,11 +120,29 @@ def map(data):
     return fig
 
 
-@anvil.server.callable
 def example_pathways():
     return TABLE["example_pathways"]
 
 
-@anvil.server.callable
-def inputs():
+def default_inputs():
     return model.input_values_default()
+
+
+def default_start_years():
+    return model.start_values_default()
+
+
+def default_end_years():
+    return model.end_values_default()
+
+
+@anvil.server.callable
+def initial_values():
+    return (
+        lever_groups(),
+        layout(),
+        example_pathways(),
+        default_inputs(),
+        default_start_years(),
+        default_end_years(),
+    )
