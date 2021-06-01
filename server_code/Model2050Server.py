@@ -29,7 +29,6 @@ with open(Path(__file__).absolute().parent.parent / "web_outputs.json") as f:
     TABLE = json.load(f)
 
 
-@anvil.server.callable
 def lever_groups():
     return TABLE["output_lever_names_grouped"]
 
@@ -53,7 +52,6 @@ def translate(locale, text):
     return i18n.t(text)
 
 
-@anvil.server.callable
 def layout():
     return TABLE["weboutputs_summary_table"]
 
@@ -122,22 +120,18 @@ def map(data):
     return fig
 
 
-@anvil.server.callable
 def example_pathways():
     return TABLE["example_pathways"]
 
 
-@anvil.server.callable
 def default_inputs():
     return model.input_values_default()
 
 
-@anvil.server.callable
 def default_start_years():
     return model.start_values_default()
 
 
-@anvil.server.callable
 def default_end_years():
     return model.end_values_default()
 
