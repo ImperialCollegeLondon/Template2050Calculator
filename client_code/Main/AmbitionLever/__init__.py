@@ -42,8 +42,10 @@ class AmbitionLever(AmbitionLeverTemplate):
     def show_years(self, show):
         if show:
             self.panel.add_component(self.years)
+            self.slider.spacing_above = "medium"
         else:
             self.years.remove_from_parent()
+            self.slider.spacing_above = "none"
 
     @property
     def value(self):

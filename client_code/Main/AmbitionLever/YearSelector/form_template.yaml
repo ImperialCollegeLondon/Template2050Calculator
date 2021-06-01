@@ -1,8 +1,8 @@
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-    spacing_below: small, background: ''}
+    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}',
+    spacing_below: none, background: ''}
 components:
 - type: DropDown
   properties:
@@ -15,7 +15,7 @@ components:
     foreground: ''
     items: []
     visible: true
-    font_size: null
+    font_size: 12
     font: ''
     spacing_above: none
     spacing_below: none
@@ -38,7 +38,7 @@ components:
     foreground: ''
     items: []
     visible: true
-    font_size: null
+    font_size: 12
     font: ''
     spacing_above: none
     spacing_below: none
