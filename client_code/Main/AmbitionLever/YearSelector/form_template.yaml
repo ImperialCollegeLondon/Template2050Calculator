@@ -6,7 +6,7 @@ container:
 components:
 - type: DropDown
   properties:
-    role: year-dropdown
+    role: null
     align: full
     tooltip: ''
     placeholder: ''
@@ -29,7 +29,7 @@ components:
   event_bindings: {change: year_change}
 - type: DropDown
   properties:
-    role: year-dropdown
+    role: null
     align: full
     tooltip: ''
     placeholder: ''
