@@ -35,10 +35,10 @@ def lever_groups():
 
 
 @anvil.server.callable
-def calculate(inputs):
-    solution = model.calculate(inputs)
+def calculate(inputs, start_year, end_year, expert_mode=False):
+    solution = model.calculate(inputs, start_year, end_year)
     solution["output_emissions_sector"] = solution["output_emissions_sector"][-4::-1]
-    solution["x"] = list(range(2015, 2055, 5))
+    solution["x"] = list(range(2015, 2105 if expert_mode else 2055, 5))
     return solution
 
 
@@ -128,5 +128,15 @@ def example_pathways():
 
 
 @anvil.server.callable
-def inputs():
+def default_inputs():
     return model.input_values_default()
+
+
+@anvil.server.callable
+def default_start_years():
+    return model.start_values_default()
+
+
+@anvil.server.callable
+def default_end_years():
+    return model.end_values_default()
