@@ -63,7 +63,7 @@ def map(data):
     fig = go.Figure()
 
     # the below will need to be configurable parameters
-    start_draw_lat = 57.0
+    start_draw_lat = 59.5
     start_draw_lon = -3.346
     padding = 0.20  # degrees
     map_center_lat = 55.3781
