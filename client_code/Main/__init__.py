@@ -155,6 +155,9 @@ class Main(MainTemplate):
 
         for group in self.lever_group_panel.get_components():
             if not expert_mode:
+                # Reset lever_panel to return to original (non-expert) layout.
+                # lever_panel.items only includes the label and lever buttons, assigning
+                # it re-initialises the levers in the panel.
                 group.lever_panel.items = group.lever_panel.items
                 continue
             for lever in group.lever_panel.get_components():
