@@ -37,15 +37,16 @@ class LeverGroup(LeverGroupTemplate):
         self.lever_panel.visible = False
         self.lever_spacer.visible = False
 
+    def lever_updated(self):
+        levers = self.lever_panel.get_components()
+        mean_value = sum(lever.value for lever in levers) / len(levers)
+        self.group_lever.value = mean_value
+
     def lever_clicked(self, **event_args):
         """`x-refresh` event handler used for ambition levers that are part of the
         group.
         """
-        levers = self.lever_panel.get_components()
-        for lever in levers:
-            lever.item["value"] = lever.value
-        mean_value = sum(lever.value for lever in levers) / len(levers)
-        self.group_lever.value = mean_value
+        self.lever_updated()
         # now update model based on new values
         main = get_open_form()
         main.update_graphs()
@@ -56,7 +57,6 @@ class LeverGroup(LeverGroupTemplate):
         value = self.group_lever.value
         for lever in self.lever_panel.get_components():
             lever.value = value
-            lever.item["value"] = value
         # now update model based on new values
         main = get_open_form()
         main.update_graphs()

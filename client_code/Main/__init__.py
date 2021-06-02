@@ -14,7 +14,6 @@ class Main(MainTemplate):
         self.init_components(**properties)
 
         # Any code you write here will run when the form opens.
-
         self.set_ambition_levers()
         self.pathways_dropdown.items = Model.example_pathways.keys()
 
@@ -93,28 +92,37 @@ class Main(MainTemplate):
 
     def set_ambition_levers(self):
         input_values = self.get_url_vals()
-        self.lever_group_panel.items = [
-            {
-                "name": name,
-                "levers": levers,
-                "inputs": [
-                    input_values["inputs"].pop(0) for _ in range(len(levers["names"]))
-                ],
-                "start_years": [
-                    input_values["start_years"].pop(0)
-                    for _ in range(len(levers["names"]))
-                ],
-                "end_years": [
-                    input_values["end_years"].pop(0)
-                    for _ in range(len(levers["names"]))
-                ],
-            }
-            for name, levers in Model.lever_groups.items()
-        ]
+        if self.lever_group_panel.items is None:
+            self.lever_group_panel.items = [
+                {
+                    "name": name,
+                    "levers": levers,
+                    "inputs": [
+                        input_values["inputs"].pop(0)
+                        for _ in range(len(levers["names"]))
+                    ],
+                    "start_years": [
+                        input_values["start_years"].pop(0)
+                        for _ in range(len(levers["names"]))
+                    ],
+                    "end_years": [
+                        input_values["end_years"].pop(0)
+                        for _ in range(len(levers["names"]))
+                    ],
+                }
+                for name, levers in Model.lever_groups.items()
+            ]
+        else:
+            for group in self.lever_group_panel.get_components():
+                for lever in group.lever_panel.get_components():
+                    lever.value = input_values["inputs"].pop(0)
+                    lever.start_year = input_values["start_years"].pop(0)
+                    lever.end_year = input_values["end_years"].pop(0)
+                group.lever_updated()
 
     def pathways_dropdown_change(self, **event_args):
         """This method is called when an item is selected from the dropdown"""
-        self.set_expert_mode(False)
+        self.set_defaults(years_only=True)
         self.set_url(Model.example_pathways[event_args["sender"].selected_value])
         self.set_ambition_levers()
         self.update_graphs()
@@ -122,7 +130,6 @@ class Main(MainTemplate):
     def reset_button_click(self, **event_args):
         """This method is called when the button is clicked"""
         self.pathways_dropdown.selected_value = None
-        self.set_expert_mode(False)
         self.set_defaults()
         self.set_ambition_levers()
         self.update_graphs()
@@ -147,5 +154,11 @@ class Main(MainTemplate):
             self.set_ambition_levers()
 
         for group in self.lever_group_panel.get_components():
+            if not expert_mode:
+                # Reset lever_panel to return to original (non-expert) layout.
+                # lever_panel.items only includes the label and lever buttons, assigning
+                # it re-initialises the levers in the panel.
+                group.lever_panel.items = group.lever_panel.items
+                continue
             for lever in group.lever_panel.get_components():
-                lever.show_years(expert_mode)
+                lever.show_years()
