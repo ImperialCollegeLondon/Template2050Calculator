@@ -55,3 +55,16 @@ The Web App will be available in your browser at `localhost:3030`.
 #### Azure Hosted Web App
 
 More deetails to come. Much the same as local hosting, but involves uploading the compiled model to Azure and setting up some configuration and a domain name in Azure.
+
+## Customising
+
+This template is fit for use as a fully functioning Web App out of the box, however is intended to be taken and customised. There are two main ways to edit what appears in your calculator:
+1. Editing the metadata in the spreadsheet.
+2. Editing the Anvil app itself.
+
+The spreadsheet metadata includes:
+ - WebOutputs Summary Table: graph title, postition, tab, subtab, axis unit, named range
+ - Example Pathways
+ - Output Lever details: names, groups, tooltips
+
+The Anvil App can be edited by using the online Anvil editor. This will require making a free Anvil account and creating your own project then force-pushing this repo to that project. Note: you will need to create a `master` branch and push that to Anvil.
