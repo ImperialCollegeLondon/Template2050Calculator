@@ -24,3 +24,7 @@ jobs:
         python -m pip install -r requirements-dev.txt
     - name: Test with pytest
       run: python -m pytest
+    - name: Build documentation
+      run: |
+        cd docs
+        make
