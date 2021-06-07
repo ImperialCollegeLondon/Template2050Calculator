@@ -27,4 +27,4 @@ jobs:
     - name: Build documentation
       run: |
         cd docs
-        make
+        make html
