@@ -16,11 +16,11 @@ def process_layout_data(data):
     return_value[tab][sub_tab][position] = GraphInfo instance
 
     where:
-    tab = string referencing an output tab
-    sub_tab = string referencing an output sub-tab
-    position = one of (1-5, "Top", "Bottom", "Page") indicating the position of
-               an output within a sub-tab
-    GraphInfo instance = The relevant metadata required to built an output
+        - tab = string referencing an output tab
+        - sub_tab = string referencing an output sub-tab
+        - position = one of (1-5, "Top", "Bottom", "Page") indicating the position of
+          an output within a sub-tab
+        - GraphInfo instance = The relevant metadata required to built an output
     """
     layout = OrderedDict()
     for tab, sub_tab, pos, title, named_ranges, plot_type in zip(
@@ -51,15 +51,16 @@ def process_layout_data(data):
     return layout
 
 
-(
-    lever_groups,
-    layout,
-    example_pathways,
-    default_inputs,
-    default_start_years,
-    default_end_years,
-) = anvil.server.call("initial_values")
-layout = process_layout_data(layout)
+if __name__ == "Template2050Calculator.Model":
+    (
+        lever_groups,
+        layout,
+        example_pathways,
+        default_inputs,
+        default_start_years,
+        default_end_years,
+    ) = anvil.server.call("initial_values")
+    layout = process_layout_data(layout)
 
 language = "en"
 

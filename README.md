@@ -1,7 +1,7 @@
 # Template2050Calculator
 A template for automatically converting [2050 Calculator](https://www.imperial.ac.uk/2050-calculator) models into web applications. The layout is based off the [UK Mackay Carbon Calculator](https://mackaycarboncalculator.beis.gov.uk/overview/emissions-and-primary-energy-consumption) and is a simple design that can be customised further. It uses [Anvil](https://anvil.works) to create the web app using Python.
 
-## Process
+## Web App Setup Process
 
 To go from a functioning excel model to a web app requires 2 main steps: convert the model into an executable, run and host the web app. There are a few parts to each step, detailed below.
 
@@ -54,9 +54,9 @@ The Web App will be available in your browser at `localhost:3030`.
 
 #### Azure Hosted Web App
 
-More deetails to come. Much the same as local hosting, but involves uploading the compiled model to Azure and setting up some configuration and a domain name in Azure.
+More details to come. Much the same as local hosting, but involves uploading the compiled model to Azure and setting up some configuration and a domain name in Azure.
 
-## Customising
+## Customising the Web App
 
 This template is fit for use as a fully functioning Web App out of the box, however is intended to be taken and customised. There are two main ways to edit what appears in your calculator:
 1. Editing the metadata in the spreadsheet.

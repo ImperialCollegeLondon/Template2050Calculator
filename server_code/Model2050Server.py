@@ -8,7 +8,8 @@ import i18n
 from . import interface2050
 from .model2050 import Model2050
 
-model = Model2050(interface2050)
+if __name__ == "Template2050Calculator.Model2050Server":
+    model = Model2050(interface2050)
 
 EARTH_RADIUS_KM = 6371
 

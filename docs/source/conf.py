@@ -31,7 +31,13 @@ author = "Research Computing Service, Imperial College London"
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ["myst_parser"]
+extensions = ["myst_parser", "sphinx.ext.autodoc", "sphinx.ext.napoleon"]
+autodoc_mock_imports = [
+    "server_code.interface2050",
+    "anvil",
+    "client_code.Main._anvil_designer",
+    "client_code.Main.FiguresPanel._anvil_designer",
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
