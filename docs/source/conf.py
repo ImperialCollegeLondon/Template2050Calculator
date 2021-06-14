@@ -37,6 +37,10 @@ autodoc_mock_imports = [
     "anvil",
     "client_code.Main._anvil_designer",
     "client_code.Main.FiguresPanel._anvil_designer",
+    "client_code.Main.LeverGroup._anvil_designer",
+    "client_code.Main.AmbitionLever._anvil_designer",
+    "client_code.Main.AmbitionLever.YearSelector._anvil_designer",
+    "client_code.Main.AmbitionLever.Levers._anvil_designer",
 ]
 
 # Add any paths that contain templates here, relative to this directory.

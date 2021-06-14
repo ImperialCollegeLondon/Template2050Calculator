@@ -29,6 +29,7 @@ class Main(MainTemplate):
         self.title.text = Model.translate("2050 Carbon Calculator")
 
     def select_figures(self):
+        """Initialise the FiguresPanel and add it to the plot area of the app."""
         self.figures_panel = FiguresPanel()
         self.plot_area.clear()
         self.plot_area.add_component(self.figures_panel)
@@ -77,7 +78,12 @@ class Main(MainTemplate):
         set_url_hash(dict(inputs=inputs, start_years=start_years, end_years=end_years))
 
     def set_defaults(self, years_only=False):
-        """Set the url values to their defaults"""
+        """Set the url values (for levers and years) to their defaults.
+
+        Args:
+            years_only (bool): True when only changing the start and end year values and
+                leaving the lever values. False also sets levers to defaults.
+        """
         if years_only:
             self.set_url(
                 start_years=Model.default_start_years.copy(),
@@ -91,6 +97,11 @@ class Main(MainTemplate):
             )
 
     def set_ambition_levers(self):
+        """Set the values of the AmbitionLevers to match the urls.
+
+        Updates the values if the LeverGroup is already populated, otherwise populates
+        the LeverGroup.
+        """
         input_values = self.get_url_vals()
         if self.lever_group_panel.items is None:
             self.lever_group_panel.items = [
@@ -136,14 +147,25 @@ class Main(MainTemplate):
 
     @property
     def expert_mode(self):
+        """A boolean property of the current app mode. True if in Expert Mode."""
         return self.expert_label in self.settings_title_card.get_components()
 
     def expert_toggle_click(self, **event_args):
-        """This method is called when the button is clicked"""
+        """This method is called when the `expert_toggle` button is clicked."""
         self.set_expert_mode(not self.expert_mode)
         self.update_graphs()
 
     def set_expert_mode(self, expert_mode):
+        """Change app mode into Expert or back to Standard Mode.
+
+        Expert Mode gives the option to select the start and end years for each Ambition
+        Lever and extends the graphs into 2100. Standard Mode resets start and end year
+        values to defaults and removes the ability to edit them and returns the year max
+        to 2050.
+
+        Args:
+            expert_mode (bool): True when converting the app into Expert Mode.
+        """
         if expert_mode:
             self.expert_toggle.text = "Go back to 2050 Mode"
             self.settings_title_card.add_component(self.expert_label)

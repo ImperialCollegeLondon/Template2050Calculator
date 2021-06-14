@@ -41,6 +41,14 @@ class FiguresPanel(FiguresPanelTemplate):
         return button
 
     def calculate(self, inputs, start_year, end_year, expert_mode=False):
+        """Run the model based on new inputs and build the graphs and warnings.
+
+        Args:
+        inputs (list): A list of all the ambition lever values.
+        start_year (list): A list of the start year for each ambition lever.
+        end_year (list): A list of the end year for each ambition lever.
+        expert_mode (bool, optional): Flag to run in expert mode. Defaults to False.
+        """
         self.model_solution = anvil.server.call(
             "calculate", inputs, start_year, end_year, expert_mode
         )

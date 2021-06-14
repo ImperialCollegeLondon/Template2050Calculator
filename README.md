@@ -14,7 +14,7 @@ In order for the spreadsheet to be converted into a model, it requires certain n
  - Outputs - `output.lever.names`, plus whatever outputs (graphs) are desired and detailed in the summary table. Note: the Mackay Calculator has a typo in the summary table, change the contents of cell `WebOutputs!G771` to `output.land.map.numberunits`
 
 #### Convert spreadsheet to executable
-Clone the [calc2050_spreadsheet_converter](https://github.com/ImperialCollegeLondon/calc2050_spreadsheet_converter) with:
+Clone the [Calc2050 Spreadsheet Converter](https://github.com/ImperialCollegeLondon/calc2050_spreadsheet_converter) with:
 ```bash
 git clone https://github.com/ImperialCollegeLondon/calc2050_spreadsheet_converter.git
 ```

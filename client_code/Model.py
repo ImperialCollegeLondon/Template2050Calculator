@@ -21,6 +21,9 @@ def process_layout_data(data):
         - position = one of (1-5, "Top", "Bottom", "Page") indicating the position of
           an output within a sub-tab
         - GraphInfo instance = The relevant metadata required to built an output
+
+    Returns:
+        OrderedDict: Structured data of the layout of the figures in the web app.
     """
     layout = OrderedDict()
     for tab, sub_tab, pos, title, named_ranges, plot_type in zip(
@@ -63,8 +66,20 @@ if __name__ == "Template2050Calculator.Model":
     layout = process_layout_data(layout)
 
 language = "en"
+"""The language for the web app. The `locale` in
+:meth:`server_code.Model2050Server.translate`.
+"""
 
 
 # Use this to translate - later add a registration so all text can be translated at once
 def translate(text):
+    """Translate the text into the already selected language. Calls server function
+    :meth:`server_code.Model2050Server.translate`.
+
+    Args:
+        text (str): The text to be translated.
+
+    Returns:
+        str: The translated text.
+    """
     return anvil.server.call("translate", language, text)
