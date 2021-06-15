@@ -41,7 +41,7 @@ def test_model(patch_server_call):
 
 
 def test_layout():
-    from client_code.Model import GraphInfo, layout
+    from client_code.Model import GraphInfo, init_vals
 
     overview = OrderedDict(
         (
@@ -94,4 +94,4 @@ def test_layout():
         )
     )
 
-    assert overview == layout["Overview"]
+    assert overview == init_vals["layout"]["Overview"]
