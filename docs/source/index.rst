@@ -11,7 +11,6 @@ Template2050Calculator Documentation
    :caption: Contents:
 
    readme
-   anvil
    client-modules
    server-modules
 
