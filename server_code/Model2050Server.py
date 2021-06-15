@@ -8,12 +8,16 @@ import i18n
 from . import interface2050
 from .model2050 import Model2050
 
-model: Model2050
-"""The interface for running the model."""
-if __name__ == "Template2050Calculator.Model2050Server":
-    model = Model2050(interface2050)
-
 EARTH_RADIUS_KM = 6371
+
+
+def model():
+    """The interface for running the model.
+
+    Returns:
+        Model2050: An initialised model.
+    """
+    return Model2050(interface2050)
 
 
 def arc_length_to_angle(length, radius):
@@ -49,7 +53,7 @@ def calculate(inputs, start_year, end_year, expert_mode=False):
             x axis (dictionary key is "x"). In 2050 mode the x axis will be from 2015 to
             2050 (inclusive) in steps of 5 years. 2100 mode will extend it to 2100.
     """
-    solution = model.calculate(inputs, start_year, end_year)
+    solution = model().calculate(inputs, start_year, end_year)
     solution["output_emissions_sector"] = solution["output_emissions_sector"][:-2]
     solution["x"] = list(range(2015, 2105 if expert_mode else 2055, 5))
     return solution
@@ -171,17 +175,17 @@ def example_pathways():
 
 def default_inputs():
     """Return the default lever values of the model."""
-    return model.input_values_default()
+    return model().input_values_default()
 
 
 def default_start_years():
     """Return the default start year values of the model."""
-    return model.start_values_default()
+    return model().start_values_default()
 
 
 def default_end_years():
     """Return the default end year values of the model."""
-    return model.end_values_default()
+    return model().end_values_default()
 
 
 @anvil.server.callable
