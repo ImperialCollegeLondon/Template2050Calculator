@@ -190,11 +190,11 @@ def initial_values():
 
     Callable from the client side of the web app.
     """
-    return (
-        lever_groups(),
-        layout(),
-        example_pathways(),
-        default_inputs(),
-        default_start_years(),
-        default_end_years(),
+    return dict(
+        lever_groups=lever_groups(),
+        layout=layout(),
+        example_pathways=example_pathways(),
+        default_inputs=default_inputs(),
+        default_start_years=default_start_years(),
+        default_end_years=default_end_years(),
     )

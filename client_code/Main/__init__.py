@@ -1,11 +1,8 @@
 from anvil import Label, get_url_hash, set_url_hash
 
-from .. import Model
+from ..Model import init_vals, translate
 from ._anvil_designer import MainTemplate
 from .FiguresPanel import FiguresPanel
-
-# Uncomment for Thai language
-# Model.language = "th"
 
 
 class Main(MainTemplate):
@@ -15,7 +12,7 @@ class Main(MainTemplate):
 
         # Any code you write here will run when the form opens.
         self.set_ambition_levers()
-        self.pathways_dropdown.items = Model.example_pathways.keys()
+        self.pathways_dropdown.items = init_vals["example_pathways"].keys()
 
         self.set_event_handler("show", self.show)
 
@@ -26,7 +23,7 @@ class Main(MainTemplate):
         self.select_figures()
         self.update_graphs()
 
-        self.title.text = Model.translate("2050 Carbon Calculator")
+        self.title.text = translate("2050 Carbon Calculator")
 
     def select_figures(self):
         """Initialise the FiguresPanel and add it to the plot area of the app."""
@@ -86,14 +83,14 @@ class Main(MainTemplate):
         """
         if years_only:
             self.set_url(
-                start_years=Model.default_start_years.copy(),
-                end_years=Model.default_end_years.copy(),
+                start_years=init_vals["default_start_years"].copy(),
+                end_years=init_vals["default_end_years"].copy(),
             )
         else:
             self.set_url(
-                Model.default_inputs.copy(),
-                Model.default_start_years.copy(),
-                Model.default_end_years.copy(),
+                init_vals["default_inputs"].copy(),
+                init_vals["default_start_years"].copy(),
+                init_vals["default_end_years"].copy(),
             )
 
     def set_ambition_levers(self):
@@ -121,7 +118,7 @@ class Main(MainTemplate):
                         for _ in range(len(levers["names"]))
                     ],
                 }
-                for name, levers in Model.lever_groups.items()
+                for name, levers in init_vals["lever_groups"].items()
             ]
         else:
             for group in self.lever_group_panel.get_components():
@@ -134,7 +131,7 @@ class Main(MainTemplate):
     def pathways_dropdown_change(self, **event_args):
         """This method is called when an item is selected from the dropdown"""
         self.set_defaults(years_only=True)
-        self.set_url(Model.example_pathways[event_args["sender"].selected_value])
+        self.set_url(init_vals["example_pathways"][event_args["sender"].selected_value])
         self.set_ambition_levers()
         self.update_graphs()
 

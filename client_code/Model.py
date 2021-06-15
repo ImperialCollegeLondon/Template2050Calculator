@@ -54,20 +54,13 @@ def process_layout_data(data):
     return layout
 
 
-if __name__ == "Template2050Calculator.Model":
-    (
-        lever_groups,
-        layout,
-        example_pathways,
-        default_inputs,
-        default_start_years,
-        default_end_years,
-    ) = anvil.server.call("initial_values")
-    layout = process_layout_data(layout)
+init_vals = anvil.server.call("initial_values")
+if "layout" in init_vals.keys():
+    init_vals["layout"] = process_layout_data(init_vals["layout"])
 
 language = "en"
 """The language for the web app. The `locale` in
-:meth:`server_code.Model2050Server.translate`.
+:meth:`server_code.Model2050Server.translate`. Set to "th" for Thai language example.
 """
 
 

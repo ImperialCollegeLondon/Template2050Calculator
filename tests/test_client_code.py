@@ -26,12 +26,12 @@ def teardown_module():
 
 
 def test_model(patch_server_call):
-    from client_code.Model import language, lever_groups, translate
+    from client_code.Model import init_vals, language, translate
 
     assert language == "en"
     assert translate("text") == "text"
 
-    assert lever_groups["group1"] == {
+    assert init_vals["lever_groups"]["group1"] == {
         "names": ["name1", "name2"],
         "tooltips": [
             ["label_tip", "button_tip1", "button_tip2", "button_tip4", "button_tip4"],
