@@ -4,6 +4,7 @@ from pathlib import Path
 
 import anvil.server
 import i18n
+import yaml
 
 from . import interface2050
 from .model2050 import Model2050
@@ -25,8 +26,12 @@ def area_to_side_length(area, radius):
     return 2 * radius * atan(sqrt(sin(area / (4 * radius ** 2))))
 
 
-with open(Path(__file__).absolute().parent.parent / "web_outputs.json") as f:
+BASE_DIR = Path(__file__).absolute().parent.parent
+with open(BASE_DIR / "web_outputs.json") as f:
     TABLE = json.load(f)
+
+with open(BASE_DIR / "app_config.yml") as f:
+    CONFIG = yaml.load(f)
 
 
 def lever_groups():
@@ -37,7 +42,9 @@ def lever_groups():
 def calculate(inputs, start_year, end_year, expert_mode=False):
     solution = model.calculate(inputs, start_year, end_year)
     solution["output_emissions_sector"] = solution["output_emissions_sector"][:-2]
-    solution["x"] = list(range(2015, 2105 if expert_mode else 2055, 5))
+    solution["x"] = list(
+        range(CONFIG["start_year"], 2105 if expert_mode else 2055, CONFIG["step_size"])
+    )
     return solution
 
 
@@ -62,13 +69,13 @@ def map(data):
 
     fig = go.Figure()
 
-    # the below will need to be configurable parameters
-    start_draw_lat = 59.5
-    start_draw_lon = -3.346
-    padding = 0.20  # degrees
-    map_center_lat = 55.3781
-    map_center_lon = -3.436
-    map_zoom = 4
+    map_config = CONFIG["maps"]
+    start_draw_lat = map_config["start_draw_lat"]
+    start_draw_lon = map_config["start_draw_lon"]
+    padding = map_config["padding"]  # degrees
+    map_center_lat = map_config["map_center_lat"]
+    map_center_lon = map_config["map_center_lon"]
+    map_zoom = map_config["map_zoom"]
 
     traces = []
     # draw areas starting with top-left corner at (start_draw_lat,start_draw_lon),

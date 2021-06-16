@@ -1,0 +1,9 @@
+start_year: 2015 # first year shown on graphs
+step_size: 5 # number of years between data points on graphs
+maps:
+  start_draw_lat: 59.5 # starting latitude for drawing overlays
+  start_draw_lon: -3.346 # starting longitude for drawing overlays
+  padding: 0.20  # vertical padding between overlays in degrees
+  map_center_lat: 55.3781 # latitude on which map is centered
+  map_center_lon: -3.436 # longitude on which map is centered
+  map_zoom: 4 # map zoom level - see https://docs.mapbox.com/help/glossary/zoom-level/
