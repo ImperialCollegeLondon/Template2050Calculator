@@ -1,7 +1,7 @@
 import anvil.server
 from anvil import Button, Label, Plot
 
-from ... import Model
+from ...Model import init_vals
 from ...Plots import PLOTS_REGISTRY
 from ._anvil_designer import FiguresPanelTemplate
 
@@ -15,7 +15,7 @@ class FiguresPanel(FiguresPanelTemplate):
         self.build_tabs()
 
     def build_tabs(self):
-        layout = Model.layout
+        layout = init_vals["layout"]
 
         tabs = [
             self._add_button(self.tabs, tab)
@@ -27,7 +27,7 @@ class FiguresPanel(FiguresPanelTemplate):
 
     def build_sub_tabs(self, tab):
         self.sub_tabs.clear()
-        layout = Model.layout
+        layout = init_vals["layout"]
         sub_tabs = [
             self._add_button(self.sub_tabs, sub_tab) for sub_tab in layout[tab.tag]
         ]
@@ -41,6 +41,14 @@ class FiguresPanel(FiguresPanelTemplate):
         return button
 
     def calculate(self, inputs, start_year, end_year, expert_mode=False):
+        """Run the model based on new inputs and build the graphs and warnings.
+
+        Args:
+        inputs (list): A list of all the ambition lever values.
+        start_year (list): A list of the start year for each ambition lever.
+        end_year (list): A list of the end year for each ambition lever.
+        expert_mode (bool, optional): Flag to run in expert mode. Defaults to False.
+        """
         self.model_solution = anvil.server.call(
             "calculate", inputs, start_year, end_year, expert_mode
         )
@@ -49,7 +57,7 @@ class FiguresPanel(FiguresPanelTemplate):
 
     def build_warnings(self):
         self.warnings_panel.clear()
-        warnings = Model.layout["Warnings"]["Not required"]
+        warnings = init_vals["layout"]["Warnings"]["Not required"]
 
         for key in warnings:
             name, output, plot_type = warnings[key]
@@ -68,7 +76,7 @@ class FiguresPanel(FiguresPanelTemplate):
 
     def build_graphs(self):
         self.figure_container.clear()
-        layout = Model.layout
+        layout = init_vals["layout"]
         tab, sub_tab = self.selected_tab
         try:
             self._plot(layout[tab.tag][sub_tab.tag]["Top"])

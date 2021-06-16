@@ -16,11 +16,14 @@ def process_layout_data(data):
     return_value[tab][sub_tab][position] = GraphInfo instance
 
     where:
-    tab = string referencing an output tab
-    sub_tab = string referencing an output sub-tab
-    position = one of (1-5, "Top", "Bottom", "Page") indicating the position of
-               an output within a sub-tab
-    GraphInfo instance = The relevant metadata required to built an output
+        - tab = string referencing an output tab
+        - sub_tab = string referencing an output sub-tab
+        - position = one of (1-5, "Top", "Bottom", "Page") indicating the position of
+          an output within a sub-tab
+        - GraphInfo instance = The relevant metadata required to built an output
+
+    Returns:
+        OrderedDict: Structured data of the layout of the figures in the web app.
     """
     layout = OrderedDict()
     for tab, sub_tab, pos, title, named_ranges, plot_type in zip(
@@ -51,19 +54,25 @@ def process_layout_data(data):
     return layout
 
 
-(
-    lever_groups,
-    layout,
-    example_pathways,
-    default_inputs,
-    default_start_years,
-    default_end_years,
-) = anvil.server.call("initial_values")
-layout = process_layout_data(layout)
+init_vals = anvil.server.call("initial_values")
+if "layout" in init_vals.keys():
+    init_vals["layout"] = process_layout_data(init_vals["layout"])
 
 language = "en"
+"""The language for the web app. The `locale` in
+:meth:`server_code.Model2050Server.translate`. Set to "th" for Thai language example.
+"""
 
 
 # Use this to translate - later add a registration so all text can be translated at once
 def translate(text):
+    """Translate the text into the already selected language. Calls server function
+    :meth:`server_code.Model2050Server.translate`.
+
+    Args:
+        text (str): The text to be translated.
+
+    Returns:
+        str: The translated text.
+    """
     return anvil.server.call("translate", language, text)
