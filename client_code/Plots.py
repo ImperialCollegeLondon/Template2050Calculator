@@ -3,6 +3,15 @@ import plotly.graph_objects as go
 
 
 def _prepare_rows(data, x):
+    """Retrieve the name and data for each trace in a plot.
+
+    Args:
+        data (list): The data to be plotted, includes names and values
+        x (list): The x axis. A list of years.
+
+    Yields:
+        tuple: A (name, trace) tuple. Where name is a string and trace is a list.
+    """
     for row in data[::-1]:
         name = row[0]
         trace = row[1 : len(x) + 1]
@@ -24,6 +33,15 @@ def format_plot(plot, title):
 
 
 def plot_stacked_area(plot, model_solution, output, title):
+    """Plots the stacked area type of plots.
+    The traces stack on top of each other to make a total.
+
+    Args:
+        plot (plotly.graph_objects.Figure): The figure in the anvil app
+        model_solution (dict): The solution returned by the model
+        output (str): The named range corresponding to the output for this plot
+        title (str): The title of the figure
+    """
     format_plot(plot, title)
     model_output = model_solution[output]
     x = model_solution["x"]
@@ -49,6 +67,15 @@ def plot_stacked_area(plot, model_solution, output, title):
 
 
 def plot_line(plot, model_solution, output, title):
+    """Plots the line plot type of plots.
+    The traces are plotted as individual line plots with markers.
+
+    Args:
+        plot (plotly.graph_objects.Figure): The figure in the anvil app
+        model_solution (dict): The solution returned by the model
+        output (str): The named range corresponding to the output for this plot
+        title (str): The title of the figure
+    """
     format_plot(plot, title)
     model_output = model_solution[output]
     x = model_solution["x"]
@@ -59,6 +86,14 @@ def plot_line(plot, model_solution, output, title):
 
 
 def plot_sankey(plot, model_solution, output, title):
+    """Creates and plots a Sankey flow diagram.
+
+    Args:
+        plot (plotly.graph_objects.Figure): The figure in the anvil app
+        model_solution (dict): The solution returned by the model
+        output (str): The named range corresponding to the output for this plot
+        title (str): The title of the figure
+    """
     format_plot(plot, title)
     x = model_solution["x"]
     model_output = model_solution[output]
@@ -94,6 +129,14 @@ def plot_sankey(plot, model_solution, output, title):
 
 
 def plot_map(plot, model_solution, outputs, title):
+    """Plot the Map type to show land areas over a map of the region.
+
+    Args:
+        plot (plotly.graph_objects.Figure): The figure in the anvil app
+        model_solution (dict): The solution returned by the model
+        outputs (str): The named ranges corresponding to the outputs for this plot
+        title (str): The title of the figure
+    """
     # 2050 should be a configurable parameter
     index = model_solution["x"].index(2050)
     data = {}
@@ -118,3 +161,4 @@ PLOTS_REGISTRY = {
     "sankey/flow": plot_sankey,
     "map": plot_map,
 }
+"""Dictionary mapping plot type names to their functions."""

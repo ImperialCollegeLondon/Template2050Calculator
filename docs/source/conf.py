@@ -31,7 +31,17 @@ author = "Research Computing Service, Imperial College London"
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ["myst_parser"]
+extensions = ["myst_parser", "sphinx.ext.autodoc", "sphinx.ext.napoleon"]
+autodoc_mock_imports = [
+    "server_code.interface2050",
+    "anvil",
+    "client_code.Main._anvil_designer",
+    "client_code.Main.FiguresPanel._anvil_designer",
+    "client_code.Main.LeverGroup._anvil_designer",
+    "client_code.Main.AmbitionLever._anvil_designer",
+    "client_code.Main.AmbitionLever.YearSelector._anvil_designer",
+    "client_code.Main.AmbitionLever.Levers._anvil_designer",
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -47,7 +57,7 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "alabaster"
+html_theme = "bizstyle"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

@@ -1,4 +1,4 @@
-from ... import Model
+from ....Model import init_vals
 from ._anvil_designer import YearSelectorTemplate
 
 
@@ -7,7 +7,7 @@ class YearSelector(YearSelectorTemplate):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
 
-        year_range = Model.expert_mode_range
+        year_range = init_vals["expert_mode_range"]
         year_list = [
             (str(val), val)
             for val in range(

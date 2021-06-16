@@ -9,9 +9,16 @@ import yaml
 from . import interface2050
 from .model2050 import Model2050
 
-model = Model2050(interface2050)
-
 EARTH_RADIUS_KM = 6371
+
+
+def model():
+    """The interface for running the model.
+
+    Returns:
+        Model2050: An initialised model.
+    """
+    return Model2050(interface2050)
 
 
 def arc_length_to_angle(length, radius):
@@ -34,13 +41,24 @@ with open(BASE_DIR / "app_config.yml") as f:
     CONFIG = yaml.load(f)
 
 
-def lever_groups():
-    return TABLE["output_lever_names_grouped"]
-
-
 @anvil.server.callable
 def calculate(inputs, start_year, end_year, expert_mode=False):
-    solution = model.calculate(inputs, start_year, end_year)
+    """Run the model in expert (2100) mode, or standard (2050) mode.
+
+    Callable from the client side of the web app.
+
+    Args:
+        inputs (list): A list of all the ambition lever values.
+        start_year (list): A list of the start year for each ambition lever.
+        end_year (list): A list of the end year for each ambition lever.
+        expert_mode (bool, optional): Flag to run in expert mode. Defaults to False.
+
+    Returns:
+        dict: A dictionary with lists for each output of the model and the years on the
+            x axis (dictionary key is "x"). In 2050 mode the x axis will be from 2015 to
+            2050 (inclusive) in steps of 5 years. 2100 mode will extend it to 2100.
+    """
+    solution = model().calculate(inputs, start_year, end_year)
     solution["output_emissions_sector"] = solution["output_emissions_sector"][:-2]
     config = CONFIG["timeseries"]
     solution["x"] = list(
@@ -56,16 +74,36 @@ i18n.load_path.append(Path(__file__).absolute().parent / "translations")
 
 @anvil.server.callable
 def translate(locale, text):
+    """Stub for translating text to different languages. Requires a translation file.
+    requires a dictionary/translation file to be added to the `server_code/translations`
+    directory. The file will be named `<locale>.yml` and is a simple 1:1 translation.
+    So every phrase to be translated must be included exactly as written, in full.
+
+    Callable from the client side of the web app.
+
+    Args:
+        locale (str): The name of the language to translate to.
+        text (str): The word/phrase to translate
+
+    Returns:
+        str: The translated text
+    """
     i18n.set("locale", locale)
     return i18n.t(text)
 
 
-def layout():
-    return TABLE["weboutputs_summary_table"]
-
-
 @anvil.server.callable
 def map(data):
+    """Generate the figure for the map plot. Currently centred over the UK.
+
+    Callable from the client side of the web app.
+
+    Args:
+        data (dict): Contains the filled areas and distances to plot on the map.
+
+    Returns:
+        go.Figure: The plotly figure with the map and the filled areas.
+    """
     import plotly.graph_objects as go
 
     fig = go.Figure()
@@ -128,30 +166,48 @@ def map(data):
     return fig
 
 
+def lever_groups():
+    """Return the groups names and tooltips of the ambition levers."""
+    return TABLE["output_lever_names_grouped"]
+
+
+def layout():
+    """Return the details of the layout - ie the Web Outputs Summary Table."""
+    return TABLE["weboutputs_summary_table"]
+
+
 def example_pathways():
+    """Return the lever values for the example pathways in the model."""
     return TABLE["example_pathways"]
 
 
 def default_inputs():
-    return model.input_values_default()
+    """Return the default lever values of the model."""
+    return model().input_values_default()
 
 
 def default_start_years():
-    return model.start_values_default()
+    """Return the default start year values of the model."""
+    return model().start_values_default()
 
 
 def default_end_years():
-    return model.end_values_default()
+    """Return the default end year values of the model."""
+    return model().end_values_default()
 
 
 @anvil.server.callable
 def initial_values():
-    return (
-        lever_groups(),
-        layout(),
-        example_pathways(),
-        default_inputs(),
-        default_start_years(),
-        default_end_years(),
-        CONFIG["2100_mode"],
+    """Return the initial values for when loading the web app.
+
+    Callable from the client side of the web app.
+    """
+    return dict(
+        lever_groups=lever_groups(),
+        layout=layout(),
+        example_pathways=example_pathways(),
+        default_inputs=default_inputs(),
+        default_start_years=default_start_years(),
+        default_end_years=default_end_years(),
+        expert_mode_range=CONFIG["2100_mode"],
     )
