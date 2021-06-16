@@ -58,6 +58,7 @@ def process_layout_data(data):
     default_inputs,
     default_start_years,
     default_end_years,
+    expert_mode_range,
 ) = anvil.server.call("initial_values")
 layout = process_layout_data(layout)
 

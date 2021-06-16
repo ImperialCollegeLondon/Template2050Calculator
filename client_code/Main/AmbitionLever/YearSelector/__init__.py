@@ -1,3 +1,4 @@
+from ... import Model
 from ._anvil_designer import YearSelectorTemplate
 
 
@@ -6,7 +7,15 @@ class YearSelector(YearSelectorTemplate):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
 
-        year_list = [(str(val), val) for val in range(2020, 2105, 5)]
+        year_range = Model.expert_mode_range
+        year_list = [
+            (str(val), val)
+            for val in range(
+                year_range["min_year"],
+                year_range["max_year"] + year_range["step_size"],
+                year_range["step_size"],
+            )
+        ]
 
         self.start_year.items = year_list[:-1]
         self.end_year.items = year_list[1:]

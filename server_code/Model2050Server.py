@@ -152,4 +152,5 @@ def initial_values():
         default_inputs(),
         default_start_years(),
         default_end_years(),
+        CONFIG["2100_mode"],
     )
