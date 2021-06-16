@@ -41,7 +41,7 @@ class FiguresPanel(FiguresPanelTemplate):
         return button
 
     def calculate(self, inputs, start_year, end_year, expert_mode=False):
-        """Run the init_vals based on new inputs and build the graphs and warnings.
+        """Run the model based on new inputs and build the graphs and warnings.
 
         Args:
         inputs (list): A list of all the ambition lever values.
@@ -49,7 +49,7 @@ class FiguresPanel(FiguresPanelTemplate):
         end_year (list): A list of the end year for each ambition lever.
         expert_mode (bool, optional): Flag to run in expert mode. Defaults to False.
         """
-        self.init_vals_solution = anvil.server.call(
+        self.model_solution = anvil.server.call(
             "calculate", inputs, start_year, end_year, expert_mode
         )
         self.build_graphs()
@@ -61,7 +61,7 @@ class FiguresPanel(FiguresPanelTemplate):
 
         for key in warnings:
             name, output, plot_type = warnings[key]
-            data = self.init_vals_solution[output]
+            data = self.model_solution[output]
             active = data[0][1]
             tooltip = data[1][1]
 
@@ -91,7 +91,7 @@ class FiguresPanel(FiguresPanelTemplate):
         plot = Plot()
         self.figure_container.add_component(plot)
         title, output, plot_type = graph_data
-        PLOTS_REGISTRY[plot_type.lower()](plot, self.init_vals_solution, output, title)
+        PLOTS_REGISTRY[plot_type.lower()](plot, self.model_solution, output, title)
 
     @property
     def selected_tab(self):
