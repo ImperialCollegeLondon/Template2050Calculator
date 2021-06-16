@@ -13,8 +13,8 @@ class YearSelector(YearSelectorTemplate):
             (str(val), val)
             for val in range(
                 year_range["min_year"],
-                year_range["max_year"] + self._year_step,
-                self._year_step,
+                year_range["max_year"] + year_range["step_size"],
+                year_range["step_size"],
             )
         ]
 
