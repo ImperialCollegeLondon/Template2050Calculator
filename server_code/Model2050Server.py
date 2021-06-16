@@ -42,8 +42,9 @@ def lever_groups():
 def calculate(inputs, start_year, end_year, expert_mode=False):
     solution = model.calculate(inputs, start_year, end_year)
     solution["output_emissions_sector"] = solution["output_emissions_sector"][:-2]
+    config = CONFIG["timeseries"]
     solution["x"] = list(
-        range(CONFIG["start_year"], 2105 if expert_mode else 2055, CONFIG["step_size"])
+        range(config["start_year"], 2105 if expert_mode else 2055, config["step_size"])
     )
     return solution
 
