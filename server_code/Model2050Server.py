@@ -38,7 +38,7 @@ with open(BASE_DIR / "web_outputs.json") as f:
     TABLE = json.load(f)
 
 with open(BASE_DIR / "app_config.yml") as f:
-    CONFIG = yaml.load(f)
+    CONFIG = yaml.safe_load(f)
 
 
 @anvil.server.callable
