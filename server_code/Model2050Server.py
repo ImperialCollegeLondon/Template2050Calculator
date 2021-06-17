@@ -54,7 +54,6 @@ def calculate(inputs, start_year, end_year, expert_mode=False):
             2050 (inclusive) in steps of 5 years. 2100 mode will extend it to 2100.
     """
     solution = model().calculate(inputs, start_year, end_year)
-    solution["output_emissions_sector"] = solution["output_emissions_sector"][:-2]
     solution["x"] = list(range(2015, 2105 if expert_mode else 2055, 5))
     return solution
 
