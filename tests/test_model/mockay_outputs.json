@@ -1,0 +1,84 @@
+{
+    "weboutputs_summary_table": {
+        "Webtool Page": [
+            "Overview",
+            "Overview",
+            "Map tab",
+            "Warnings"
+        ],
+        "Webtool Tab": [
+            "tab one",
+            "tab one",
+            "sub tab",
+            "Not required"
+        ],
+        "Position": [
+            "Top",
+            "Bottom",
+            "Top",
+            1
+        ],
+        "Title": [
+            "First output",
+            "Second output",
+            "A map of something",
+            "Level 4"
+        ],
+        "Axis Unit": [
+            "No Units",
+            "TWh/yr",
+            "N/A",
+            "No Units"
+        ],
+        "Named Range": [
+            "output.A",
+            "output.B",
+            "output.land.map.area",
+            "output.warning.L4chosen"
+        ],
+        "Graph Type": [
+            "Line",
+            "Line",
+            "Map",
+            "Icon"
+        ]
+    },
+    "example_pathways": {
+        "example pathway": [
+            2.5,
+            3
+        ]
+    },
+    "output_lever_names_grouped": {
+        "a group": {
+            "names": [
+                "Factor"
+            ],
+            "tooltips": [
+                [
+                    2.5,
+                    "Factor lever description",
+                    "lvl 1 factor",
+                    "lvl 2 factor",
+                    "lvl 3 factor",
+                    "lvl 4 factor"
+                ]
+            ]
+        },
+        "another group": {
+            "names": [
+                "Offset"
+            ],
+            "tooltips": [
+                [
+                    3,
+                    "Offset lever description",
+                    "lvl 1 offset",
+                    "lvl 2 offset",
+                    "lvl 3 offset",
+                    "lvl 4 offset"
+                ]
+            ]
+        }
+    }
+}
