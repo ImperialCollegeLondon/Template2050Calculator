@@ -20,13 +20,13 @@ def table_to_dict(table):
     return table_dict
 
 
-def dict_from_range(range_name):
+def dict_from_range(range_name, wb):
     return table_to_dict(get_cells(wb.defined_names[range_name].attr_text, wb))
 
 
 def get_weboutputs(wb):
-    summary_table = dict_from_range("outputs_summary_table")
-    example_pathways = dict_from_range("output.lever.example.ambition")
+    summary_table = dict_from_range("outputs_summary_table", wb)
+    example_pathways = dict_from_range("output.lever.example.ambition", wb)
 
     lever_groups = [
         get_cells(dn.attr_text, wb)
