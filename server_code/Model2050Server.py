@@ -110,7 +110,8 @@ def map(data):
     traces = []
     # draw areas starting with top-left corner at (start_draw_lat,start_draw_lon),
     # each subsequent box is placed to the south of the previous
-    for name, area_km2 in data["area"]:
+    areas = data.get("area", [])
+    for name, area_km2 in areas:
         length_km = area_to_side_length(area_km2, EARTH_RADIUS_KM)
         d_theta_deg = arc_length_to_angle(length_km, EARTH_RADIUS_KM)
 
@@ -134,7 +135,8 @@ def map(data):
             start_draw_lat -= d_theta_deg + padding
 
     # now draw lines for distance quantities in a similar fashion
-    for name, distance_km in data["distance"]:
+    distances = data.get("distances", [])
+    for name, distance_km in distances:
         d_theta_deg = arc_length_to_angle(distance_km, EARTH_RADIUS_KM)
         lats = [start_draw_lat, start_draw_lat]
         lons = [start_draw_lon, start_draw_lon + d_theta_deg]
