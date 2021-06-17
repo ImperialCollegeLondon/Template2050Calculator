@@ -11,12 +11,12 @@ def get_cells(ref, workbook):
 
 def table_to_dict(table):
     keys = [cell.value for cell in table[0]]
-    table_dict = {key: [] for key in keys if key is not None}
+    table_dict = {}
     for row in table[1:]:
-        for idx, col in enumerate(row):
-            if keys[idx] is None:
+        for key, col in zip(keys, row):
+            if key is None:
                 continue
-            table_dict[keys[idx]].append(col.value)
+            table_dict.setdefault(key, []).append(col.value)
     return table_dict
 
 
