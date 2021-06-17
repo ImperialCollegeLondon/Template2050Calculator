@@ -37,7 +37,7 @@ def get_weboutputs(wb):
     tooltips = list(
         get_cells(wb.defined_names["output.lever.descriptions"].attr_text, wb)
     )
-    output_lever_names_grouped: dict = {}
+    output_lever_names_grouped = {}
     for group in lever_groups:
         group_name = group[0][0].value
         output_lever_names_grouped[group_name] = {"names": [], "tooltips": []}
