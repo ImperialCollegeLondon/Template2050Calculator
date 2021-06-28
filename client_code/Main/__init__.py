@@ -166,18 +166,24 @@ class Main(MainTemplate):
         if expert_mode:
             self.expert_toggle.text = "Go back to 2050 Mode"
             self.settings_title_card.add_component(self.expert_label)
+            self.main_area.role = "2100"
         else:
             self.expert_toggle.text = "Switch to 2100 Mode"
             self.expert_label.remove_from_parent()
             self.set_defaults(years_only=True)
             self.set_ambition_levers()
+            self.main_area.role = "2050"
 
         for group in self.lever_group_panel.get_components():
             if not expert_mode:
                 # Reset lever_panel to return to original (non-expert) layout.
                 # lever_panel.items only includes the label and lever buttons, assigning
                 # it re-initialises the levers in the panel.
+                group.group_lever.years.remove_from_parent()
                 group.lever_panel.items = group.lever_panel.items
                 continue
             for lever in group.lever_panel.get_components():
                 lever.show_years()
+            group.group_lever.show_years()
+            group.group_lever.years.start_year.visible = False
+            group.group_lever.years.end_year.visible = False

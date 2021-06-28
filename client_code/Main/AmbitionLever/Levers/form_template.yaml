@@ -7,7 +7,7 @@ components:
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: never, col_spacing: tiny, spacing_above: none, col_widths: '{"WUUCOK":15,"AKKWJZ":15,"CGFFUD":15}',
-    spacing_below: none, background: ''}
+    spacing_below: none, background: '', role: 'lever-buttons'}
   name: column_panel_1
   layout_properties: {grid_position: 'FYJZPS,RWYBBU'}
   components:

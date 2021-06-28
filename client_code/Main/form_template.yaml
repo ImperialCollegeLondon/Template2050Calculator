@@ -16,7 +16,7 @@ components:
   name: title
   layout_properties: {slot: title}
 - type: ColumnPanel
-  properties: {col_widths: '{"BITUCV":20,"PKRSVT":40}'}
+  properties: {col_widths: '{"BITUCV":1,"PKRSVT":40}', role: "2050"}
   name: main_area
   layout_properties: {slot: default}
   components:
@@ -26,7 +26,8 @@ components:
     layout_properties: {grid_position: 'GYKMWG,BITUCV', slot: left-nav, full_width_row: true}
     components:
     - type: ColumnPanel
-      properties: {role: card, col_widths: '{}'}
+      properties: {role: card, col_widths: '{}', spacing_above: none,
+        spacing_below none}
       name: pathways_card
       layout_properties: {grid_position: 'QSNDWO,JOEWHC'}
       components:
@@ -43,8 +44,8 @@ components:
           visible: true
           font_size: null
           font: ''
-          spacing_above: small
-          spacing_below: small
+          spacing_above: none
+          spacing_below: none
           italic: false
           background: ''
           bold: false
@@ -62,7 +63,8 @@ components:
         layout_properties: {grid_position: 'PLRDHP,BHLNYW'}
         event_bindings: {click: reset_button_click}
     - type: FlowPanel
-      properties: {role: card, align: justify}
+      properties: {role: card, align: justify, spacing_above: none,
+        spacing_below: none}
       name: settings_title_card
       components:
       - type: Label
@@ -97,7 +99,7 @@ components:
       event_bindings: {click: expert_toggle_click}
   - type: LinearPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+      wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}',
       spacing_below: small, background: ''}
     name: plot_area
     layout_properties: {grid_position: 'GYKMWG,PKRSVT', full_width_row: true}
