@@ -25,8 +25,12 @@ class AmbitionLever(AmbitionLeverTemplate):
         end_year=None,
         tooltips=[""] * 5,
         bold=False,
+        click_event_handler=None,
     ):
         """Set lever properties"""
+
+        if not click_event_handler:
+            click_event_handler = self.show_info
 
         self.value = value
         self.start_year = start_year
@@ -38,6 +42,7 @@ class AmbitionLever(AmbitionLeverTemplate):
         for i, (level, tip) in enumerate(zip(self.slider.levels, tooltips[1:]), 1):
             level.tooltip = f"Ambition Level {i}:\n" + tip
         self.set_event_handler("x-refresh", event_handler)
+        self.label.set_event_handler("click", click_event_handler)
 
     def show_years(self):
         self.panel.add_component(self.years)
@@ -66,3 +71,15 @@ class AmbitionLever(AmbitionLeverTemplate):
     @end_year.setter
     def end_year(self, end_year):
         self.years.end_year.selected_value = end_year
+
+    def show_info(self, **event_kwargs):
+        """Display a popup showing collected tooltip information for the lever"""
+        from anvil import alert
+
+        title = self.label.text
+        content = (
+            self.label.tooltip
+            + "\n\n"
+            + "\n\n".join(lever.tooltip for lever in self.slider.levels)
+        )
+        alert(title=title, content=content, large=True)
