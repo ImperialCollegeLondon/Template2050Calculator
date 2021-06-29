@@ -677,6 +677,10 @@ body>div[data-notify="container"].alert-warning>span[data-notify="title"]{
   padding: 0px !important;
 }
 
+.anvil-role-active-button > button > .button-text {
+  text-decoration: underline;
+}
+
 /* Component: Card */
 
 .anvil-role-card {

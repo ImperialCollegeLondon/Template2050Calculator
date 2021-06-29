@@ -35,6 +35,7 @@ class FiguresPanel(FiguresPanelTemplate):
 
     def _add_button(self, element, name):
         button = Button(text=name)
+        button.role = "tab-button"
         button.tag = name
         button.set_event_handler("click", self.tab_click)
         element.add_component(button)
@@ -100,9 +101,9 @@ class FiguresPanel(FiguresPanelTemplate):
     @selected_tab.setter
     def selected_tab(self, tab):
         for t in self.tabs.get_components():
-            t.role = "raised" if t is tab[0] else ""
+            t.role = "active-button" if t is tab[0] else ""
         for t in self.sub_tabs.get_components():
-            t.role = "raised" if t is tab[1] else ""
+            t.role = "active-button" if t is tab[1] else ""
         self._selected_tab = tab
 
     def tab_click(self, **event_args):
