@@ -64,7 +64,7 @@ class FiguresPanel(FiguresPanelTemplate):
         warnings = init_vals["layout"]["Warnings"]["Not required"]
 
         for key in warnings:
-            name, output, plot_type = warnings[key]
+            name, output, plot_type, _ = warnings[key]
             data = self.model_solution[output]
             active = data[0][1]
             tooltip = data[1][1]
@@ -94,8 +94,10 @@ class FiguresPanel(FiguresPanelTemplate):
     def _plot(self, graph_data):
         plot = Plot()
         self.figure_container.add_component(plot)
-        title, output, plot_type = graph_data
-        PLOTS_REGISTRY[plot_type.lower()](plot, self.model_solution, output, title)
+        title, output, plot_type, axis_unit = graph_data
+        PLOTS_REGISTRY[plot_type.lower()](
+            plot, self.model_solution, output, title, axis_unit
+        )
 
     @property
     def selected_tab(self):
