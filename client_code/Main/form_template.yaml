@@ -16,20 +16,18 @@ components:
   name: title
   layout_properties: {slot: title}
 - type: ColumnPanel
-  properties: {col_widths: '{"BITUCV":1,"PKRSVT":40}', role: "2050",
-    spacing_above: none, col_spacing: none}
+  properties: {col_widths: '{"BITUCV":2,"PKRSVT":41}', role: '2050', spacing_above: none,
+    col_spacing: none}
   name: main_area
   layout_properties: {slot: default}
   components:
   - type: LinearPanel
     properties: {}
     name: sliders_column
-    layout_properties: {grid_position: 'GYKMWG,BITUCV', slot: left-nav,
-      full_width_row: true}
+    layout_properties: {grid_position: 'GYKMWG,BITUCV', slot: left-nav, full_width_row: true}
     components:
     - type: ColumnPanel
-      properties: {role: null, col_widths: '{}', spacing_above: none,
-        spacing_below none}
+      properties: {role: null, col_widths: '{}', spacing_above: none, spacing_below none: null}
       name: pathways_card
       layout_properties: {grid_position: 'QSNDWO,JOEWHC'}
       components:
@@ -65,14 +63,15 @@ components:
         layout_properties: {grid_position: 'PLRDHP,BHLNYW'}
         event_bindings: {click: reset_button_click}
     - type: FlowPanel
-      properties: {role: bottom-border, spacing_above: none, spacing_below: none, col_spacing: none}
+      properties: {role: bottom-border, spacing_above: none, spacing_below: none,
+        col_spacing: none}
       name: settings_title_card
       components:
       - type: Label
-        properties: {role: padded-subheading, align: center, tooltip: '', border: '', foreground: '',
-          visible: true, text: 'Lever Settings:', font_size: null, font: '', spacing_above: small,
-          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-          underline: false, icon: ''}
+        properties: {role: padded-subheading, align: center, tooltip: '', border: '',
+          foreground: '', visible: true, text: 'Lever Settings:', font_size: null,
+          font: '', spacing_above: small, icon_align: left, spacing_below: small,
+          italic: false, background: '', bold: false, underline: false, icon: ''}
         name: label_2
         layout_properties: {grid_position: 'AWRAPM,EUBTYM', full_width_row: false}
       - type: Label
@@ -82,6 +81,24 @@ components:
           underline: false, icon: ''}
         name: label_3
         layout_properties: {grid_position: 'AWRAPM,WLDFBB', full_width_row: false}
+    - type: XYPanel
+      properties: {role: null, width: null, align: center, height: '32', tooltip: '',
+        border: '', foreground: '', visible: true, spacing_above: small, spacing_below: small,
+        background: ''}
+      name: xy_panel_1
+      layout_properties: {}
+      components:
+      - type: Label
+        properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: 'Lever Settings:', font_size: null, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+          underline: false, icon: ''}
+        name: label_1
+        layout_properties: {x: 32.75, y: 9, width: 101}
+      - type: Label
+        properties: {}
+        name: label_4
+        layout_properties: {x: 143.75, y: 10, width: 160}
     - type: RepeatingPanel
       properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
         visible: true, spacing_above: small, spacing_below: small, item_template: Main.LeverGroup,
