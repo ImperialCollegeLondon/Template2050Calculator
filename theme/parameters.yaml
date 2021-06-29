@@ -168,10 +168,10 @@ color_scheme:
       - {name: Secondary 500, color: '#9E9E9E'}
       - {name: Secondary 700, color: '#616161'}
   colors:
-  - {name: Primary 500, color: '#00BCD4'}
-  - {name: Primary 700, color: '#0097A7'}
-  - {name: Secondary 500, color: '#3F51B5'}
-  - {name: Secondary 700, color: '#303F9F'}
+  - {name: Primary 500, color: '#3F51B5'}
+  - {name: Primary 700, color: '#303F9F'}
+  - {name: Secondary 500, color: '#2196F3'}
+  - {name: Secondary 700, color: '#1976D2'}
   - {name: White, color: '#FFFFFF'}
   - {name: Gray 50, color: '#FAFAFA'}
   - {name: Gray 100, color: '#F5F5F5'}

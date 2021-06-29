@@ -1,8 +1,9 @@
-container: {type: ColumnPanel, properties: {spacing_above: none}}
+container:
+  type: ColumnPanel
+  properties: {spacing_above: none}
 components:
 - type: ColumnPanel
-  properties: {col_widths: '{"YSUAKQ":55,"OROLTQ":5}', spacing_above: none,
-    spacing_below: none}
+  properties: {col_widths: '{"YSUAKQ":55,"OROLTQ":5}', spacing_above: none, spacing_below: none}
   name: content_panel
   layout_properties:
     col_widths: {}
@@ -11,8 +12,8 @@ components:
   components:
   - type: FlowPanel
     properties: {role: null, spacing: medium, align: left, tooltip: '', border: '',
-      foreground: '', visible: true, spacing_above: none, spacing_below: small,
-      background: 'theme:Secondary 500'}
+      foreground: '', visible: true, spacing_above: none, spacing_below: small, background: 'theme:Secondary
+        500'}
     name: tabs
     layout_properties: {grid_position: 'SHKAJT,MGKKJU', full_width_row: true}
     components: []
