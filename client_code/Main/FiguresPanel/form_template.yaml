@@ -12,8 +12,8 @@ components:
   components:
   - type: FlowPanel
     properties: {role: null, spacing: medium, align: left, tooltip: '', border: '',
-      foreground: '', visible: true, spacing_above: none, spacing_below: small, background: 'theme:Secondary
-        500'}
+      foreground: '', visible: true, spacing_above: none, spacing_below: small,
+      background: 'theme:Primary 700'}
     name: tabs
     layout_properties: {grid_position: 'SHKAJT,MGKKJU', full_width_row: true}
     components: []

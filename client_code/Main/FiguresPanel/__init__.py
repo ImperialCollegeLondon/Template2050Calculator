@@ -29,14 +29,17 @@ class FiguresPanel(FiguresPanelTemplate):
         self.sub_tabs.clear()
         layout = init_vals["layout"]
         sub_tabs = [
-            self._add_button(self.sub_tabs, sub_tab) for sub_tab in layout[tab.tag]
+            self._add_button(self.sub_tabs, sub_tab, sub_tab=True)
+            for sub_tab in layout[tab.tag]
         ]
         return sub_tabs[0]
 
-    def _add_button(self, element, name):
+    def _add_button(self, element, name, sub_tab=False):
         button = Button(text=name)
         button.role = "tab-button"
         button.tag = name
+        if not sub_tab:
+            button.foreground = "theme:White"
         button.set_event_handler("click", self.tab_click)
         element.add_component(button)
         return button
