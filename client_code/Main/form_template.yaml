@@ -89,16 +89,19 @@ components:
       layout_properties: {}
       components:
       - type: Label
-        properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
           visible: true, text: 'Lever Settings:', font_size: null, font: '', spacing_above: small,
           icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
           underline: false, icon: ''}
-        name: label_1
-        layout_properties: {x: 32.75, y: 9, width: 101}
+        name: col1_label
+        layout_properties: {x: 32.75, y: 9, width: 118}
       - type: Label
-        properties: {}
-        name: label_4
-        layout_properties: {x: 143.75, y: 10, width: 160}
+        properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: Level of Ambition, font_size: null, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: col2_label
+        layout_properties: {x: 160.75, y: 9, width: 128}
     - type: RepeatingPanel
       properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
         visible: true, spacing_above: small, spacing_below: small, item_template: Main.LeverGroup,
