@@ -174,16 +174,17 @@ class Main(MainTemplate):
             self.set_ambition_levers()
             self.main_area.role = "2050"
 
-        for group in self.lever_group_panel.get_components():
-            if not expert_mode:
-                # Reset lever_panel to return to original (non-expert) layout.
-                # lever_panel.items only includes the label and lever buttons, assigning
-                # it re-initialises the levers in the panel.
-                group.group_lever.years.remove_from_parent()
-                group.lever_panel.items = group.lever_panel.items
-                continue
-            for lever in group.lever_panel.get_components():
-                lever.show_years()
-            group.group_lever.show_years()
-            group.group_lever.years.start_year.visible = False
-            group.group_lever.years.end_year.visible = False
+        if not expert_mode:
+            # Reset lever_group_panel to return to original (non-expert) layout.
+            # Removing the year selector element leaves an empty column so work
+            # around completely by reinitialising the levers by nulling items
+            # and setting again from url
+            self.lever_group_panel.items = None
+            self.set_ambition_levers()
+        else:
+            for group in self.lever_group_panel.get_components():
+                for lever in group.lever_panel.get_components():
+                    lever.show_years()
+                group.group_lever.show_years()
+                group.group_lever.years.start_year.visible = False
+                group.group_lever.years.end_year.visible = False

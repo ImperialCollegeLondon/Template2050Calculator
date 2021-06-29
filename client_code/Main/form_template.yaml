@@ -7,7 +7,7 @@ components:
 - type: FlowPanel
   properties: {}
   name: navbar_links
-  layout_properties: {slot: nav-right}
+  layout_properties: {slot: nav-right, spacing_below: none}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 2050 Carbon Calculator, font_size: null, font: '', spacing_above: small,
@@ -16,17 +16,19 @@ components:
   name: title
   layout_properties: {slot: title}
 - type: ColumnPanel
-  properties: {col_widths: '{"BITUCV":1,"PKRSVT":40}', role: "2050"}
+  properties: {col_widths: '{"BITUCV":1,"PKRSVT":40}', role: "2050",
+    spacing_above: none, col_spacing: none}
   name: main_area
   layout_properties: {slot: default}
   components:
   - type: LinearPanel
     properties: {}
     name: sliders_column
-    layout_properties: {grid_position: 'GYKMWG,BITUCV', slot: left-nav, full_width_row: true}
+    layout_properties: {grid_position: 'GYKMWG,BITUCV', slot: left-nav,
+      full_width_row: true}
     components:
     - type: ColumnPanel
-      properties: {role: card, col_widths: '{}', spacing_above: none,
+      properties: {role: null, col_widths: '{}', spacing_above: none,
         spacing_below none}
       name: pathways_card
       layout_properties: {grid_position: 'QSNDWO,JOEWHC'}
@@ -63,12 +65,11 @@ components:
         layout_properties: {grid_position: 'PLRDHP,BHLNYW'}
         event_bindings: {click: reset_button_click}
     - type: FlowPanel
-      properties: {role: card, align: justify, spacing_above: none,
-        spacing_below: none}
+      properties: {role: bottom-border, spacing_above: none, spacing_below: none, col_spacing: none}
       name: settings_title_card
       components:
       - type: Label
-        properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
+        properties: {role: padded-subheading, align: center, tooltip: '', border: '', foreground: '',
           visible: true, text: 'Lever Settings:', font_size: null, font: '', spacing_above: small,
           icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
           underline: false, icon: ''}
