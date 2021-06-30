@@ -117,7 +117,7 @@ def plot_sankey(plot, model_solution, output, title, valuesuffix):
     plot.data = [
         go.Sankey(
             valueformat=".0f",
-            valuesuffix="TWh",  # Get from Model2050Server.TABLE["Axis Unit"] ?
+            valuesuffix=valuesuffix,
             node=dict(
                 pad=15,
                 thickness=15,
