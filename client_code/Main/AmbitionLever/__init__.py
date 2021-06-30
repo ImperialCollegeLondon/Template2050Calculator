@@ -84,7 +84,7 @@ class AmbitionLever(AmbitionLeverTemplate):
         content = (
             self.label.tooltip
             + "\n\n"
-            + "\n\n".join(lever.tooltip for lever in self.slider.levels)
+            + "\n\n".join(lever.tooltip for lever in self.lever.levels)
         )
         alert(title=title, content=content, large=True)
 
