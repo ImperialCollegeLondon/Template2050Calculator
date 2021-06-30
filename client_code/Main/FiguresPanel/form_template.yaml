@@ -28,7 +28,7 @@ components:
     layout_properties: {grid_position: 'PFCIQQ,YSUAKQ', full_width_row: true}
     components:
     - type: ColumnPanel
-      properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+      properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
         wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
         spacing_below: small, background: ''}
       name: figure_container
