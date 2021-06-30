@@ -32,6 +32,7 @@ class LeverGroup(LeverGroupTemplate):
             value=group_value,
             event_handler=self.group_lever_clicked,
             bold=True,
+            click_event_handler=self.arrow_button_click,
         )
 
         self.lever_panel.visible = False

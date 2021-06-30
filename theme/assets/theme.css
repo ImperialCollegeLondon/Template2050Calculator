@@ -674,6 +674,30 @@ body>div[data-notify="container"].alert-warning>span[data-notify="title"]{
   vertical-align: middle;
 }
 
+.anvil-role-lever-label > .btn {
+  border-radius: 0px;
+  font-size: 14px;
+  font-weight: normal;
+  color: black;
+  padding-top: 2px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  virtical-align: middle;
+  min-height: 0;
+  text-transform: none;
+  text-align: left;
+
+  border: 0;
+  background-image: none;
+  background-color: transparent;
+  text-shadow: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+
+  position: relative;
+}
+
 .anvil-role-year-dropdown .form-control {
   height: 2em !important;
   padding: 0px !important;
