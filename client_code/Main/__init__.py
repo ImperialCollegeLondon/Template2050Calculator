@@ -27,8 +27,8 @@ class Main(MainTemplate):
         self.select_figures()
         input_values = self.get_url_vals()
         if (
-            input_values["start_years"] != Model.default_start_years
-            or input_values["end_years"] != Model.default_end_years
+            input_values["start_years"] != init_vals["default_start_years"]
+            or input_values["end_years"] != init_vals["default_end_years"]
         ):
             self.set_expert_mode(True)
         self.update_graphs()
@@ -60,7 +60,7 @@ class Main(MainTemplate):
             end_years = list(map(int, url_hash["end_years"].split("-")))
 
             if any(
-                length != len(Model.default_inputs)
+                length != len(init_vals["default_inputs"])
                 for length in (len(inputs), len(start_years), len(end_years))
             ):
                 raise ValueError
