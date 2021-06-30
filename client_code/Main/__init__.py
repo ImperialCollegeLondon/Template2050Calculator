@@ -25,6 +25,12 @@ class Main(MainTemplate):
         self.expert_label.role = "subheading"
         self.expert_toggle.text = "Switch to 2100 Mode"
         self.select_figures()
+        input_values = self.get_url_vals()
+        if (
+            input_values["start_years"] != init_vals["default_start_years"]
+            or input_values["end_years"] != init_vals["default_end_years"]
+        ):
+            self.set_expert_mode(True)
         self.update_graphs()
 
         self.title.text = translate("2050 Carbon Calculator")
@@ -48,14 +54,20 @@ class Main(MainTemplate):
     def get_url_vals(self):
         """Get lever values from url, if available. Otherwise use defaults."""
         url_hash = get_url_hash()
-        if not url_hash:
+        try:
+            inputs = list(map(float, url_hash["inputs"].split("-")))
+            start_years = list(map(int, url_hash["start_years"].split("-")))
+            end_years = list(map(int, url_hash["end_years"].split("-")))
+
+            if any(
+                length != len(init_vals["default_inputs"])
+                for length in (len(inputs), len(start_years), len(end_years))
+            ):
+                raise ValueError
+            return dict(inputs=inputs, start_years=start_years, end_years=end_years)
+        except (ValueError, KeyError, TypeError):
             self.set_defaults()
-            url_hash = get_url_hash()
-        return dict(
-            inputs=list(map(float, url_hash["inputs"].split("-"))),
-            start_years=list(map(int, url_hash["start_years"].split("-"))),
-            end_years=list(map(int, url_hash["end_years"].split("-"))),
-        )
+            return self.get_url_vals()
 
     def set_url(self, inputs=None, start_years=None, end_years=None):
         """Set lever values in the url.

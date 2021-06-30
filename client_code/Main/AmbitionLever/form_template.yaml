@@ -20,7 +20,7 @@ components:
     data_bindings: []
   - type: form:Main.AmbitionLever.Levers
     properties: {}
-    name: slider
+    name: lever
     layout_properties: {grid_position: 'ZECWTP,GIAINH'}
 container:
   type: ColumnPanel
