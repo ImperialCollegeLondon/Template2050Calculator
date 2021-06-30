@@ -211,4 +211,7 @@ def initial_values():
         default_start_years=default_start_years(),
         default_end_years=default_end_years(),
         expert_mode_range=CONFIG["2100_mode"],
+        expert_mode=CONFIG["2100_mode"],
+        maps_data_year=CONFIG["maps"]["data_year"],
+        sankey_data_year=CONFIG["sankey"]["data_year"],
     )

@@ -12,3 +12,6 @@ maps: # settings for map outputs
   map_center_lat: 55.3781 # latitude on which map is centered
   map_center_lon: -3.436 # longitude on which map is centered
   map_zoom: 4 # map zoom level - see https://docs.mapbox.com/help/glossary/zoom-level/
+  data_year: 2050 # the year at which to plot land usage
+sankey: # settings for sankey plots
+  data_year: 2050 # the year at which to plot data

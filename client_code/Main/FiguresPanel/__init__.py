@@ -84,6 +84,7 @@ class FiguresPanel(FiguresPanelTemplate):
         except KeyError:
             try:
                 self._plot(layout[tab.tag][sub_tab.tag]["Page"])
+                self.figure_container.add_component(Plot())
             except KeyError:
                 pass
 
