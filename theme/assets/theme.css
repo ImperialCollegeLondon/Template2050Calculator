@@ -111,6 +111,12 @@ a:hover, a:active {
   line-height: 24dp;
 }
 
+.anvil-role-padded-subheading {
+  font-size: 16px;
+  line-height: 24dp;
+  padding-left: 15px;
+}
+
 .anvil-role-headline {
   font-size: 24px;
   line-height: 32px;
@@ -606,17 +612,75 @@ body>div[data-notify="container"].alert-warning>span[data-notify="title"]{
 .anvil-role-lever-button > .btn
 {
   /* 2dp */  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  border-radius: 2px;
+  border-radius: 0.0px;
   font-size: 14px;
   font-weight: 500;
   padding: 0px 0px;
   min-height: calc(0px + 1.42857143em);
+  border: solid;
+  border-color: black;
+  border-width: 1px 1px 1px 1px
+}
+
+.anvil-role-2050, .anvil-role-2100 {
+  padding: 0px !important;
+}
+
+.anvil-panel-col-BITUCV {
+  /* border: solid; */
+  /* border-width: 0px 2px 0px 0px; */
+  background-color: #E0E0E0;
+}
+
+.anvil-role-bottom-border {
+  /* border: ridge; */
+  /* border-width: 0px 0px 2px 0px; */
+  /* border-color: #757575; */
+  box-shadow: 0px 2px 5px #888888;
+  background-color: #E0E0E0;
+}
+
+.anvil-role-2050 .anvil-panel-col-BITUCV {
+  min-width: 400px;
+  
+}
+.anvil-role-2100 .anvil-panel-col-BITUCV {
+  min-width: 560px;
+}
+
+.anvil-panel-col-OROLTQ {
+  min-width: 150px;
+}
+
+.anvil-role-arrow-button > .btn {
+  padding: 5px 0px 0px 0px !important;
+  min-height: 1em !important;
+}
+
+.anvil-role-arrow-button {
+  width: 15px !important;
+}
+
+.anvil-role-lever-buttons {
+  width: 110px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .anvil-role-lever-label > .label-text
 {
-  padding-top: 0px;
+  padding-top: 2px;
   padding-bottom: 0px;
+  vertical-align: middle;
+}
+
+.anvil-role-year-dropdown .form-control {
+  height: 2em !important;
+  padding: 0px !important;
+}
+
+.anvil-role-active-button > button > .button-text {
+  text-decoration: underline;
 }
 
 /* Component: Card */
@@ -709,7 +773,7 @@ textarea.anvil-component {
     padding: 4px 4px;
 }
 
-.anvil-component select, .anvil-datepicker input { margin-bottom: 4px; }
+.anvil-component select, .anvil-datepicker input { margin-bottom: 0px; }
 input.anvil-component.anvil-spacing-below-none { margin-bottom: 4px; }
 input.anvil-component.anvil-spacing-below-small { margin-bottom: 8px; }
 input.anvil-component.anvil-spacing-below-medium { margin-bottom: 12px; }

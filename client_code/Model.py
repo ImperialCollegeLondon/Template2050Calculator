@@ -6,7 +6,7 @@ import anvil.server
 # You can define variables and functions here, and use them from any form.
 
 
-GraphInfo = namedtuple("GraphData", ("title", "output", "plot_type"))
+GraphInfo = namedtuple("GraphData", ("title", "output", "plot_type", "axis_unit"))
 
 
 def process_layout_data(data):
@@ -26,13 +26,14 @@ def process_layout_data(data):
         OrderedDict: Structured data of the layout of the figures in the web app.
     """
     layout = OrderedDict()
-    for tab, sub_tab, pos, title, named_ranges, plot_type in zip(
+    for tab, sub_tab, pos, title, named_ranges, plot_type, axis_unit in zip(
         data["Webtool Page"],
         data["Webtool Tab"],
         data["Position"],
         data["Title"],
         data["Named Range"],
         data["Graph Type"],
+        data["Axis Unit"],
     ):
 
         # the following could be much neater with use of `setdefault` however,
@@ -47,9 +48,7 @@ def process_layout_data(data):
         positions = sub_tabs[sub_tab]
 
         positions[pos] = GraphInfo(
-            title,
-            named_ranges.replace(".", "_").lower(),
-            plot_type,
+            title, named_ranges.replace(".", "_").lower(), plot_type, axis_unit
         )
     return layout
 

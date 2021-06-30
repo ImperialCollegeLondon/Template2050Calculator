@@ -6,6 +6,9 @@ from .FiguresPanel import FiguresPanel
 
 
 class Main(MainTemplate):
+    label_xs_2050 = [43, 250]
+    label_xs_2100 = [55, 245, 410]
+
     def __init__(self, **properties):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
@@ -19,6 +22,7 @@ class Main(MainTemplate):
     def show(self, **event_args):
         """`show` event handler. Last function to be called."""
         self.expert_label = Label(text="Start and End Year")
+        self.expert_label.role = "subheading"
         self.expert_toggle.text = "Switch to 2100 Mode"
         self.select_figures()
         self.update_graphs()
@@ -165,19 +169,38 @@ class Main(MainTemplate):
         """
         if expert_mode:
             self.expert_toggle.text = "Go back to 2050 Mode"
-            self.settings_title_card.add_component(self.expert_label)
+            self.refresh_headers(self.label_xs_2100)
+            self.settings_title_card.add_component(
+                self.expert_label, x=self.label_xs_2100[2], y=0
+            )
+            self.main_area.role = "2100"
         else:
             self.expert_toggle.text = "Switch to 2100 Mode"
             self.expert_label.remove_from_parent()
+            self.refresh_headers(self.label_xs_2050)
             self.set_defaults(years_only=True)
             self.set_ambition_levers()
+            self.main_area.role = "2050"
 
-        for group in self.lever_group_panel.get_components():
-            if not expert_mode:
-                # Reset lever_panel to return to original (non-expert) layout.
-                # lever_panel.items only includes the label and lever buttons, assigning
-                # it re-initialises the levers in the panel.
-                group.lever_panel.items = group.lever_panel.items
-                continue
-            for lever in group.lever_panel.get_components():
-                lever.show_years()
+        if not expert_mode:
+            # Reset lever_group_panel to return to original (non-expert) layout.
+            # Removing the year selector element leaves an empty column so work
+            # around completely by reinitialising the levers by nulling items
+            # and setting again from url
+            self.lever_group_panel.items = None
+            self.set_ambition_levers()
+        else:
+            for group in self.lever_group_panel.get_components():
+                for lever in group.lever_panel.get_components():
+                    lever.show_years()
+                group.group_lever.show_years()
+                group.group_lever.years.start_year.visible = False
+                group.group_lever.years.end_year.visible = False
+
+    def refresh_headers(self, xs):
+        """Update x positions of labels acting as column headers"""
+        col1_label, col2_label = self.settings_title_card.get_components()
+        col1_label.remove_from_parent()
+        col2_label.remove_from_parent()
+        self.settings_title_card.add_component(col1_label, x=xs[0], y=0)
+        self.settings_title_card.add_component(col2_label, x=xs[1], y=0)
