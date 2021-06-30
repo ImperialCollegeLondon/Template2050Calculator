@@ -55,11 +55,16 @@ class Main(MainTemplate):
         """Get lever values from url, if available. Otherwise use defaults."""
         url_hash = get_url_hash()
         try:
-            return dict(
-                inputs=list(map(float, url_hash["inputs"].split("-"))),
-                start_years=list(map(int, url_hash["start_years"].split("-"))),
-                end_years=list(map(int, url_hash["end_years"].split("-"))),
-            )
+            inputs = list(map(float, url_hash["inputs"].split("-")))
+            start_years = list(map(int, url_hash["start_years"].split("-")))
+            end_years = list(map(int, url_hash["end_years"].split("-")))
+
+            if any(
+                length != len(Model.default_inputs)
+                for length in (len(inputs), len(start_years), len(end_years))
+            ):
+                raise ValueError
+            return dict(inputs=inputs, start_years=start_years, end_years=end_years)
         except (ValueError, KeyError, TypeError):
             self.set_defaults()
             return self.get_url_vals()
