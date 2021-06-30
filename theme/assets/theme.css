@@ -647,9 +647,11 @@ body>div[data-notify="container"].alert-warning>span[data-notify="title"]{
 .anvil-role-2100 .anvil-panel-col-BITUCV {
   min-width: 560px;
 }
-/* .anvil-panel-col-PKRSVT { */
-/*   background-color: #E0E0E0; */
-/* } */
+
+.anvil-panel-col-OROLTQ {
+  min-width: 150px;
+}
+
 .anvil-role-arrow-button > .btn {
   padding: 5px 0px 0px 0px !important;
   min-height: 1em !important;
