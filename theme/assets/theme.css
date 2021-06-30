@@ -686,6 +686,7 @@ body>div[data-notify="container"].alert-warning>span[data-notify="title"]{
   virtical-align: middle;
   min-height: 0;
   text-transform: none;
+  text-align: left;
 
   border: 0;
   background-image: none;
