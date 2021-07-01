@@ -189,12 +189,18 @@ def default_inputs():
 
 def default_start_years():
     """Return the default start year values of the model."""
-    return model().start_values_default()
+    start_years = model().start_values_default()
+    if any(year < CONFIG["2100_mode"]["min_year"] for year in start_years):
+        raise ValueError("Invalid default start year value")
+    return start_years
 
 
 def default_end_years():
     """Return the default end year values of the model."""
-    return model().end_values_default()
+    end_years = model().end_values_default()
+    if any(year > CONFIG["2100_mode"]["max_year"] for year in end_years):
+        raise ValueError("Invalid default end year value")
+    return end_years
 
 
 @anvil.server.callable
