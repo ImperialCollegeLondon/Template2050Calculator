@@ -41,6 +41,9 @@ autodoc_mock_imports = [
     "client_code.Main.AmbitionLever._anvil_designer",
     "client_code.Main.AmbitionLever.YearSelector._anvil_designer",
     "client_code.Main.AmbitionLever.Levers._anvil_designer",
+    "plotly",
+    "numpy",
+    "i18n",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
