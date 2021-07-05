@@ -24,7 +24,14 @@ jobs:
         python -m pip install -r requirements-dev.txt
     - name: Test with pytest
       run: python -m pytest
-    - name: Build documentation
-      run: |
-        cd docs
-        make html
+  docs:
+     runs-on: ubuntu-latest
+     steps:
+       - uses: actions/checkout@v2
+       - name: Build docs
+         uses: ammaraskar/sphinx-action@master
+         with:
+           docs-folder: "docs/"
+           pre-build-command: |
+             python -m pip install --upgrade pip
+             pip install -r docs/requirements.txt
