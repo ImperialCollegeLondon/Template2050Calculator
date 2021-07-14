@@ -2,67 +2,82 @@
 A template for automatically converting [2050 Calculator](https://www.imperial.ac.uk/2050-calculator) models into web applications. The layout is based off the [UK Mackay Carbon Calculator](https://mackaycarboncalculator.beis.gov.uk/overview/emissions-and-primary-energy-consumption) and is a simple design that can be customised further. It uses [Anvil](https://anvil.works) to create the web app using Python.
 
 ## Web App Setup Process
-To go from a functioning excel model to a web app requires 2 main steps: convert the model into an executable, run and host the web app. There are a few parts to each step, detailed below.
+To go from a functioning excel model to a web app requires 2 main steps before it is ready to deploy: convert the model into an executable, then test the web app locally and customise as desired. There are a few parts to each step, detailed below.
 
-### Prepare Excel Model
-In order for the spreadsheet to be converted into a model that can be used by this Web App, it requires certain named ranges to be added to the template:
+### Getting Started
 
- - `outputs_summary_table` - covers the summary table (including the column headers) in the `WebOutputs` sheet.
- - Inputs - `input.lever.ambition`, `input.lever.start`, `input.lever.end`
- - Outputs - `output.lever.names`, plus whatever outputs (graphs) are desired and detailed in the summary table. Note: the Mackay Calculator has a typo in the summary table, change the contents of cell `WebOutputs!G771` to `output.land.map.numberunits`
+We strongly recommend forking or importing a copy of the Template2050Calculator repository on GitHub. The code can then be cloned to a local machine for development. The following dependencies must be installed for the conversion process and testing/customisation of the web app:
 
-### Deployment
-There are two main options for deploying the web application: locally (self-hosted) and through Azure.
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
-#### Self-Hosted deployment
-Requires converting the spreadsheet into an executable and deploying the app with Docker. This is described below in [Development - Local Hosting](#local-hosting) since it requires setting up a local development environment.
+If working on Windows or Mac there is a small amount of extra configuration required for Docker. On these platforms Docker has a default memory usage cap of 2 Gb. This is likely to be exceeded; for reference, conversion of the Mackay Calculator requires around 4 Gb of memory. See the advanced section on [this page](https://docs.docker.com/docker-for-mac/) to increase the memory usage cap.
 
-Current guide only goes through steps for deploying to localhost. Additional configuration of proxies etc is required for an externally accessible website hosted on a server.
+### 1) Convert Excel Model
 
-#### Azure Hosted Web App
-More details to come. Much the same as local hosting, but involves uploading the compiled model to Azure and setting up some configuration and a domain name in Azure.
+#### a) Prepare Excel Model
 
-## Development
-Requirements:
- - [Docker](https://www.docker.com/get-started)
+Converting the spreadsheet successfully requires certain named ranges to be present. The named ranges specified contain the necessary data and metadata for the conversion process. The following named ranges must be present as they are in the Mackay Calculator spreadsheet.
 
-### Convert spreadsheet into an executable
-Clone the [Calc2050 Spreadsheet Converter](https://github.com/ImperialCollegeLondon/calc2050_spreadsheet_converter) with:
+ - Inputs - `input.lever.ambition`, `input.lever.start`, `input.lever.end`.
+ - Outputs - `output.lever.names`, `output.lever.descriptions` and `output.lever.example.ambition`, plus whatever outputs (graphs) are desired and detailed in the summary table. Note: the Mackay Calculator has a typo in the summary table, change the contents of cell `WebOutputs!G771` to `output.land.map.numberunits`.
+
+The following named ranges must be present in addition to those that are in the Mackay Calculator spreadsheet.
+ - `outputs_summary_table` - covers the summary table (titled "Outputs to Webtool Summary" in the Mackay Calculator) in the `WebOutputs` sheet. This should include the column headers as the first row. For instance in the Mackay Calculator this would cover `WebOutputs!C31:N68`.
+ - A series of ranges, one for each group of levers, named according to the convention `output.lever.group?` where `?` is a number. These ranges must be two columns wide with the name of a lever group in the top-left cell and names of each individual lever in the right-hand column. For instance, in the Mackay Calculator `output.lever.group1` would cover `Control!B70:C81`, `output.lever.group2` would cover `Control!B82:C89` and so on.
+
+The following should be checked carefully:
+ - Contents of the `weboutputs_summary_table` range:
+   - For the "Webtool Page" column, entries of "Warnings" will mark an output as a warning icon, all other entries will be used as the name of the tab for the output.
+   - For the "Webtool Tab" column, entries must be "Not required" for Warnings and desired sub-tab name for all other outputs.
+   - For the "Position column", entries for Warnings should be numeric indicating order of appearance, but for other outputs must be one of "Top", "Bottom" or "Page".
+   - For the "Graph Type" column, entries must be one of "Stacked Area with overlying Line(s)", "Line", "Sankey/Flow", "Map" or "Icon"
+ - Ranges for individual outputs should cover data series names in the first column and all data up to 2100.
+
+#### b) Run Conversion
+
+On Mac/Linux run:
 ```bash
-git clone https://github.com/ImperialCollegeLondon/calc2050_spreadsheet_converter.git
+bash scripts/convert_spreadsheet.sh path/to/spreadsheet
 ```
 
-Make sure that you have [Docker](https://www.docker.com/get-started) installed. If using Docker Desktop, you might have to increase the memory limit to 6gb for the Mackay Calculator. (See the advanced section on [this page](https://docs.docker.com/docker-for-mac/))
-
-If running on a Mac, you might need to install the Unix command `realpath`. It can be installed with Homebrew by installing [coreutils](https://formulae.brew.sh/formula/coreutils).
-
-Run the script to process the spreadsheet with:
-```bash
-bash process_spreadsheet.sh <path-to-excel-model>
+On Windows (Powershell) run:
+```
+.\scripts\convert_spreadsheet.ps1 path\to\spreadsheet
 ```
 
-This will take a few hours to finish and the results will be found in a folder called `model`.
+This will take a few hours to finish and consume several Gb of memory. Once completed there should be two new files (`_interface2050.cpython-39-x86_64-linux-gnu.so`) and `interface.py` in the `server_code` directory.
 
-### Local Hosting
-Copy the two files `interface.py` and `_interface2050.cpython-39-x86_64-linux-gnu.so` into the `server_code` directory of this `Template2050Calculator` repository.
+### 2) Run App
 
-Make sure you have Docker installed and are inside the top directory of this repository.
+#### a) Extract Metadata
 
-Build the docker image with:
+The above conversion process focuses on extracting the details of the computational model however there is additional metadata in the spreadsheet that is needed by the web app. Getting this metadata is much faster than the conversion process so wherever possible static data from the spreadsheet is extract in this step. If you make changes to data in the spreadsheet e.g. change a lever description you will need to re-run this step to update the web app. In most cases, only if changes are made to the computational aspects of the model will you need to re-run the conversion process.
+
+On Mac/Linux run:
 ```bash
-docker-compose build
+bash scripts/get_weboutputs.sh path/to/spreadsheet
 ```
 
-Run the server with:
-```bash
+On Windows (Powershell) run:
+```
+.\scripts\convert_spreadsheet.ps1 path\to\spreadsheet
+```
+
+#### b) Test App
+
+To run a test server locally run:
+```
 docker-compose up
 ```
 
+Then open `localhost:3030` in a web browser. All being well the app should load and you'll be able to try it out. Make sure to check that each output is behaving as expected.
+
 The server can be stopped with `Ctrl+C` or `docker-compose down`.
 
-The Web App will be available in your browser at `localhost:3030`.
+#### c) Customise
 
-### Customising the Web App
+You can now start changing the appearance and behaviour of the web app as desired. See the [Anvil documentation](https://anvil.works/docs/overview) to get familiar with the framework. Any changes made whilst the server is running should be automatically picked up when the browser page is refreshed.
 
 This template is fit for use as a fully functioning Web App out of the box, however is intended to be taken and customised. There are two main ways to edit what appears in your calculator:
 1. Editing the metadata in the spreadsheet.
@@ -75,7 +90,7 @@ The spreadsheet metadata includes:
 
 The Anvil App can be edited by using the online Anvil editor. This will require making a free Anvil account and creating your own project then force-pushing this repo to that project.
 
-Once you have created a new app in Anvil named `Template2050Calculator`, addit as a remote named `anvil` to this repo with:
+Once you have created a new app in Anvil named `Template2050Calculator`, add it as a remote named `anvil` to this repo with:
 ```bash
 git remote add anvil <ssh-link>
 ```
@@ -89,3 +104,9 @@ git push -u anvil master
 ```
 
 Now return to Anvil and refresh the page. The editor should be updated with this repo! You can now begin graphically editing the layout of the graph. Anvil has very detailed [documentation on the Anvil Editor](https://anvil.works/docs/editor).
+
+### Deployment
+
+The Dockerfile in the repository can be used to build a Docker image suitable for deploying in a range of hosting services. Please note that the Anvil web server is not suitable for production usage and should be combined with a suitable reverse proxy.
+
+Upon request, deployment can be carried out on Azure under the resources of the 2050 Calculators project. 
