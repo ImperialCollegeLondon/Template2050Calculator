@@ -19,10 +19,7 @@ realpath() {
 
 spreadsheet=$(realpath "$1")
 
-docker run --pull always --rm -it -u "$(id -u)":"$(id -g)" \
-       -v "${spreadsheet}":/opt/excel_to_code/input.xlsx:ro \
-       -v "$(pwd)":/opt/excel_to_code/work/ \
-       docker.pkg.github.com/imperialcollegelondon/calc2050_spreadsheet_converter/calc2050_excel_to_code:main \
-       bash ./run.sh
-
-cp model/_interface2050.cpython-39-x86_64-linux-gnu.so model/interface2050.py server_code/
+docker run --pull always -u "$(id -u)":"$(id -g)" --rm -it \
+       -v "${spreadsheet}":/input.xlsx -v "$(pwd)":/work \
+       --workdir /work ghcr.io/imperialcollegelondon/calc2050_get_weboutputs:latest:latest \
+       python /get_weboutputs.py /input.xlsx
