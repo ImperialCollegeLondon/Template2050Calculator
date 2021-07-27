@@ -64,7 +64,11 @@ On Windows (Powershell) run:
 .\scripts\convert_spreadsheet.ps1 path\to\spreadsheet
 ```
 
-#### b) Test App
+#### b) Update Configuration File
+
+Several aspects of the site can be configured via the included `portal_config.yml` file. This file follows the YAML format and allows access to configuration settings that are expected to change between models from different countries e.g. the longitude and latitude to use for map outputs. Each setting in the file is commented and must be adjusted to match the new model.
+
+#### c) Test App
 
 To run a test server locally run:
 ```
@@ -75,7 +79,7 @@ Then open `localhost:3030` in a web browser. All being well the app should load 
 
 The server can be stopped with `Ctrl+C` or `docker-compose down`.
 
-#### c) Customise
+#### d) Customise
 
 You can now start changing the appearance and behaviour of the web app as desired. See the [Anvil documentation](https://anvil.works/docs/overview) to get familiar with the framework. Any changes made whilst the server is running should be automatically picked up when the browser page is refreshed.
 
