@@ -1,6 +1,8 @@
 import anvil.server
 import plotly.graph_objects as go
 
+from .Model import init_vals
+
 
 def _prepare_rows(data, x):
     """Retrieve the name and data for each trace in a plot.
@@ -100,16 +102,15 @@ def plot_sankey(plot, model_solution, output, title, valuesuffix):
         valuesuffice (str): Value passed as valuesuffix to Go.Sankey
     """
     format_plot(plot, title)
-    x = model_solution["x"]
+    data_index = model_solution["x"].index(init_vals["sankey_data_year"])
     model_output = model_solution[output]
     sources = []
     targets = []
     values = []
-    for row in model_output[1::]:
-        sources.append(row[0])
-        targets.append(row[1])
-        values.append(row[len(x) + 1])
-
+    for source, target, *data_row in model_output[1::]:
+        sources.append(source)
+        targets.append(target)
+        values.append(data_row[data_index])
     nodes = list(set(sources + targets))
     sources = [nodes.index(source) for source in sources]
     targets = [nodes.index(target) for target in targets]
@@ -143,8 +144,7 @@ def plot_map(plot, model_solution, outputs, title, _=None):
         title (str): The title of the figure
         _: dummy argument to match interface of other plotting routines
     """
-    # 2050 should be a configurable parameter
-    index = model_solution["x"].index(2050)
+    index = model_solution["x"].index(init_vals["maps_data_year"])
     data = {}
     for output in outputs.split(","):
         if "area" in output:
