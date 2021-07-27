@@ -2,7 +2,7 @@ timeseries: # settings for timeseries outputs e.g. line graphs
   start_year: 2015 # year of first data point in time series outputs
   step_size: 5 # interval between data points
 2100_mode: # settings for calculator in 2100 mode
-  min_year: 2015 # lowest possible input value
+  min_year: 2020 # lowest possible input value
   max_year: 2100 # highest possible input value
   step_size: 5 # interval between input values
 maps: # settings for map outputs
