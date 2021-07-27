@@ -29,13 +29,17 @@ class FiguresPanel(FiguresPanelTemplate):
         self.sub_tabs.clear()
         layout = init_vals["layout"]
         sub_tabs = [
-            self._add_button(self.sub_tabs, sub_tab) for sub_tab in layout[tab.tag]
+            self._add_button(self.sub_tabs, sub_tab, sub_tab=True)
+            for sub_tab in layout[tab.tag]
         ]
         return sub_tabs[0]
 
-    def _add_button(self, element, name):
+    def _add_button(self, element, name, sub_tab=False):
         button = Button(text=name)
+        button.role = "tab-button"
         button.tag = name
+        if not sub_tab:
+            button.foreground = "theme:White"
         button.set_event_handler("click", self.tab_click)
         element.add_component(button)
         return button
@@ -60,7 +64,7 @@ class FiguresPanel(FiguresPanelTemplate):
         warnings = init_vals["layout"]["Warnings"]["Not required"]
 
         for key in warnings:
-            name, output, plot_type = warnings[key]
+            name, output, plot_type, _ = warnings[key]
             data = self.model_solution[output]
             active = data[0][1]
             tooltip = data[1][1]
@@ -84,14 +88,17 @@ class FiguresPanel(FiguresPanelTemplate):
         except KeyError:
             try:
                 self._plot(layout[tab.tag][sub_tab.tag]["Page"])
+                self.figure_container.add_component(Plot())
             except KeyError:
                 pass
 
     def _plot(self, graph_data):
         plot = Plot()
         self.figure_container.add_component(plot)
-        title, output, plot_type = graph_data
-        PLOTS_REGISTRY[plot_type.lower()](plot, self.model_solution, output, title)
+        title, output, plot_type, axis_unit = graph_data
+        PLOTS_REGISTRY[plot_type.lower()](
+            plot, self.model_solution, output, title, axis_unit
+        )
 
     @property
     def selected_tab(self):
@@ -100,9 +107,9 @@ class FiguresPanel(FiguresPanelTemplate):
     @selected_tab.setter
     def selected_tab(self, tab):
         for t in self.tabs.get_components():
-            t.role = "raised" if t is tab[0] else ""
+            t.role = "active-button" if t is tab[0] else ""
         for t in self.sub_tabs.get_components():
-            t.role = "raised" if t is tab[1] else ""
+            t.role = "active-button" if t is tab[1] else ""
         self._selected_tab = tab
 
     def tab_click(self, **event_args):

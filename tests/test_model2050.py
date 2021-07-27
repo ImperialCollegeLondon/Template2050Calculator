@@ -101,5 +101,5 @@ def test_invalid_inputs(ambition, start, end):
 
 
 def test_default_values():
-    assert model.start_values_default() == [1.0, 2.0]
-    assert model.end_values_default() == [1.0, 2.0]
+    assert model.start_values_default() == [2050.0, 2050.0]
+    assert model.end_values_default() == [2050.0, 2050.0]

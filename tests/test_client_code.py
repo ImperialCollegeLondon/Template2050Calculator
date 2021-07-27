@@ -55,6 +55,7 @@ def test_layout():
                                 "Annual Greenhouse Gas Emissions",
                                 "output_emissions_sector",
                                 "Stacked Area with overlying Line(s)",
+                                "MtCO2e/yr",
                             ),
                         ),
                         (
@@ -63,6 +64,7 @@ def test_layout():
                                 "Primary Energy Consumption",
                                 "output_primary_energy_consumption",
                                 "Stacked Area with overlying Line(s)",
+                                "TWh/yr",
                             ),
                         ),
                     )
@@ -78,6 +80,7 @@ def test_layout():
                                 "Cumulative UK Greenhouse Gas Emissions",
                                 "output_emissions_cumulative",
                                 "Line",
+                                "MtCO2e",
                             ),
                         ),
                         (
@@ -86,6 +89,7 @@ def test_layout():
                                 "Final Energy Consumption",
                                 "output_final_energy_consumption",
                                 "Stacked Area with overlying Line(s)",
+                                "TWh/yr",
                             ),
                         ),
                     )

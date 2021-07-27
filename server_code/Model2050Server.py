@@ -4,6 +4,7 @@ from pathlib import Path
 
 import anvil.server
 import i18n
+import yaml
 
 from . import interface2050
 from .model2050 import Model2050
@@ -32,8 +33,12 @@ def area_to_side_length(area, radius):
     return 2 * radius * atan(sqrt(sin(area / (4 * radius ** 2))))
 
 
-with open(Path(__file__).absolute().parent.parent / "web_outputs.json") as f:
+BASE_DIR = Path(__file__).absolute().parent.parent
+with open(BASE_DIR / "web_outputs.json") as f:
     TABLE = json.load(f)
+
+with open(BASE_DIR / "app_config.yml") as f:
+    CONFIG = yaml.safe_load(f)
 
 
 @anvil.server.callable
@@ -54,7 +59,10 @@ def calculate(inputs, start_year, end_year, expert_mode=False):
             2050 (inclusive) in steps of 5 years. 2100 mode will extend it to 2100.
     """
     solution = model().calculate(inputs, start_year, end_year)
-    solution["x"] = list(range(2015, 2105 if expert_mode else 2055, 5))
+    config = CONFIG["timeseries"]
+    solution["x"] = list(
+        range(config["start_year"], 2105 if expert_mode else 2055, config["step_size"])
+    )
     return solution
 
 
@@ -99,13 +107,13 @@ def map(data):
 
     fig = go.Figure()
 
-    # the below will need to be configurable parameters
-    start_draw_lat = 59.5
-    start_draw_lon = -3.346
-    padding = 0.20  # degrees
-    map_center_lat = 55.3781
-    map_center_lon = -3.436
-    map_zoom = 4
+    map_config = CONFIG["maps"]
+    start_draw_lat = map_config["start_draw_lat"]
+    start_draw_lon = map_config["start_draw_lon"]
+    padding = map_config["padding"]  # degrees
+    map_center_lat = map_config["map_center_lat"]
+    map_center_lon = map_config["map_center_lon"]
+    map_zoom = map_config["map_zoom"]
 
     traces = []
     # draw areas starting with top-left corner at (start_draw_lat,start_draw_lon),
@@ -181,12 +189,18 @@ def default_inputs():
 
 def default_start_years():
     """Return the default start year values of the model."""
-    return model().start_values_default()
+    start_years = model().start_values_default()
+    if any(year < CONFIG["2100_mode"]["min_year"] for year in start_years):
+        raise ValueError("Invalid default start year value")
+    return start_years
 
 
 def default_end_years():
     """Return the default end year values of the model."""
-    return model().end_values_default()
+    end_years = model().end_values_default()
+    if any(year > CONFIG["2100_mode"]["max_year"] for year in end_years):
+        raise ValueError("Invalid default end year value")
+    return end_years
 
 
 @anvil.server.callable
@@ -202,4 +216,8 @@ def initial_values():
         default_inputs=default_inputs(),
         default_start_years=default_start_years(),
         default_end_years=default_end_years(),
+        expert_mode_range=CONFIG["2100_mode"],
+        expert_mode=CONFIG["2100_mode"],
+        maps_data_year=CONFIG["maps"]["data_year"],
+        sankey_data_year=CONFIG["sankey"]["data_year"],
     )

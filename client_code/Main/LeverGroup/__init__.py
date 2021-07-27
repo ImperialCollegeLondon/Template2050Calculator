@@ -32,12 +32,22 @@ class LeverGroup(LeverGroupTemplate):
             value=group_value,
             event_handler=self.group_lever_clicked,
             bold=True,
+            click_event_handler=self.arrow_button_click,
         )
 
         self.lever_panel.visible = False
         self.lever_spacer.visible = False
+        self.set_event_handler("show", self.show)
+
+    def show(self, **event_args):
+        """`show` event handler. Control for any out of range input values that will
+        have been changed.
+        """
+
+        self.lever_updated()
 
     def lever_updated(self):
+        """Update the group lever value when one of the sub-levers is changed."""
         levers = self.lever_panel.get_components()
         mean_value = sum(lever.value for lever in levers) / len(levers)
         self.group_lever.value = mean_value
