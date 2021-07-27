@@ -21,5 +21,5 @@ spreadsheet=$(realpath "$1")
 
 docker run --pull always -u "$(id -u)":"$(id -g)" --rm -it \
        -v "${spreadsheet}":/input.xlsx -v "$(pwd)":/work \
-       --workdir /work chrisca/get_weboutputs:latest \
+       --workdir /work ghcr.io/imperialcollegelondon/calc2050_get_weboutputs:latest:latest \
        python /get_weboutputs.py /input.xlsx

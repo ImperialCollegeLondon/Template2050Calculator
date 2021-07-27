@@ -1,4 +1,4 @@
-FROM chrisca/anvil-app-server
+FROM ghcr.io/imperialcollegelondon/anvil-app-server:latest/anvil-app-server
 ENTRYPOINT []
 
 USER root
