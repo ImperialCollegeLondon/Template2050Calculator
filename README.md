@@ -111,9 +111,16 @@ Now return to Anvil and refresh the page. The editor should be updated with this
 
 ### Deployment
 
-The Dockerfile in the repository can be used to build a Docker image suitable for deploying in a range of hosting services. Please note that the Anvil web server is not suitable for direct production usage and should be combined with a suitable reverse proxy. A docker image can be built for example with:
+The Dockerfile in the repository can be used to build a Docker image suitable for deploying in a range of hosting services. Whilst the Anvil web server is suitable for direct production usage we recommend combining it with a suitable reverse proxy. A docker image can be built for example with:
 ```
 docker build -t calc2050_site:latest .
 ```
 
-Upon request, deployment can be carried out on Azure under the resources of the 2050 Calculators project. 
+In production the image can be run using some variation of the below.
+```
+docker run calc2050_site:latest anvil-app-server --data-dir /anvil-data --app /apps/Template2050Calculator --disable-tls --port 3030 --origin https://calc2050template.azurewebsites.net/
+```
+
+The value for `--origin` should be substituted with the correct domain under which the site will be hosted. The `--disable-tls` flag is used on the assumption that the container will be placed behind a suitable reverse proxy that will handle TLS. For more information about available options see the `anvil-app-server` [README](https://github.com/anvil-works/anvil-runtime#advanced-configuration).
+
+Upon request, deployment can be carried out on Azure Cloud under the resources of the 2050 Calculators project. 
