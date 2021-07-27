@@ -5,7 +5,7 @@ from pathlib import Path
 def test_get_weboutputs():
     from openpyxl import load_workbook
 
-    from get_weboutputs import get_weboutputs
+    from scripts.get_weboutputs import get_weboutputs
 
     test_model_path = Path(__file__).absolute().parent / "test_model"
 
