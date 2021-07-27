@@ -111,6 +111,9 @@ Now return to Anvil and refresh the page. The editor should be updated with this
 
 ### Deployment
 
-The Dockerfile in the repository can be used to build a Docker image suitable for deploying in a range of hosting services. Please note that the Anvil web server is not suitable for production usage and should be combined with a suitable reverse proxy.
+The Dockerfile in the repository can be used to build a Docker image suitable for deploying in a range of hosting services. Please note that the Anvil web server is not suitable for direct production usage and should be combined with a suitable reverse proxy. A docker image can be built for example with:
+```
+docker build -t calc2050_site:latest .
+```
 
 Upon request, deployment can be carried out on Azure under the resources of the 2050 Calculators project. 
