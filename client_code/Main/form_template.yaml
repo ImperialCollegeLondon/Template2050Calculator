@@ -7,7 +7,7 @@ components:
 - type: FlowPanel
   properties: {}
   name: navbar_links
-  layout_properties: {slot: nav-right}
+  layout_properties: {slot: nav-right, spacing_below: none}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: 2050 Carbon Calculator, font_size: null, font: '', spacing_above: small,
@@ -16,7 +16,8 @@ components:
   name: title
   layout_properties: {slot: title}
 - type: ColumnPanel
-  properties: {col_widths: '{"BITUCV":20,"PKRSVT":40}'}
+  properties: {col_widths: '{"BITUCV":2,"PKRSVT":41}', role: '2050', spacing_above: none,
+    col_spacing: none}
   name: main_area
   layout_properties: {slot: default}
   components:
@@ -26,7 +27,7 @@ components:
     layout_properties: {grid_position: 'GYKMWG,BITUCV', slot: left-nav, full_width_row: true}
     components:
     - type: ColumnPanel
-      properties: {role: card, col_widths: '{}'}
+      properties: {role: null, col_widths: '{}', spacing_above: none, spacing_below none: null}
       name: pathways_card
       layout_properties: {grid_position: 'QSNDWO,JOEWHC'}
       components:
@@ -43,8 +44,8 @@ components:
           visible: true
           font_size: null
           font: ''
-          spacing_above: small
-          spacing_below: small
+          spacing_above: none
+          spacing_below: none
           italic: false
           background: ''
           bold: false
@@ -61,24 +62,27 @@ components:
         name: reset_button
         layout_properties: {grid_position: 'PLRDHP,BHLNYW'}
         event_bindings: {click: reset_button_click}
-    - type: FlowPanel
-      properties: {role: card, align: justify}
+    - type: XYPanel
+      properties: {role: bottom-border, width: null, align: center, height: '32',
+        tooltip: '', border: '', foreground: '', visible: true, spacing_above: small,
+        spacing_below: small, background: ''}
       name: settings_title_card
+      layout_properties: {}
       components:
       - type: Label
         properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
           visible: true, text: 'Lever Settings:', font_size: null, font: '', spacing_above: small,
-          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
           underline: false, icon: ''}
-        name: label_2
-        layout_properties: {grid_position: 'AWRAPM,EUBTYM', full_width_row: false}
+        name: col1_label
+        layout_properties: {x: 43, y: 0, width: 140}
       - type: Label
-        properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
           visible: true, text: Level of Ambition, font_size: null, font: '', spacing_above: small,
           icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
           underline: false, icon: ''}
-        name: label_3
-        layout_properties: {grid_position: 'AWRAPM,WLDFBB', full_width_row: false}
+        name: col2_label
+        layout_properties: {x: 250, y: 0, width: 140}
     - type: RepeatingPanel
       properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
         visible: true, spacing_above: small, spacing_below: small, item_template: Main.LeverGroup,
@@ -97,7 +101,7 @@ components:
       event_bindings: {click: expert_toggle_click}
   - type: LinearPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+      wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}',
       spacing_below: small, background: ''}
     name: plot_area
     layout_properties: {grid_position: 'GYKMWG,PKRSVT', full_width_row: true}

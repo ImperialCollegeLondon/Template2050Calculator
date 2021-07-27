@@ -29,12 +29,12 @@ def format_plot(plot, title):
     called before the `data` attribute of the plot is set.
     """
     layout = plot.layout
-    layout.margin = dict(t=30, b=20, l=30, r=10)
+    layout.margin = dict(t=30, b=20, l=40, r=0)
     layout.hovermode = "closest"
     layout.title = dict(text=f"{title}", x=0.5)
 
 
-def plot_stacked_area(plot, model_solution, output, title):
+def plot_stacked_area(plot, model_solution, output, title, axis_unit):
     """Plots the stacked area type of plots.
     The traces stack on top of each other to make a total.
 
@@ -43,8 +43,10 @@ def plot_stacked_area(plot, model_solution, output, title):
         model_solution (dict): The solution returned by the model
         output (str): The named range corresponding to the output for this plot
         title (str): The title of the figure
+        axis_unit (str): Unit to add as y-axis title
     """
     format_plot(plot, title)
+    plot.layout.yaxis.title = axis_unit
     model_output = model_solution[output]
     x = model_solution["x"]
 
@@ -68,7 +70,7 @@ def plot_stacked_area(plot, model_solution, output, title):
     plot.data = data
 
 
-def plot_line(plot, model_solution, output, title):
+def plot_line(plot, model_solution, output, title, axis_unit):
     """Plots the line plot type of plots.
     The traces are plotted as individual line plots with markers.
 
@@ -77,8 +79,10 @@ def plot_line(plot, model_solution, output, title):
         model_solution (dict): The solution returned by the model
         output (str): The named range corresponding to the output for this plot
         title (str): The title of the figure
+        axis_unit (str): Unit to add as y-axis title
     """
     format_plot(plot, title)
+    plot.layout.yaxis.title = axis_unit
     model_output = model_solution[output]
     x = model_solution["x"]
     plot.data = [
@@ -87,7 +91,7 @@ def plot_line(plot, model_solution, output, title):
     ]
 
 
-def plot_sankey(plot, model_solution, output, title):
+def plot_sankey(plot, model_solution, output, title, valuesuffix):
     """Creates and plots a Sankey flow diagram.
 
     Args:
@@ -95,6 +99,7 @@ def plot_sankey(plot, model_solution, output, title):
         model_solution (dict): The solution returned by the model
         output (str): The named range corresponding to the output for this plot
         title (str): The title of the figure
+        valuesuffice (str): Value passed as valuesuffix to Go.Sankey
     """
     format_plot(plot, title)
     data_index = model_solution["x"].index(init_vals["sankey_data_year"])
@@ -113,7 +118,7 @@ def plot_sankey(plot, model_solution, output, title):
     plot.data = [
         go.Sankey(
             valueformat=".0f",
-            valuesuffix="TWh",  # Get from Model2050Server.TABLE["Axis Unit"] ?
+            valuesuffix=valuesuffix,
             node=dict(
                 pad=15,
                 thickness=15,
@@ -129,7 +134,7 @@ def plot_sankey(plot, model_solution, output, title):
     ]
 
 
-def plot_map(plot, model_solution, outputs, title):
+def plot_map(plot, model_solution, outputs, title, _=None):
     """Plot the Map type to show land areas over a map of the region.
 
     Args:
@@ -137,6 +142,7 @@ def plot_map(plot, model_solution, outputs, title):
         model_solution (dict): The solution returned by the model
         outputs (str): The named ranges corresponding to the outputs for this plot
         title (str): The title of the figure
+        _: dummy argument to match interface of other plotting routines
     """
     index = model_solution["x"].index(init_vals["maps_data_year"])
     data = {}

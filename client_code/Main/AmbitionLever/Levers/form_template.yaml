@@ -5,7 +5,7 @@ container:
     background: ''}
 components:
 - type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+  properties: {role: lever-buttons, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: never, col_spacing: tiny, spacing_above: none, col_widths: '{"WUUCOK":15,"AKKWJZ":15,"CGFFUD":15}',
     spacing_below: none, background: ''}
   name: column_panel_1

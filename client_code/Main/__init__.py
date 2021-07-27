@@ -6,6 +6,9 @@ from .FiguresPanel import FiguresPanel
 
 
 class Main(MainTemplate):
+    label_xs_2050 = [43, 250]
+    label_xs_2100 = [55, 245, 410]
+
     def __init__(self, **properties):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
@@ -19,8 +22,15 @@ class Main(MainTemplate):
     def show(self, **event_args):
         """`show` event handler. Last function to be called."""
         self.expert_label = Label(text="Start and End Year")
+        self.expert_label.role = "subheading"
         self.expert_toggle.text = "Switch to 2100 Mode"
         self.select_figures()
+        input_values = self.get_url_vals()
+        if (
+            input_values["start_years"] != init_vals["default_start_years"]
+            or input_values["end_years"] != init_vals["default_end_years"]
+        ):
+            self.set_expert_mode(True)
         self.update_graphs()
 
         self.title.text = translate("2050 Carbon Calculator")
@@ -44,14 +54,20 @@ class Main(MainTemplate):
     def get_url_vals(self):
         """Get lever values from url, if available. Otherwise use defaults."""
         url_hash = get_url_hash()
-        if not url_hash:
+        try:
+            inputs = list(map(float, url_hash["inputs"].split("-")))
+            start_years = list(map(int, url_hash["start_years"].split("-")))
+            end_years = list(map(int, url_hash["end_years"].split("-")))
+
+            if any(
+                length != len(init_vals["default_inputs"])
+                for length in (len(inputs), len(start_years), len(end_years))
+            ):
+                raise ValueError
+            return dict(inputs=inputs, start_years=start_years, end_years=end_years)
+        except (ValueError, KeyError, TypeError):
             self.set_defaults()
-            url_hash = get_url_hash()
-        return dict(
-            inputs=list(map(float, url_hash["inputs"].split("-"))),
-            start_years=list(map(int, url_hash["start_years"].split("-"))),
-            end_years=list(map(int, url_hash["end_years"].split("-"))),
-        )
+            return self.get_url_vals()
 
     def set_url(self, inputs=None, start_years=None, end_years=None):
         """Set lever values in the url.
@@ -165,19 +181,38 @@ class Main(MainTemplate):
         """
         if expert_mode:
             self.expert_toggle.text = "Go back to 2050 Mode"
-            self.settings_title_card.add_component(self.expert_label)
+            self.refresh_headers(self.label_xs_2100)
+            self.settings_title_card.add_component(
+                self.expert_label, x=self.label_xs_2100[2], y=0
+            )
+            self.main_area.role = "2100"
         else:
             self.expert_toggle.text = "Switch to 2100 Mode"
             self.expert_label.remove_from_parent()
+            self.refresh_headers(self.label_xs_2050)
             self.set_defaults(years_only=True)
             self.set_ambition_levers()
+            self.main_area.role = "2050"
 
-        for group in self.lever_group_panel.get_components():
-            if not expert_mode:
-                # Reset lever_panel to return to original (non-expert) layout.
-                # lever_panel.items only includes the label and lever buttons, assigning
-                # it re-initialises the levers in the panel.
-                group.lever_panel.items = group.lever_panel.items
-                continue
-            for lever in group.lever_panel.get_components():
-                lever.show_years()
+        if not expert_mode:
+            # Reset lever_group_panel to return to original (non-expert) layout.
+            # Removing the year selector element leaves an empty column so work
+            # around completely by reinitialising the levers by nulling items
+            # and setting again from url
+            self.lever_group_panel.items = None
+            self.set_ambition_levers()
+        else:
+            for group in self.lever_group_panel.get_components():
+                for lever in group.lever_panel.get_components():
+                    lever.show_years()
+                group.group_lever.show_years()
+                group.group_lever.years.start_year.visible = False
+                group.group_lever.years.end_year.visible = False
+
+    def refresh_headers(self, xs):
+        """Update x positions of labels acting as column headers"""
+        col1_label, col2_label = self.settings_title_card.get_components()
+        col1_label.remove_from_parent()
+        col2_label.remove_from_parent()
+        self.settings_title_card.add_component(col1_label, x=xs[0], y=0)
+        self.settings_title_card.add_component(col2_label, x=xs[1], y=0)
