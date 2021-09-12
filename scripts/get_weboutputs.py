@@ -52,7 +52,7 @@ def get_weboutputs(wb):
         for row in group:
             output_lever_names_grouped[group_name]["names"].append(row[1].value)
             output_lever_names_grouped[group_name]["tooltips"].append(
-                [cell.value for cell in tooltips.pop(0)]
+                [str(cell.value) for cell in tooltips.pop(0)]
             )
 
     return dict(
