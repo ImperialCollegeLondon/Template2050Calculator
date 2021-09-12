@@ -24,6 +24,12 @@ def dict_from_range(range_name, wb):
     return table_to_dict(get_cells(wb.defined_names[range_name].attr_text, wb))
 
 
+def check_tooltips(tooltips):
+    for row in tooltips:
+        for cell in row:
+            if cell.value is None:
+                raise ValueError(f"Found blank tooltip in {cell}")
+
 def get_weboutputs(wb):
     summary_table = dict_from_range("outputs_summary_table", wb)
     example_pathways = dict_from_range("output.lever.example.ambition", wb)
@@ -37,6 +43,8 @@ def get_weboutputs(wb):
     tooltips = list(
         get_cells(wb.defined_names["output.lever.descriptions"].attr_text, wb)
     )
+    check_tooltips(tooltips)
+
     output_lever_names_grouped = {}
     for group in lever_groups:
         group_name = group[0][0].value
