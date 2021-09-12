@@ -35,3 +35,20 @@ jobs:
            pre-build-command: |
              python -m pip install --upgrade pip
              pip install -r docs/requirements.txt
+  publish:
+    needs: qa
+    name: Build and push Docker image for get_weboutputs.py
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          repository: imperialcollegelondon/calc2050_get_weboutputs
+          file: scripts/Dockerfile_weboutputs
+          context: scripts
+          tag_with_ref: true
