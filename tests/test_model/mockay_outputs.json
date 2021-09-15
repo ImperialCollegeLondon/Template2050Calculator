@@ -56,7 +56,6 @@
             ],
             "tooltips": [
                 [
-                    2.5,
                     "Factor lever description",
                     "lvl 1 factor",
                     "lvl 2 factor",
@@ -71,7 +70,6 @@
             ],
             "tooltips": [
                 [
-                    3,
                     "Offset lever description",
                     "lvl 1 offset",
                     "lvl 2 offset",
