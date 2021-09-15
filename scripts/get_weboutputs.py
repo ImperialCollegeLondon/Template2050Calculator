@@ -30,6 +30,7 @@ def check_tooltips(tooltips):
             if cell.value is None:
                 raise ValueError(f"Found blank tooltip in {cell}")
 
+
 def get_weboutputs(wb):
     summary_table = dict_from_range("outputs_summary_table", wb)
     example_pathways = dict_from_range("output.lever.example.ambition", wb)
