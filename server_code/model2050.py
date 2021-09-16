@@ -76,7 +76,7 @@ class Model2050:
         if lever_type == "ambition":
             lower_limit, upper_limit = 1, 4
         else:
-            lower_limit, upper_limit = 2020, 2100
+            lower_limit, upper_limit = 2015, 2100
 
         if any([not (lower_limit <= value <= upper_limit) for value in values]):
             raise ValueError(f"Input value out of range for {lever_type} values")
