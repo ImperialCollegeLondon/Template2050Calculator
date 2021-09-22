@@ -61,7 +61,7 @@ bash scripts/get_weboutputs.sh path/to/spreadsheet
 
 On Windows (Powershell) run:
 ```
-.\scripts\convert_spreadsheet.ps1 path\to\spreadsheet
+.\scripts\get_weboutputs.ps1 path\to\spreadsheet
 ```
 
 #### b) Update Configuration File
