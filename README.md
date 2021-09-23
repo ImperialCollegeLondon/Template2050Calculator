@@ -66,7 +66,7 @@ On Windows (Powershell) run:
 
 #### b) Update Configuration File
 
-Several aspects of the site can be configured via the included `portal_config.yml` file. This file follows the YAML format and allows access to configuration settings that are expected to change between models from different countries e.g. the longitude and latitude to use for map outputs. Each setting in the file is commented and must be adjusted to match the new model.
+Several aspects of the site can be configured via the included `app_config.yml` file. This file follows the YAML format and allows access to configuration settings that are expected to change between models from different countries e.g. the longitude and latitude to use for map outputs. Each setting in the file is commented and must be adjusted to match the new model.
 
 #### c) Test App
 
