@@ -103,7 +103,7 @@ Where `<ssh-link>` can be found under `Settings->Share App->Clone with Git`. It 
 
 Now that you have the remote you will need to create a `master` branch and push that to Anvil:
 ```bash
-git co -b master
+git checkout -b master
 git push -u anvil master
 ```
 
