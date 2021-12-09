@@ -92,22 +92,64 @@ The spreadsheet metadata includes:
  - Example Pathways
  - Output Lever details: names, groups, tooltips
 
-The Anvil App can be edited by using the online Anvil editor. This will require making a free Anvil account and creating your own project then force-pushing this repo to that project.
+##### e) Using the Anvil Online Editor
 
-Once you have created a new app in Anvil named `Template2050Calculator`, add it as a remote named `anvil` to this repo with:
-```bash
-git remote add anvil <ssh-link>
-```
+The Anvil App can be edited by using the online Anvil editor, available at <https://anvil.works/build>. When prompted create an account. Note that these instructions assume you are using the new Beta version of the Anvil Editor at time of writing. This is currently accessible at <https://anvil.works/new-build> however will become the default editor.
 
-Where `<ssh-link>` can be found under `Settings->Share App->Clone with Git`. It is the url section (it should begin with `ssh` and end with `.git`).
+- If you have not already done so install [git][]. Git should now be available
+  in your terminal or powershell. Test this by running `git --version`.
+- Make sure your copy of the Template2050Calculator code is a Git repository:
+  - From the code directory run `git status`. If you see a fatal error message complete the next step.
+  - Run the following commands in the Template2050Calculator code directory:
+    ```
+	git init -b main
+	git remote add -m main -f origin https://github.com/ImperialCollegeLondon/Template2050Calculator.git
+	git reset refs/remotes/origin/HEAD
+	git branch -u origin
+	```
+- Run the following command to incorporate any changes that may have been made into the
+  repository:
+  ```
+  git commit -a -m "Updates"
+  ```
+- To configure authentication with Anvil run the following commands: For Mac/Linux:
+  ```
+  mkdir -p ~/.ssh
+  cat >> ~/.ssh/config <<EOF
 
-Now that you have the remote you will need to create a `master` branch and push that to Anvil:
-```bash
-git checkout -b master
-git push -u anvil master
-```
+  Host anvil.works
+	HostkeyAlgorithms +ssh-rsa
+	PubkeyAcceptedAlgorithms +ssh-rsa
+  EOF
+  ```
+  or for Windows:
+  ```
+  mkdir -force ~/.ssh  
+  Add-Content -Path "$HOME\.ssh\config" -Value ""
+  Add-Content -Path "$HOME\.ssh\config" -Value "Host anvil.works"
+  Add-Content -Path "$HOME\.ssh\config" -Value "  HostkeyAlgorithms +ssh-rsa"
+  Add-Content -Path "$HOME\.ssh\config" -Value "  PubkeyAcceptedAlgorithms +ssh-rsa"
+  ```
+- In the Anvil editor create a new blank app, choosing any theme.
+- Click the "Version History" tab at the bottom of the page then press the clone with git button.
+- You will be shown a git command. From that command copy only the section starting with `ssh` and ending with `.git`.
+- Substituting the section you just copied, run the following command in the Template2050Calculator code directory:
+  ```
+  git remote add anvil YOUR_COPIED_SECTION
+  ```
+- Run `git push -f anvil main`. If asked "Are you sure you want to continue
+  connecting?" respond "yes". When prompted enter your Anvil account password.
+- Refresh the Anvil Editor page in your browser and from the "Version Control" menu select `main` from the "editing branch" dropdown.
+- You should now see a similar version of the app to your local test version.
 
-Now return to Anvil and refresh the page. The editor should be updated with this repo! You can now begin graphically editing the layout of the graph. Anvil has very detailed [documentation on the Anvil Editor](https://anvil.works/docs/editor).
+[git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+
+You can now make whatever changes to the app you would like in the Anvil editor. We strongly suggest following the tutorials provided by Anvil to gain familiarity with the Editor. Once you're happy with your changes, follow the below steps to pull the changes into your local test version.
+
+- From the "Version History" menu press commit and confirm on the dialog box
+- From the Template2050Calculator code directory run `git pull anvil`
+
+You should now be able to see the changes made in the local test server.
 
 ### Deployment
 
